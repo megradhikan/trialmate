@@ -1,0 +1,111 @@
+[
+  {
+    "nct_id": "NCT01234567",
+    "title": "Study of Example Drug in Type 2 Diabetes Mellitus",
+    "phase": "Phase 3",
+    "status": "Recruiting",
+    "conditions": ["Type 2 Diabetes Mellitus"],
+    "interventions": ["ExampleDrug 10mg"],
+    "sponsor": "Example Pharma Inc.",
+    "url": "https://clinicaltrials.gov/study/NCT01234567",
+    "eligibility_text": "Inclusion Criteria:\n1. Ages 18 to 75 years\n2. Confirmed diagnosis of type 2 diabetes mellitus\n3. HbA1c between 7.0% and 10.0%\n4. Currently on stable metformin therapy for at least 3 months\n\nExclusion Criteria:\n1. History of congestive heart failure NYHA Class III or IV\n2. Serum creatinine > 1.5 mg/dL\n3. Pregnant or breastfeeding women",
+    "clauses": [
+      {
+        "nct_id": "NCT01234567",
+        "clause_id": "NCT01234567_I001",
+        "text": "Ages 18 to 75 years",
+        "type": "demographic",
+        "is_inclusion": true,
+        "normalized": [{"type": "age", "min": 18, "max": 75}]
+      },
+      {
+        "nct_id": "NCT01234567",
+        "clause_id": "NCT01234567_I002",
+        "text": "Confirmed diagnosis of type 2 diabetes mellitus",
+        "type": "diagnosis",
+        "is_inclusion": true,
+        "normalized": [{"type": "condition", "condition": "type 2 diabetes"}]
+      },
+      {
+        "nct_id": "NCT01234567",
+        "clause_id": "NCT01234567_I003",
+        "text": "HbA1c between 7.0% and 10.0%",
+        "type": "lab",
+        "is_inclusion": true,
+        "normalized": [
+          {"type": "lab", "test": "hemoglobin_a1c", "op": ">=", "value": 7.0},
+          {"type": "lab", "test": "hemoglobin_a1c", "op": "<=", "value": 10.0}
+        ]
+      },
+      {
+        "nct_id": "NCT01234567",
+        "clause_id": "NCT01234567_I004",
+        "text": "Currently on stable metformin therapy for at least 3 months",
+        "type": "medication",
+        "is_inclusion": true,
+        "normalized": []
+      },
+      {
+        "nct_id": "NCT01234567",
+        "clause_id": "NCT01234567_E001",
+        "text": "History of congestive heart failure NYHA Class III or IV",
+        "type": "diagnosis",
+        "is_inclusion": false,
+        "normalized": [{"type": "exclusion", "text": "CHF NYHA Class III/IV"}]
+      },
+      {
+        "nct_id": "NCT01234567",
+        "clause_id": "NCT01234567_E002",
+        "text": "Serum creatinine > 1.5 mg/dL",
+        "type": "lab",
+        "is_inclusion": false,
+        "normalized": [{"type": "lab", "test": "creatinine", "op": ">", "value": 1.5}]
+      },
+      {
+        "nct_id": "NCT01234567",
+        "clause_id": "NCT01234567_E003",
+        "text": "Pregnant or breastfeeding women",
+        "type": "demographic",
+        "is_inclusion": false,
+        "normalized": [{"type": "exclusion", "text": "Not pregnant or breastfeeding"}]
+      }
+    ]
+  },
+  {
+    "nct_id": "NCT02345678",
+    "title": "Efficacy of Novel Agent in Hypertension and Metabolic Syndrome",
+    "phase": "Phase 2",
+    "status": "Recruiting",
+    "conditions": ["Hypertension", "Metabolic Syndrome"],
+    "interventions": ["AgentB 25mg"],
+    "sponsor": "University Medical Center",
+    "url": "https://clinicaltrials.gov/study/NCT02345678",
+    "eligibility_text": "Inclusion Criteria:\n1. Age 30–80 years\n2. Hypertension diagnosis\n3. Systolic BP > 140 mmHg on at least 2 readings\n\nExclusion Criteria:\n1. eGFR < 30 mL/min\n2. Current use of ARB or ACE inhibitor",
+    "clauses": [
+      {
+        "nct_id": "NCT02345678",
+        "clause_id": "NCT02345678_I001",
+        "text": "Age 30 to 80 years",
+        "type": "demographic",
+        "is_inclusion": true,
+        "normalized": [{"type": "age", "min": 30, "max": 80}]
+      },
+      {
+        "nct_id": "NCT02345678",
+        "clause_id": "NCT02345678_I002",
+        "text": "Hypertension diagnosis",
+        "type": "diagnosis",
+        "is_inclusion": true,
+        "normalized": [{"type": "condition", "condition": "hypertension"}]
+      },
+      {
+        "nct_id": "NCT02345678",
+        "clause_id": "NCT02345678_E001",
+        "text": "eGFR < 30 mL/min",
+        "type": "lab",
+        "is_inclusion": false,
+        "normalized": [{"type": "lab", "test": "egfr", "op": "<", "value": 30}]
+      }
+    ]
+  }
+]

@@ -1,0 +1,5815 @@
+[
+  {
+    "patient_id": "P0001",
+    "age": 32,
+    "sex": "male",
+    "conditions": [
+      "asthma",
+      "chronic kidney disease",
+      "heart failure"
+    ],
+    "medications": [
+      "glimepiride",
+      "atorvastatin",
+      "prednisone",
+      "carvedilol",
+      "lisinopril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.8,
+      "creatinine": 1.0,
+      "alt": 65.6,
+      "ast": 12.4,
+      "egfr": 39.9,
+      "wbc": 11.0,
+      "platelets": 291.0,
+      "bilirubin": 0.71
+    },
+    "notes": "Patient presents with asthma requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0002",
+    "age": 38,
+    "sex": "female",
+    "conditions": [
+      "obesity",
+      "chronic kidney disease",
+      "COPD"
+    ],
+    "medications": [
+      "amlodipine",
+      "atorvastatin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.4,
+      "creatinine": 1.33,
+      "alt": 47.8,
+      "ast": 33.8,
+      "egfr": 24.3,
+      "wbc": 8.8,
+      "platelets": 144.0,
+      "bilirubin": 2.32
+    },
+    "notes": "Follow-up for obesity, chronic kidney disease.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0003",
+    "age": 42,
+    "sex": "male",
+    "conditions": [
+      "Crohn's disease"
+    ],
+    "medications": [
+      "aspirin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.4,
+      "creatinine": 2.47,
+      "alt": 105.3,
+      "ast": 44.2,
+      "egfr": 65.3,
+      "wbc": 13.1,
+      "platelets": 157.0,
+      "bilirubin": 1.02
+    },
+    "notes": "Patient presents with Crohn's disease requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0004",
+    "age": 39,
+    "sex": "male",
+    "conditions": [
+      "colorectal cancer",
+      "depression"
+    ],
+    "medications": [
+      "adalimumab",
+      "glimepiride"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 1.25,
+      "alt": 94.5,
+      "ast": 15.0,
+      "egfr": 102.2,
+      "wbc": 12.8,
+      "platelets": 240.0,
+      "bilirubin": 0.35
+    },
+    "notes": "Follow-up for colorectal cancer, depression.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0005",
+    "age": 45,
+    "sex": "female",
+    "conditions": [
+      "psoriasis",
+      "colorectal cancer",
+      "chronic kidney disease",
+      "obesity"
+    ],
+    "medications": [
+      "semaglutide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.0,
+      "creatinine": 1.74,
+      "alt": 92.2,
+      "ast": 48.6,
+      "egfr": 78.4,
+      "wbc": 7.7,
+      "platelets": 449.0,
+      "bilirubin": 0.52
+    },
+    "notes": "Patient presents with psoriasis requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0006",
+    "age": 37,
+    "sex": "male",
+    "conditions": [
+      "rheumatoid arthritis",
+      "coronary artery disease",
+      "depression",
+      "colorectal cancer"
+    ],
+    "medications": [
+      "empagliflozin",
+      "glimepiride",
+      "metformin",
+      "pembrolizumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.0,
+      "creatinine": 2.07,
+      "alt": 69.1,
+      "ast": 34.0,
+      "egfr": 84.1,
+      "wbc": 4.8,
+      "platelets": 252.0,
+      "bilirubin": 1.24
+    },
+    "notes": "Follow-up for rheumatoid arthritis, coronary artery disease.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0007",
+    "age": 82,
+    "sex": "male",
+    "conditions": [
+      "psoriasis"
+    ],
+    "medications": [
+      "adalimumab",
+      "sitagliptin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.8,
+      "creatinine": 0.85,
+      "alt": 93.9,
+      "ast": 58.5,
+      "egfr": 97.9,
+      "wbc": 9.6,
+      "platelets": 100.0,
+      "bilirubin": 0.95
+    },
+    "notes": "Follow-up for psoriasis.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0008",
+    "age": 57,
+    "sex": "male",
+    "conditions": [
+      "asthma"
+    ],
+    "medications": [
+      "atorvastatin",
+      "dapagliflozin",
+      "glimepiride",
+      "omeprazole"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.0,
+      "creatinine": 1.59,
+      "alt": 70.5,
+      "ast": 33.9,
+      "egfr": 107.2,
+      "wbc": 8.4,
+      "platelets": 174.0,
+      "bilirubin": 1.44
+    },
+    "notes": "Stable asthma. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0009",
+    "age": 57,
+    "sex": "female",
+    "conditions": [
+      "colorectal cancer",
+      "prostate cancer",
+      "heart failure"
+    ],
+    "medications": [
+      "semaglutide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.9,
+      "creatinine": 0.55,
+      "alt": 70.9,
+      "ast": 63.0,
+      "egfr": 20.7,
+      "wbc": 11.6,
+      "platelets": 121.0,
+      "bilirubin": 0.36
+    },
+    "notes": "Follow-up for colorectal cancer, prostate cancer.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0010",
+    "age": 27,
+    "sex": "male",
+    "conditions": [
+      "Crohn's disease",
+      "breast cancer",
+      "COPD"
+    ],
+    "medications": [
+      "omeprazole",
+      "prednisone",
+      "dapagliflozin",
+      "semaglutide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 2.36,
+      "alt": 30.9,
+      "ast": 18.7,
+      "egfr": 63.1,
+      "wbc": 8.4,
+      "platelets": 263.0,
+      "bilirubin": 1.88
+    },
+    "notes": "Patient presents with Crohn's disease requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0011",
+    "age": 25,
+    "sex": "female",
+    "conditions": [
+      "heart failure",
+      "asthma",
+      "COPD"
+    ],
+    "medications": [
+      "glimepiride"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 1.47,
+      "alt": 40.6,
+      "ast": 32.5,
+      "egfr": 112.3,
+      "wbc": 8.6,
+      "platelets": 401.0,
+      "bilirubin": 1.47
+    },
+    "notes": "Patient presents with heart failure requiring management.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0012",
+    "age": 29,
+    "sex": "male",
+    "conditions": [
+      "anxiety",
+      "breast cancer"
+    ],
+    "medications": [
+      "insulin glargine",
+      "furosemide",
+      "lisinopril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 0.5,
+      "alt": 52.9,
+      "ast": 93.4,
+      "egfr": 98.5,
+      "wbc": 6.8,
+      "platelets": 344.0,
+      "bilirubin": 1.88
+    },
+    "notes": "New referral. anxiety poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0013",
+    "age": 37,
+    "sex": "male",
+    "conditions": [
+      "COPD",
+      "hypertension",
+      "multiple myeloma"
+    ],
+    "medications": [
+      "glimepiride",
+      "lisinopril",
+      "warfarin",
+      "prednisone",
+      "dapagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 2.46,
+      "alt": 27.3,
+      "ast": 96.5,
+      "egfr": 28.0,
+      "wbc": 5.6,
+      "platelets": 308.0,
+      "bilirubin": 1.75
+    },
+    "notes": "Patient presents with COPD requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0014",
+    "age": 49,
+    "sex": "male",
+    "conditions": [
+      "anxiety"
+    ],
+    "medications": [
+      "prednisone",
+      "sitagliptin",
+      "warfarin",
+      "empagliflozin",
+      "insulin glargine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.9,
+      "creatinine": 1.22,
+      "alt": 39.2,
+      "ast": 21.8,
+      "egfr": 84.6,
+      "wbc": 8.8,
+      "platelets": 425.0,
+      "bilirubin": 2.35
+    },
+    "notes": "Patient presents with anxiety requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0015",
+    "age": 27,
+    "sex": "male",
+    "conditions": [
+      "chronic kidney disease",
+      "osteoporosis",
+      "coronary artery disease"
+    ],
+    "medications": [
+      "apixaban"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 1.51,
+      "alt": 69.8,
+      "ast": 37.2,
+      "egfr": 118.4,
+      "wbc": 12.8,
+      "platelets": 285.0,
+      "bilirubin": 1.74
+    },
+    "notes": "Patient presents with chronic kidney disease requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0016",
+    "age": 35,
+    "sex": "female",
+    "conditions": [
+      "heart failure"
+    ],
+    "medications": [
+      "glimepiride",
+      "omeprazole",
+      "empagliflozin",
+      "aspirin",
+      "methotrexate"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 1.29,
+      "alt": 85.6,
+      "ast": 86.8,
+      "egfr": 70.5,
+      "wbc": 6.4,
+      "platelets": 418.0,
+      "bilirubin": 0.32
+    },
+    "notes": "Patient presents with heart failure requiring management.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0017",
+    "age": 18,
+    "sex": "female",
+    "conditions": [
+      "psoriasis",
+      "obesity"
+    ],
+    "medications": [
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.7,
+      "creatinine": 1.48,
+      "alt": 11.1,
+      "ast": 16.8,
+      "egfr": 108.3,
+      "wbc": 13.9,
+      "platelets": 291.0,
+      "bilirubin": 2.12
+    },
+    "notes": "Stable psoriasis. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0018",
+    "age": 23,
+    "sex": "female",
+    "conditions": [
+      "hypertension",
+      "osteoporosis",
+      "COPD"
+    ],
+    "medications": [
+      "semaglutide",
+      "pembrolizumab",
+      "amlodipine",
+      "apixaban",
+      "glimepiride"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.2,
+      "creatinine": 1.43,
+      "alt": 78.3,
+      "ast": 23.9,
+      "egfr": 113.0,
+      "wbc": 13.4,
+      "platelets": 442.0,
+      "bilirubin": 2.06
+    },
+    "notes": "Follow-up for hypertension, osteoporosis.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0019",
+    "age": 70,
+    "sex": "male",
+    "conditions": [
+      "atrial fibrillation",
+      "ulcerative colitis",
+      "heart failure"
+    ],
+    "medications": [
+      "lisinopril",
+      "dapagliflozin",
+      "semaglutide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 2.61,
+      "alt": 48.5,
+      "ast": 83.8,
+      "egfr": 107.1,
+      "wbc": 6.1,
+      "platelets": 331.0,
+      "bilirubin": 1.12
+    },
+    "notes": "Patient presents with atrial fibrillation requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0020",
+    "age": 53,
+    "sex": "female",
+    "conditions": [
+      "Crohn's disease",
+      "lung cancer",
+      "hypothyroidism",
+      "type 2 diabetes"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 10.3,
+      "creatinine": 1.1,
+      "alt": 73.9,
+      "ast": 98.5,
+      "egfr": 23.8,
+      "wbc": 10.4,
+      "platelets": 221.0,
+      "bilirubin": 2.01
+    },
+    "notes": "Patient presents with Crohn's disease requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0021",
+    "age": 67,
+    "sex": "male",
+    "conditions": [
+      "hypertension",
+      "ulcerative colitis",
+      "anxiety"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 2.35,
+      "alt": 85.6,
+      "ast": 94.6,
+      "egfr": 93.7,
+      "wbc": 5.8,
+      "platelets": 251.0,
+      "bilirubin": 2.38
+    },
+    "notes": "Follow-up for hypertension, ulcerative colitis.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0022",
+    "age": 33,
+    "sex": "female",
+    "conditions": [
+      "Crohn's disease",
+      "anxiety",
+      "hypothyroidism"
+    ],
+    "medications": [
+      "aspirin",
+      "glimepiride",
+      "omeprazole"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 2.03,
+      "alt": 51.7,
+      "ast": 77.3,
+      "egfr": 37.4,
+      "wbc": 10.0,
+      "platelets": 242.0,
+      "bilirubin": 2.12
+    },
+    "notes": "Follow-up for Crohn's disease, anxiety.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0023",
+    "age": 77,
+    "sex": "female",
+    "conditions": [
+      "Crohn's disease",
+      "COPD",
+      "prostate cancer",
+      "breast cancer"
+    ],
+    "medications": [
+      "levothyroxine",
+      "pembrolizumab",
+      "atorvastatin",
+      "aspirin",
+      "sitagliptin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.9,
+      "creatinine": 1.92,
+      "alt": 20.3,
+      "ast": 95.7,
+      "egfr": 43.5,
+      "wbc": 7.1,
+      "platelets": 382.0,
+      "bilirubin": 0.54
+    },
+    "notes": "New referral. Crohn's disease poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0024",
+    "age": 27,
+    "sex": "female",
+    "conditions": [
+      "psoriasis",
+      "multiple myeloma",
+      "COPD",
+      "ulcerative colitis"
+    ],
+    "medications": [
+      "furosemide",
+      "dapagliflozin",
+      "semaglutide",
+      "omeprazole",
+      "adalimumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.9,
+      "creatinine": 2.55,
+      "alt": 104.6,
+      "ast": 89.7,
+      "egfr": 97.8,
+      "wbc": 6.0,
+      "platelets": 381.0,
+      "bilirubin": 1.8
+    },
+    "notes": "Patient presents with psoriasis requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0025",
+    "age": 76,
+    "sex": "male",
+    "conditions": [
+      "Crohn's disease",
+      "prostate cancer",
+      "lung cancer",
+      "rheumatoid arthritis"
+    ],
+    "medications": [
+      "ramipril",
+      "methotrexate"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 2.55,
+      "alt": 56.9,
+      "ast": 91.6,
+      "egfr": 64.6,
+      "wbc": 5.3,
+      "platelets": 402.0,
+      "bilirubin": 1.24
+    },
+    "notes": "Follow-up for Crohn's disease, prostate cancer.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0026",
+    "age": 80,
+    "sex": "male",
+    "conditions": [
+      "colorectal cancer",
+      "coronary artery disease",
+      "ulcerative colitis"
+    ],
+    "medications": [
+      "semaglutide",
+      "empagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 2.55,
+      "alt": 18.9,
+      "ast": 23.6,
+      "egfr": 58.3,
+      "wbc": 5.3,
+      "platelets": 175.0,
+      "bilirubin": 1.15
+    },
+    "notes": "New referral. colorectal cancer poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0027",
+    "age": 71,
+    "sex": "male",
+    "conditions": [
+      "anxiety",
+      "depression"
+    ],
+    "medications": [
+      "metformin",
+      "prednisone",
+      "furosemide",
+      "dapagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.8,
+      "creatinine": 1.31,
+      "alt": 92.9,
+      "ast": 86.8,
+      "egfr": 115.3,
+      "wbc": 8.3,
+      "platelets": 362.0,
+      "bilirubin": 1.46
+    },
+    "notes": "Stable anxiety. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0028",
+    "age": 80,
+    "sex": "male",
+    "conditions": [
+      "anxiety",
+      "breast cancer",
+      "type 2 diabetes"
+    ],
+    "medications": [
+      "warfarin",
+      "pembrolizumab",
+      "furosemide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 9.5,
+      "creatinine": 2.43,
+      "alt": 111.1,
+      "ast": 98.3,
+      "egfr": 73.4,
+      "wbc": 13.9,
+      "platelets": 307.0,
+      "bilirubin": 1.72
+    },
+    "notes": "New referral. anxiety poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0029",
+    "age": 35,
+    "sex": "female",
+    "conditions": [
+      "hypertension",
+      "obesity"
+    ],
+    "medications": [
+      "warfarin",
+      "insulin glargine",
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 2.25,
+      "alt": 51.7,
+      "ast": 77.7,
+      "egfr": 103.2,
+      "wbc": 6.4,
+      "platelets": 129.0,
+      "bilirubin": 0.24
+    },
+    "notes": "Follow-up for hypertension, obesity.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0030",
+    "age": 46,
+    "sex": "male",
+    "conditions": [
+      "type 2 diabetes"
+    ],
+    "medications": [
+      "insulin glargine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 10.1,
+      "creatinine": 1.93,
+      "alt": 36.2,
+      "ast": 52.6,
+      "egfr": 31.4,
+      "wbc": 14.4,
+      "platelets": 263.0,
+      "bilirubin": 0.79
+    },
+    "notes": "Patient presents with type 2 diabetes requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0031",
+    "age": 38,
+    "sex": "female",
+    "conditions": [
+      "multiple myeloma"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 6.3,
+      "creatinine": 1.82,
+      "alt": 109.9,
+      "ast": 43.8,
+      "egfr": 114.1,
+      "wbc": 5.8,
+      "platelets": 307.0,
+      "bilirubin": 2.11
+    },
+    "notes": "Follow-up for multiple myeloma.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0032",
+    "age": 33,
+    "sex": "male",
+    "conditions": [
+      "lung cancer",
+      "anxiety",
+      "Crohn's disease"
+    ],
+    "medications": [
+      "atorvastatin",
+      "sitagliptin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.8,
+      "creatinine": 0.53,
+      "alt": 56.2,
+      "ast": 54.1,
+      "egfr": 63.4,
+      "wbc": 7.7,
+      "platelets": 412.0,
+      "bilirubin": 1.26
+    },
+    "notes": "Stable lung cancer. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0033",
+    "age": 52,
+    "sex": "female",
+    "conditions": [
+      "anxiety",
+      "multiple myeloma",
+      "obesity",
+      "hypothyroidism"
+    ],
+    "medications": [
+      "atorvastatin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 1.54,
+      "alt": 92.6,
+      "ast": 61.3,
+      "egfr": 86.8,
+      "wbc": 7.4,
+      "platelets": 273.0,
+      "bilirubin": 0.95
+    },
+    "notes": "Follow-up for anxiety, multiple myeloma.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0034",
+    "age": 51,
+    "sex": "female",
+    "conditions": [
+      "rheumatoid arthritis",
+      "ulcerative colitis",
+      "obesity"
+    ],
+    "medications": [
+      "metformin",
+      "sitagliptin",
+      "insulin glargine",
+      "atorvastatin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 1.43,
+      "alt": 71.1,
+      "ast": 31.6,
+      "egfr": 67.6,
+      "wbc": 11.7,
+      "platelets": 257.0,
+      "bilirubin": 0.24
+    },
+    "notes": "New referral. rheumatoid arthritis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0035",
+    "age": 49,
+    "sex": "female",
+    "conditions": [
+      "breast cancer",
+      "lung cancer",
+      "prostate cancer"
+    ],
+    "medications": [
+      "carvedilol",
+      "glimepiride"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 2.12,
+      "alt": 39.8,
+      "ast": 32.6,
+      "egfr": 32.1,
+      "wbc": 5.7,
+      "platelets": 142.0,
+      "bilirubin": 1.43
+    },
+    "notes": "Stable breast cancer. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0036",
+    "age": 42,
+    "sex": "male",
+    "conditions": [
+      "obesity",
+      "multiple myeloma",
+      "prostate cancer",
+      "rheumatoid arthritis"
+    ],
+    "medications": [
+      "amlodipine",
+      "insulin glargine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 1.33,
+      "alt": 43.2,
+      "ast": 73.7,
+      "egfr": 32.7,
+      "wbc": 4.0,
+      "platelets": 119.0,
+      "bilirubin": 0.87
+    },
+    "notes": "New referral. obesity poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0037",
+    "age": 31,
+    "sex": "male",
+    "conditions": [
+      "breast cancer",
+      "colorectal cancer",
+      "hypothyroidism"
+    ],
+    "medications": [
+      "lisinopril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 2.48,
+      "alt": 22.5,
+      "ast": 15.9,
+      "egfr": 69.2,
+      "wbc": 10.1,
+      "platelets": 340.0,
+      "bilirubin": 0.55
+    },
+    "notes": "Follow-up for breast cancer, colorectal cancer.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0038",
+    "age": 28,
+    "sex": "male",
+    "conditions": [
+      "lung cancer"
+    ],
+    "medications": [
+      "methotrexate",
+      "semaglutide",
+      "sitagliptin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.4,
+      "creatinine": 2.59,
+      "alt": 42.7,
+      "ast": 63.0,
+      "egfr": 62.9,
+      "wbc": 10.0,
+      "platelets": 121.0,
+      "bilirubin": 2.41
+    },
+    "notes": "Stable lung cancer. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0039",
+    "age": 45,
+    "sex": "female",
+    "conditions": [
+      "atrial fibrillation"
+    ],
+    "medications": [
+      "levothyroxine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.7,
+      "creatinine": 0.86,
+      "alt": 54.9,
+      "ast": 72.0,
+      "egfr": 67.0,
+      "wbc": 3.9,
+      "platelets": 201.0,
+      "bilirubin": 0.85
+    },
+    "notes": "Stable atrial fibrillation. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0040",
+    "age": 51,
+    "sex": "male",
+    "conditions": [
+      "heart failure",
+      "lung cancer",
+      "asthma",
+      "psoriasis"
+    ],
+    "medications": [
+      "empagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 0.66,
+      "alt": 28.3,
+      "ast": 37.7,
+      "egfr": 94.9,
+      "wbc": 10.0,
+      "platelets": 201.0,
+      "bilirubin": 0.49
+    },
+    "notes": "New referral. heart failure poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0041",
+    "age": 52,
+    "sex": "female",
+    "conditions": [
+      "coronary artery disease",
+      "rheumatoid arthritis",
+      "hypertension",
+      "anxiety"
+    ],
+    "medications": [
+      "warfarin",
+      "methotrexate",
+      "empagliflozin",
+      "metformin",
+      "atorvastatin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 2.05,
+      "alt": 104.7,
+      "ast": 62.8,
+      "egfr": 22.1,
+      "wbc": 12.3,
+      "platelets": 387.0,
+      "bilirubin": 1.53
+    },
+    "notes": "Stable coronary artery disease. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0042",
+    "age": 78,
+    "sex": "female",
+    "conditions": [
+      "atrial fibrillation",
+      "multiple myeloma",
+      "anxiety"
+    ],
+    "medications": [
+      "dapagliflozin",
+      "atorvastatin",
+      "apixaban",
+      "carvedilol",
+      "warfarin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 0.74,
+      "alt": 27.7,
+      "ast": 47.0,
+      "egfr": 69.5,
+      "wbc": 11.1,
+      "platelets": 240.0,
+      "bilirubin": 1.95
+    },
+    "notes": "Patient presents with atrial fibrillation requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0043",
+    "age": 58,
+    "sex": "female",
+    "conditions": [
+      "heart failure",
+      "depression",
+      "prostate cancer"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.9,
+      "creatinine": 1.75,
+      "alt": 55.5,
+      "ast": 26.9,
+      "egfr": 56.2,
+      "wbc": 12.2,
+      "platelets": 319.0,
+      "bilirubin": 1.95
+    },
+    "notes": "Stable heart failure. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0044",
+    "age": 54,
+    "sex": "female",
+    "conditions": [
+      "heart failure",
+      "type 2 diabetes",
+      "psoriasis",
+      "rheumatoid arthritis"
+    ],
+    "medications": [
+      "levothyroxine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 7.2,
+      "creatinine": 0.53,
+      "alt": 54.9,
+      "ast": 30.2,
+      "egfr": 104.1,
+      "wbc": 4.8,
+      "platelets": 431.0,
+      "bilirubin": 1.69
+    },
+    "notes": "Follow-up for heart failure, type 2 diabetes.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0045",
+    "age": 52,
+    "sex": "female",
+    "conditions": [
+      "breast cancer",
+      "asthma",
+      "colorectal cancer",
+      "lung cancer"
+    ],
+    "medications": [
+      "furosemide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 1.88,
+      "alt": 92.1,
+      "ast": 22.3,
+      "egfr": 27.0,
+      "wbc": 12.4,
+      "platelets": 399.0,
+      "bilirubin": 0.98
+    },
+    "notes": "Follow-up for breast cancer, asthma.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0046",
+    "age": 18,
+    "sex": "female",
+    "conditions": [
+      "multiple myeloma",
+      "Crohn's disease",
+      "breast cancer"
+    ],
+    "medications": [
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.7,
+      "creatinine": 1.29,
+      "alt": 70.7,
+      "ast": 58.9,
+      "egfr": 65.5,
+      "wbc": 7.2,
+      "platelets": 166.0,
+      "bilirubin": 1.8
+    },
+    "notes": "New referral. multiple myeloma poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0047",
+    "age": 23,
+    "sex": "female",
+    "conditions": [
+      "ulcerative colitis",
+      "depression",
+      "Crohn's disease",
+      "psoriasis"
+    ],
+    "medications": [
+      "dapagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.3,
+      "creatinine": 0.79,
+      "alt": 116.2,
+      "ast": 39.9,
+      "egfr": 30.0,
+      "wbc": 13.2,
+      "platelets": 135.0,
+      "bilirubin": 2.29
+    },
+    "notes": "Stable ulcerative colitis. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": true,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0048",
+    "age": 27,
+    "sex": "female",
+    "conditions": [
+      "hypothyroidism",
+      "rheumatoid arthritis",
+      "ulcerative colitis"
+    ],
+    "medications": [
+      "adalimumab",
+      "atorvastatin",
+      "warfarin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.2,
+      "creatinine": 2.48,
+      "alt": 51.8,
+      "ast": 38.5,
+      "egfr": 91.9,
+      "wbc": 12.2,
+      "platelets": 405.0,
+      "bilirubin": 0.28
+    },
+    "notes": "Follow-up for hypothyroidism, rheumatoid arthritis.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0049",
+    "age": 47,
+    "sex": "male",
+    "conditions": [
+      "heart failure",
+      "psoriasis",
+      "ulcerative colitis",
+      "colorectal cancer"
+    ],
+    "medications": [
+      "aspirin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.2,
+      "creatinine": 0.61,
+      "alt": 97.6,
+      "ast": 36.4,
+      "egfr": 57.5,
+      "wbc": 5.2,
+      "platelets": 286.0,
+      "bilirubin": 1.5
+    },
+    "notes": "Stable heart failure. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0050",
+    "age": 40,
+    "sex": "male",
+    "conditions": [
+      "rheumatoid arthritis",
+      "Crohn's disease",
+      "asthma",
+      "breast cancer"
+    ],
+    "medications": [
+      "omeprazole",
+      "semaglutide",
+      "ramipril",
+      "adalimumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 1.09,
+      "alt": 11.0,
+      "ast": 82.4,
+      "egfr": 110.1,
+      "wbc": 11.3,
+      "platelets": 155.0,
+      "bilirubin": 1.22
+    },
+    "notes": "Follow-up for rheumatoid arthritis, Crohn's disease.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0051",
+    "age": 72,
+    "sex": "female",
+    "conditions": [
+      "hyperlipidemia",
+      "COPD",
+      "depression",
+      "breast cancer"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 1.82,
+      "alt": 73.2,
+      "ast": 99.3,
+      "egfr": 49.5,
+      "wbc": 14.7,
+      "platelets": 330.0,
+      "bilirubin": 0.83
+    },
+    "notes": "Patient presents with hyperlipidemia requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0052",
+    "age": 81,
+    "sex": "female",
+    "conditions": [
+      "rheumatoid arthritis",
+      "osteoporosis"
+    ],
+    "medications": [
+      "adalimumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 1.08,
+      "alt": 93.1,
+      "ast": 79.1,
+      "egfr": 88.1,
+      "wbc": 5.1,
+      "platelets": 134.0,
+      "bilirubin": 1.64
+    },
+    "notes": "New referral. rheumatoid arthritis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0053",
+    "age": 22,
+    "sex": "female",
+    "conditions": [
+      "coronary artery disease",
+      "hyperlipidemia"
+    ],
+    "medications": [
+      "carvedilol",
+      "levothyroxine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 2.31,
+      "alt": 106.4,
+      "ast": 42.9,
+      "egfr": 70.2,
+      "wbc": 6.6,
+      "platelets": 158.0,
+      "bilirubin": 2.3
+    },
+    "notes": "Follow-up for coronary artery disease, hyperlipidemia.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0054",
+    "age": 61,
+    "sex": "male",
+    "conditions": [
+      "coronary artery disease",
+      "chronic kidney disease",
+      "asthma",
+      "Crohn's disease"
+    ],
+    "medications": [
+      "pembrolizumab",
+      "furosemide",
+      "glimepiride",
+      "apixaban",
+      "atorvastatin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 0.53,
+      "alt": 69.0,
+      "ast": 50.9,
+      "egfr": 87.3,
+      "wbc": 11.2,
+      "platelets": 305.0,
+      "bilirubin": 2.09
+    },
+    "notes": "Patient presents with coronary artery disease requiring management.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0055",
+    "age": 47,
+    "sex": "female",
+    "conditions": [
+      "rheumatoid arthritis"
+    ],
+    "medications": [
+      "warfarin",
+      "methotrexate",
+      "semaglutide",
+      "adalimumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.9,
+      "creatinine": 2.39,
+      "alt": 110.0,
+      "ast": 37.2,
+      "egfr": 60.8,
+      "wbc": 5.1,
+      "platelets": 431.0,
+      "bilirubin": 0.9
+    },
+    "notes": "Patient presents with rheumatoid arthritis requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0056",
+    "age": 48,
+    "sex": "male",
+    "conditions": [
+      "colorectal cancer",
+      "osteoporosis",
+      "Crohn's disease",
+      "ulcerative colitis"
+    ],
+    "medications": [
+      "carvedilol",
+      "prednisone",
+      "omeprazole",
+      "adalimumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.0,
+      "creatinine": 1.63,
+      "alt": 54.9,
+      "ast": 95.6,
+      "egfr": 23.3,
+      "wbc": 7.8,
+      "platelets": 255.0,
+      "bilirubin": 2.39
+    },
+    "notes": "Patient presents with colorectal cancer requiring management.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0057",
+    "age": 65,
+    "sex": "female",
+    "conditions": [
+      "depression"
+    ],
+    "medications": [
+      "insulin glargine",
+      "amlodipine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.3,
+      "creatinine": 2.4,
+      "alt": 20.1,
+      "ast": 29.1,
+      "egfr": 83.9,
+      "wbc": 14.7,
+      "platelets": 118.0,
+      "bilirubin": 0.97
+    },
+    "notes": "Stable depression. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0058",
+    "age": 26,
+    "sex": "male",
+    "conditions": [
+      "asthma",
+      "hypothyroidism"
+    ],
+    "medications": [
+      "methotrexate"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.8,
+      "creatinine": 2.47,
+      "alt": 25.9,
+      "ast": 21.7,
+      "egfr": 45.1,
+      "wbc": 5.5,
+      "platelets": 331.0,
+      "bilirubin": 0.26
+    },
+    "notes": "Stable asthma. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0059",
+    "age": 59,
+    "sex": "male",
+    "conditions": [
+      "obesity",
+      "hypertension"
+    ],
+    "medications": [
+      "carvedilol"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 2.22,
+      "alt": 62.4,
+      "ast": 80.0,
+      "egfr": 71.3,
+      "wbc": 4.8,
+      "platelets": 276.0,
+      "bilirubin": 2.37
+    },
+    "notes": "Follow-up for obesity, hypertension.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0060",
+    "age": 76,
+    "sex": "male",
+    "conditions": [
+      "breast cancer"
+    ],
+    "medications": [
+      "carvedilol",
+      "pembrolizumab",
+      "amlodipine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 2.59,
+      "alt": 18.1,
+      "ast": 17.3,
+      "egfr": 80.8,
+      "wbc": 4.3,
+      "platelets": 196.0,
+      "bilirubin": 1.66
+    },
+    "notes": "Follow-up for breast cancer.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0061",
+    "age": 66,
+    "sex": "female",
+    "conditions": [
+      "prostate cancer",
+      "rheumatoid arthritis",
+      "anxiety",
+      "heart failure"
+    ],
+    "medications": [
+      "amlodipine",
+      "adalimumab",
+      "glimepiride",
+      "insulin glargine",
+      "carvedilol"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 1.03,
+      "alt": 47.3,
+      "ast": 50.8,
+      "egfr": 61.6,
+      "wbc": 4.6,
+      "platelets": 249.0,
+      "bilirubin": 1.73
+    },
+    "notes": "Stable prostate cancer. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0062",
+    "age": 78,
+    "sex": "male",
+    "conditions": [
+      "coronary artery disease"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 2.21,
+      "alt": 51.0,
+      "ast": 21.7,
+      "egfr": 26.0,
+      "wbc": 14.5,
+      "platelets": 297.0,
+      "bilirubin": 1.74
+    },
+    "notes": "New referral. coronary artery disease poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0063",
+    "age": 24,
+    "sex": "female",
+    "conditions": [
+      "osteoporosis",
+      "heart failure",
+      "multiple myeloma"
+    ],
+    "medications": [
+      "insulin glargine",
+      "omeprazole",
+      "pembrolizumab",
+      "dapagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 0.75,
+      "alt": 103.0,
+      "ast": 43.1,
+      "egfr": 96.3,
+      "wbc": 10.1,
+      "platelets": 383.0,
+      "bilirubin": 2.14
+    },
+    "notes": "Patient presents with osteoporosis requiring management.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0064",
+    "age": 52,
+    "sex": "male",
+    "conditions": [
+      "obesity",
+      "ulcerative colitis"
+    ],
+    "medications": [
+      "warfarin",
+      "apixaban"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.8,
+      "creatinine": 2.5,
+      "alt": 72.3,
+      "ast": 46.1,
+      "egfr": 34.2,
+      "wbc": 10.8,
+      "platelets": 111.0,
+      "bilirubin": 1.92
+    },
+    "notes": "New referral. obesity poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0065",
+    "age": 76,
+    "sex": "female",
+    "conditions": [
+      "osteoporosis",
+      "hyperlipidemia"
+    ],
+    "medications": [
+      "warfarin",
+      "prednisone",
+      "methotrexate",
+      "atorvastatin",
+      "lisinopril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.0,
+      "creatinine": 2.24,
+      "alt": 15.5,
+      "ast": 17.3,
+      "egfr": 64.3,
+      "wbc": 8.4,
+      "platelets": 312.0,
+      "bilirubin": 1.15
+    },
+    "notes": "Patient presents with osteoporosis requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0066",
+    "age": 62,
+    "sex": "female",
+    "conditions": [
+      "hyperlipidemia"
+    ],
+    "medications": [
+      "pembrolizumab",
+      "prednisone",
+      "dapagliflozin",
+      "sitagliptin",
+      "aspirin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.9,
+      "creatinine": 1.41,
+      "alt": 75.9,
+      "ast": 10.7,
+      "egfr": 50.1,
+      "wbc": 5.9,
+      "platelets": 148.0,
+      "bilirubin": 0.79
+    },
+    "notes": "Patient presents with hyperlipidemia requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0067",
+    "age": 81,
+    "sex": "female",
+    "conditions": [
+      "chronic kidney disease",
+      "depression"
+    ],
+    "medications": [
+      "semaglutide",
+      "sitagliptin",
+      "glimepiride",
+      "pembrolizumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 0.67,
+      "alt": 104.8,
+      "ast": 13.8,
+      "egfr": 21.9,
+      "wbc": 14.1,
+      "platelets": 402.0,
+      "bilirubin": 1.52
+    },
+    "notes": "New referral. chronic kidney disease poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0068",
+    "age": 55,
+    "sex": "male",
+    "conditions": [
+      "type 2 diabetes",
+      "hypothyroidism",
+      "atrial fibrillation",
+      "rheumatoid arthritis"
+    ],
+    "medications": [
+      "apixaban",
+      "atorvastatin",
+      "carvedilol"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 10.1,
+      "creatinine": 1.06,
+      "alt": 74.8,
+      "ast": 57.2,
+      "egfr": 59.6,
+      "wbc": 7.1,
+      "platelets": 219.0,
+      "bilirubin": 0.97
+    },
+    "notes": "Patient presents with type 2 diabetes requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0069",
+    "age": 42,
+    "sex": "female",
+    "conditions": [
+      "psoriasis",
+      "chronic kidney disease",
+      "asthma"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.0,
+      "creatinine": 0.95,
+      "alt": 76.3,
+      "ast": 78.4,
+      "egfr": 85.6,
+      "wbc": 5.5,
+      "platelets": 370.0,
+      "bilirubin": 1.34
+    },
+    "notes": "New referral. psoriasis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0070",
+    "age": 59,
+    "sex": "female",
+    "conditions": [
+      "colorectal cancer",
+      "coronary artery disease"
+    ],
+    "medications": [
+      "ramipril",
+      "adalimumab",
+      "aspirin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 1.86,
+      "alt": 48.7,
+      "ast": 16.7,
+      "egfr": 66.2,
+      "wbc": 3.9,
+      "platelets": 229.0,
+      "bilirubin": 0.86
+    },
+    "notes": "Patient presents with colorectal cancer requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0071",
+    "age": 82,
+    "sex": "female",
+    "conditions": [
+      "multiple myeloma",
+      "lung cancer",
+      "hypertension",
+      "colorectal cancer"
+    ],
+    "medications": [
+      "adalimumab",
+      "insulin glargine",
+      "warfarin",
+      "methotrexate"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 0.85,
+      "alt": 16.8,
+      "ast": 19.3,
+      "egfr": 109.9,
+      "wbc": 7.4,
+      "platelets": 350.0,
+      "bilirubin": 1.36
+    },
+    "notes": "Stable multiple myeloma. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0072",
+    "age": 74,
+    "sex": "female",
+    "conditions": [
+      "osteoporosis",
+      "hyperlipidemia"
+    ],
+    "medications": [
+      "carvedilol",
+      "warfarin",
+      "pembrolizumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.8,
+      "creatinine": 2.32,
+      "alt": 81.2,
+      "ast": 15.9,
+      "egfr": 29.5,
+      "wbc": 11.3,
+      "platelets": 199.0,
+      "bilirubin": 1.86
+    },
+    "notes": "Stable osteoporosis. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0073",
+    "age": 60,
+    "sex": "male",
+    "conditions": [
+      "osteoporosis",
+      "hyperlipidemia"
+    ],
+    "medications": [
+      "pembrolizumab",
+      "furosemide",
+      "omeprazole",
+      "methotrexate",
+      "atorvastatin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 1.37,
+      "alt": 97.1,
+      "ast": 83.2,
+      "egfr": 87.0,
+      "wbc": 13.0,
+      "platelets": 359.0,
+      "bilirubin": 1.78
+    },
+    "notes": "New referral. osteoporosis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0074",
+    "age": 64,
+    "sex": "male",
+    "conditions": [
+      "hyperlipidemia",
+      "atrial fibrillation",
+      "COPD"
+    ],
+    "medications": [
+      "dapagliflozin",
+      "insulin glargine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 0.82,
+      "alt": 18.5,
+      "ast": 86.0,
+      "egfr": 30.1,
+      "wbc": 12.4,
+      "platelets": 392.0,
+      "bilirubin": 2.23
+    },
+    "notes": "Follow-up for hyperlipidemia, atrial fibrillation.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0075",
+    "age": 34,
+    "sex": "female",
+    "conditions": [
+      "atrial fibrillation",
+      "ulcerative colitis"
+    ],
+    "medications": [
+      "levothyroxine",
+      "ramipril",
+      "lisinopril",
+      "carvedilol"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.4,
+      "creatinine": 2.16,
+      "alt": 116.7,
+      "ast": 65.0,
+      "egfr": 95.2,
+      "wbc": 12.5,
+      "platelets": 182.0,
+      "bilirubin": 0.75
+    },
+    "notes": "Stable atrial fibrillation. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0076",
+    "age": 65,
+    "sex": "female",
+    "conditions": [
+      "hyperlipidemia",
+      "depression",
+      "prostate cancer",
+      "anxiety"
+    ],
+    "medications": [
+      "insulin glargine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 0.82,
+      "alt": 37.5,
+      "ast": 67.7,
+      "egfr": 107.4,
+      "wbc": 9.9,
+      "platelets": 136.0,
+      "bilirubin": 2.15
+    },
+    "notes": "Follow-up for hyperlipidemia, depression.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0077",
+    "age": 28,
+    "sex": "male",
+    "conditions": [
+      "colorectal cancer",
+      "prostate cancer",
+      "chronic kidney disease"
+    ],
+    "medications": [
+      "atorvastatin",
+      "semaglutide",
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.2,
+      "creatinine": 2.64,
+      "alt": 55.6,
+      "ast": 45.7,
+      "egfr": 57.4,
+      "wbc": 7.9,
+      "platelets": 129.0,
+      "bilirubin": 0.72
+    },
+    "notes": "Patient presents with colorectal cancer requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0078",
+    "age": 60,
+    "sex": "male",
+    "conditions": [
+      "hypertension",
+      "hyperlipidemia"
+    ],
+    "medications": [
+      "omeprazole",
+      "dapagliflozin",
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.8,
+      "creatinine": 2.58,
+      "alt": 12.1,
+      "ast": 29.4,
+      "egfr": 35.0,
+      "wbc": 14.3,
+      "platelets": 313.0,
+      "bilirubin": 1.17
+    },
+    "notes": "Stable hypertension. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0079",
+    "age": 56,
+    "sex": "male",
+    "conditions": [
+      "asthma"
+    ],
+    "medications": [
+      "adalimumab",
+      "methotrexate",
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.9,
+      "creatinine": 2.42,
+      "alt": 65.0,
+      "ast": 58.2,
+      "egfr": 83.2,
+      "wbc": 10.1,
+      "platelets": 351.0,
+      "bilirubin": 0.87
+    },
+    "notes": "Follow-up for asthma.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0080",
+    "age": 48,
+    "sex": "female",
+    "conditions": [
+      "Crohn's disease",
+      "coronary artery disease"
+    ],
+    "medications": [
+      "apixaban",
+      "atorvastatin",
+      "sitagliptin",
+      "glimepiride"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 2.77,
+      "alt": 71.0,
+      "ast": 45.1,
+      "egfr": 67.0,
+      "wbc": 10.8,
+      "platelets": 443.0,
+      "bilirubin": 0.78
+    },
+    "notes": "Patient presents with Crohn's disease requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0081",
+    "age": 62,
+    "sex": "male",
+    "conditions": [
+      "multiple myeloma"
+    ],
+    "medications": [
+      "warfarin",
+      "omeprazole",
+      "lisinopril",
+      "apixaban",
+      "glimepiride"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 1.98,
+      "alt": 101.3,
+      "ast": 71.6,
+      "egfr": 118.1,
+      "wbc": 9.0,
+      "platelets": 164.0,
+      "bilirubin": 0.51
+    },
+    "notes": "New referral. multiple myeloma poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0082",
+    "age": 22,
+    "sex": "female",
+    "conditions": [
+      "hypertension",
+      "COPD"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 1.21,
+      "alt": 53.8,
+      "ast": 83.4,
+      "egfr": 67.3,
+      "wbc": 3.9,
+      "platelets": 326.0,
+      "bilirubin": 0.86
+    },
+    "notes": "Follow-up for hypertension, COPD.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0083",
+    "age": 52,
+    "sex": "male",
+    "conditions": [
+      "anxiety",
+      "depression",
+      "colorectal cancer"
+    ],
+    "medications": [
+      "warfarin",
+      "levothyroxine",
+      "dapagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.9,
+      "creatinine": 1.34,
+      "alt": 97.7,
+      "ast": 34.0,
+      "egfr": 28.3,
+      "wbc": 8.4,
+      "platelets": 251.0,
+      "bilirubin": 2.49
+    },
+    "notes": "Follow-up for anxiety, depression.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0084",
+    "age": 59,
+    "sex": "male",
+    "conditions": [
+      "hypothyroidism"
+    ],
+    "medications": [
+      "aspirin",
+      "ramipril",
+      "methotrexate",
+      "carvedilol",
+      "levothyroxine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.9,
+      "creatinine": 1.31,
+      "alt": 14.7,
+      "ast": 88.3,
+      "egfr": 55.3,
+      "wbc": 15.0,
+      "platelets": 196.0,
+      "bilirubin": 2.45
+    },
+    "notes": "Patient presents with hypothyroidism requiring management.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0085",
+    "age": 69,
+    "sex": "female",
+    "conditions": [
+      "type 2 diabetes",
+      "chronic kidney disease"
+    ],
+    "medications": [
+      "pembrolizumab",
+      "ramipril",
+      "lisinopril",
+      "omeprazole"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.9,
+      "creatinine": 2.29,
+      "alt": 50.3,
+      "ast": 44.5,
+      "egfr": 76.7,
+      "wbc": 10.5,
+      "platelets": 338.0,
+      "bilirubin": 2.38
+    },
+    "notes": "Patient presents with type 2 diabetes requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0086",
+    "age": 35,
+    "sex": "female",
+    "conditions": [
+      "hypothyroidism",
+      "psoriasis",
+      "obesity",
+      "asthma"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 4.8,
+      "creatinine": 0.93,
+      "alt": 67.0,
+      "ast": 92.2,
+      "egfr": 31.8,
+      "wbc": 12.4,
+      "platelets": 346.0,
+      "bilirubin": 0.69
+    },
+    "notes": "New referral. hypothyroidism poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0087",
+    "age": 43,
+    "sex": "male",
+    "conditions": [
+      "coronary artery disease",
+      "colorectal cancer"
+    ],
+    "medications": [
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.4,
+      "creatinine": 2.36,
+      "alt": 116.4,
+      "ast": 98.8,
+      "egfr": 86.8,
+      "wbc": 11.7,
+      "platelets": 292.0,
+      "bilirubin": 0.87
+    },
+    "notes": "Stable coronary artery disease. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0088",
+    "age": 40,
+    "sex": "female",
+    "conditions": [
+      "heart failure",
+      "COPD"
+    ],
+    "medications": [
+      "semaglutide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 0.56,
+      "alt": 70.9,
+      "ast": 43.2,
+      "egfr": 100.4,
+      "wbc": 9.8,
+      "platelets": 314.0,
+      "bilirubin": 0.4
+    },
+    "notes": "New referral. heart failure poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0089",
+    "age": 70,
+    "sex": "female",
+    "conditions": [
+      "chronic kidney disease"
+    ],
+    "medications": [
+      "adalimumab",
+      "atorvastatin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 2.06,
+      "alt": 47.9,
+      "ast": 89.0,
+      "egfr": 98.0,
+      "wbc": 10.9,
+      "platelets": 164.0,
+      "bilirubin": 2.42
+    },
+    "notes": "Patient presents with chronic kidney disease requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0090",
+    "age": 33,
+    "sex": "male",
+    "conditions": [
+      "atrial fibrillation",
+      "hypothyroidism",
+      "ulcerative colitis"
+    ],
+    "medications": [
+      "apixaban"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.3,
+      "creatinine": 1.69,
+      "alt": 41.2,
+      "ast": 17.1,
+      "egfr": 39.6,
+      "wbc": 14.5,
+      "platelets": 196.0,
+      "bilirubin": 1.64
+    },
+    "notes": "Patient presents with atrial fibrillation requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0091",
+    "age": 82,
+    "sex": "male",
+    "conditions": [
+      "atrial fibrillation",
+      "Crohn's disease"
+    ],
+    "medications": [
+      "methotrexate",
+      "warfarin",
+      "prednisone",
+      "lisinopril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 0.57,
+      "alt": 15.0,
+      "ast": 67.7,
+      "egfr": 77.7,
+      "wbc": 11.0,
+      "platelets": 368.0,
+      "bilirubin": 1.16
+    },
+    "notes": "New referral. atrial fibrillation poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0092",
+    "age": 55,
+    "sex": "female",
+    "conditions": [
+      "asthma",
+      "Crohn's disease",
+      "depression",
+      "hyperlipidemia"
+    ],
+    "medications": [
+      "atorvastatin",
+      "lisinopril",
+      "levothyroxine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 1.61,
+      "alt": 32.4,
+      "ast": 64.6,
+      "egfr": 51.3,
+      "wbc": 11.8,
+      "platelets": 357.0,
+      "bilirubin": 2.18
+    },
+    "notes": "Stable asthma. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0093",
+    "age": 65,
+    "sex": "male",
+    "conditions": [
+      "asthma",
+      "colorectal cancer",
+      "heart failure"
+    ],
+    "medications": [
+      "ramipril",
+      "semaglutide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.0,
+      "creatinine": 0.62,
+      "alt": 114.0,
+      "ast": 87.8,
+      "egfr": 61.8,
+      "wbc": 14.6,
+      "platelets": 416.0,
+      "bilirubin": 2.07
+    },
+    "notes": "Follow-up for asthma, colorectal cancer.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0094",
+    "age": 42,
+    "sex": "male",
+    "conditions": [
+      "prostate cancer",
+      "colorectal cancer",
+      "breast cancer",
+      "hyperlipidemia"
+    ],
+    "medications": [
+      "metformin",
+      "atorvastatin",
+      "furosemide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 2.72,
+      "alt": 33.7,
+      "ast": 41.8,
+      "egfr": 25.1,
+      "wbc": 9.2,
+      "platelets": 409.0,
+      "bilirubin": 1.7
+    },
+    "notes": "Patient presents with prostate cancer requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0095",
+    "age": 31,
+    "sex": "female",
+    "conditions": [
+      "obesity",
+      "osteoporosis"
+    ],
+    "medications": [
+      "apixaban",
+      "lisinopril",
+      "furosemide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.9,
+      "creatinine": 1.79,
+      "alt": 49.9,
+      "ast": 36.0,
+      "egfr": 58.6,
+      "wbc": 8.7,
+      "platelets": 292.0,
+      "bilirubin": 2.1
+    },
+    "notes": "Stable obesity. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0096",
+    "age": 30,
+    "sex": "female",
+    "conditions": [
+      "hypothyroidism",
+      "lung cancer",
+      "osteoporosis"
+    ],
+    "medications": [
+      "insulin glargine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.8,
+      "creatinine": 1.42,
+      "alt": 14.4,
+      "ast": 13.5,
+      "egfr": 91.4,
+      "wbc": 12.7,
+      "platelets": 282.0,
+      "bilirubin": 0.54
+    },
+    "notes": "Follow-up for hypothyroidism, lung cancer.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0097",
+    "age": 38,
+    "sex": "female",
+    "conditions": [
+      "multiple myeloma",
+      "hypothyroidism",
+      "prostate cancer"
+    ],
+    "medications": [
+      "glimepiride",
+      "dapagliflozin",
+      "prednisone",
+      "aspirin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 0.54,
+      "alt": 46.4,
+      "ast": 19.9,
+      "egfr": 61.7,
+      "wbc": 7.0,
+      "platelets": 415.0,
+      "bilirubin": 2.21
+    },
+    "notes": "Follow-up for multiple myeloma, hypothyroidism.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0098",
+    "age": 47,
+    "sex": "male",
+    "conditions": [
+      "atrial fibrillation",
+      "prostate cancer",
+      "psoriasis",
+      "rheumatoid arthritis"
+    ],
+    "medications": [
+      "omeprazole",
+      "pembrolizumab",
+      "semaglutide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.9,
+      "creatinine": 2.68,
+      "alt": 22.1,
+      "ast": 11.7,
+      "egfr": 51.4,
+      "wbc": 5.2,
+      "platelets": 342.0,
+      "bilirubin": 1.14
+    },
+    "notes": "New referral. atrial fibrillation poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0099",
+    "age": 25,
+    "sex": "male",
+    "conditions": [
+      "lung cancer",
+      "hypothyroidism"
+    ],
+    "medications": [
+      "dapagliflozin",
+      "sitagliptin",
+      "furosemide",
+      "warfarin",
+      "levothyroxine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 1.73,
+      "alt": 70.1,
+      "ast": 70.8,
+      "egfr": 106.8,
+      "wbc": 11.3,
+      "platelets": 381.0,
+      "bilirubin": 0.81
+    },
+    "notes": "Stable lung cancer. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0100",
+    "age": 53,
+    "sex": "female",
+    "conditions": [
+      "hyperlipidemia",
+      "ulcerative colitis"
+    ],
+    "medications": [
+      "dapagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 1.3,
+      "alt": 112.7,
+      "ast": 81.6,
+      "egfr": 47.3,
+      "wbc": 4.9,
+      "platelets": 337.0,
+      "bilirubin": 1.07
+    },
+    "notes": "Follow-up for hyperlipidemia, ulcerative colitis.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0101",
+    "age": 36,
+    "sex": "female",
+    "conditions": [
+      "hyperlipidemia"
+    ],
+    "medications": [
+      "atorvastatin",
+      "apixaban",
+      "ramipril",
+      "adalimumab",
+      "empagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.0,
+      "creatinine": 0.99,
+      "alt": 101.1,
+      "ast": 34.4,
+      "egfr": 76.2,
+      "wbc": 6.6,
+      "platelets": 138.0,
+      "bilirubin": 1.9
+    },
+    "notes": "Stable hyperlipidemia. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0102",
+    "age": 47,
+    "sex": "male",
+    "conditions": [
+      "anxiety"
+    ],
+    "medications": [
+      "dapagliflozin",
+      "amlodipine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.9,
+      "creatinine": 0.82,
+      "alt": 116.1,
+      "ast": 98.0,
+      "egfr": 35.8,
+      "wbc": 11.0,
+      "platelets": 408.0,
+      "bilirubin": 1.29
+    },
+    "notes": "Follow-up for anxiety.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0103",
+    "age": 59,
+    "sex": "female",
+    "conditions": [
+      "coronary artery disease"
+    ],
+    "medications": [
+      "prednisone",
+      "semaglutide",
+      "glimepiride",
+      "lisinopril",
+      "levothyroxine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 2.43,
+      "alt": 112.7,
+      "ast": 13.3,
+      "egfr": 103.6,
+      "wbc": 12.6,
+      "platelets": 165.0,
+      "bilirubin": 1.92
+    },
+    "notes": "Follow-up for coronary artery disease.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0104",
+    "age": 22,
+    "sex": "male",
+    "conditions": [
+      "multiple myeloma",
+      "rheumatoid arthritis",
+      "heart failure"
+    ],
+    "medications": [
+      "aspirin",
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.4,
+      "creatinine": 1.75,
+      "alt": 64.3,
+      "ast": 94.5,
+      "egfr": 105.1,
+      "wbc": 8.9,
+      "platelets": 167.0,
+      "bilirubin": 0.46
+    },
+    "notes": "New referral. multiple myeloma poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0105",
+    "age": 50,
+    "sex": "male",
+    "conditions": [
+      "hypothyroidism"
+    ],
+    "medications": [
+      "prednisone",
+      "pembrolizumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.0,
+      "creatinine": 0.9,
+      "alt": 104.2,
+      "ast": 90.7,
+      "egfr": 102.7,
+      "wbc": 9.4,
+      "platelets": 130.0,
+      "bilirubin": 1.74
+    },
+    "notes": "Stable hypothyroidism. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0106",
+    "age": 79,
+    "sex": "female",
+    "conditions": [
+      "type 2 diabetes",
+      "obesity"
+    ],
+    "medications": [
+      "semaglutide",
+      "ramipril",
+      "empagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 10.7,
+      "creatinine": 1.19,
+      "alt": 89.5,
+      "ast": 11.0,
+      "egfr": 85.4,
+      "wbc": 11.5,
+      "platelets": 122.0,
+      "bilirubin": 0.47
+    },
+    "notes": "New referral. type 2 diabetes poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0107",
+    "age": 82,
+    "sex": "female",
+    "conditions": [
+      "psoriasis"
+    ],
+    "medications": [
+      "apixaban",
+      "methotrexate"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 2.7,
+      "alt": 62.6,
+      "ast": 50.9,
+      "egfr": 118.9,
+      "wbc": 7.8,
+      "platelets": 346.0,
+      "bilirubin": 2.3
+    },
+    "notes": "Stable psoriasis. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0108",
+    "age": 49,
+    "sex": "male",
+    "conditions": [
+      "prostate cancer",
+      "ulcerative colitis",
+      "osteoporosis",
+      "coronary artery disease"
+    ],
+    "medications": [
+      "amlodipine",
+      "lisinopril",
+      "glimepiride",
+      "sitagliptin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 1.73,
+      "alt": 28.1,
+      "ast": 86.9,
+      "egfr": 64.2,
+      "wbc": 11.3,
+      "platelets": 351.0,
+      "bilirubin": 1.32
+    },
+    "notes": "New referral. prostate cancer poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0109",
+    "age": 25,
+    "sex": "female",
+    "conditions": [
+      "prostate cancer",
+      "anxiety"
+    ],
+    "medications": [
+      "prednisone",
+      "lisinopril",
+      "glimepiride"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 2.36,
+      "alt": 89.6,
+      "ast": 45.6,
+      "egfr": 101.6,
+      "wbc": 12.1,
+      "platelets": 302.0,
+      "bilirubin": 0.3
+    },
+    "notes": "Patient presents with prostate cancer requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0110",
+    "age": 26,
+    "sex": "female",
+    "conditions": [
+      "hyperlipidemia"
+    ],
+    "medications": [
+      "levothyroxine",
+      "omeprazole",
+      "adalimumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.4,
+      "creatinine": 1.99,
+      "alt": 56.2,
+      "ast": 99.4,
+      "egfr": 58.2,
+      "wbc": 13.5,
+      "platelets": 417.0,
+      "bilirubin": 1.06
+    },
+    "notes": "Stable hyperlipidemia. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0111",
+    "age": 62,
+    "sex": "male",
+    "conditions": [
+      "lung cancer",
+      "depression"
+    ],
+    "medications": [
+      "omeprazole",
+      "semaglutide",
+      "metformin",
+      "aspirin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 2.15,
+      "alt": 56.7,
+      "ast": 44.1,
+      "egfr": 43.0,
+      "wbc": 8.8,
+      "platelets": 154.0,
+      "bilirubin": 0.63
+    },
+    "notes": "Patient presents with lung cancer requiring management.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0112",
+    "age": 22,
+    "sex": "female",
+    "conditions": [
+      "asthma"
+    ],
+    "medications": [
+      "atorvastatin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.0,
+      "creatinine": 0.58,
+      "alt": 75.8,
+      "ast": 73.3,
+      "egfr": 24.9,
+      "wbc": 12.0,
+      "platelets": 241.0,
+      "bilirubin": 0.74
+    },
+    "notes": "Patient presents with asthma requiring management.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0113",
+    "age": 35,
+    "sex": "female",
+    "conditions": [
+      "multiple myeloma",
+      "hypothyroidism"
+    ],
+    "medications": [
+      "methotrexate",
+      "pembrolizumab",
+      "warfarin",
+      "semaglutide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 0.83,
+      "alt": 82.6,
+      "ast": 29.9,
+      "egfr": 50.1,
+      "wbc": 4.2,
+      "platelets": 432.0,
+      "bilirubin": 2.22
+    },
+    "notes": "New referral. multiple myeloma poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0114",
+    "age": 81,
+    "sex": "male",
+    "conditions": [
+      "psoriasis",
+      "Crohn's disease",
+      "depression"
+    ],
+    "medications": [
+      "warfarin",
+      "carvedilol",
+      "omeprazole",
+      "aspirin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.4,
+      "creatinine": 2.24,
+      "alt": 62.1,
+      "ast": 86.4,
+      "egfr": 50.1,
+      "wbc": 11.6,
+      "platelets": 382.0,
+      "bilirubin": 2.3
+    },
+    "notes": "New referral. psoriasis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0115",
+    "age": 35,
+    "sex": "female",
+    "conditions": [
+      "obesity",
+      "COPD"
+    ],
+    "medications": [
+      "adalimumab",
+      "atorvastatin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.3,
+      "creatinine": 2.45,
+      "alt": 20.2,
+      "ast": 75.2,
+      "egfr": 39.0,
+      "wbc": 6.6,
+      "platelets": 336.0,
+      "bilirubin": 1.59
+    },
+    "notes": "Stable obesity. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0116",
+    "age": 79,
+    "sex": "male",
+    "conditions": [
+      "hyperlipidemia",
+      "type 2 diabetes",
+      "COPD"
+    ],
+    "medications": [
+      "amlodipine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 9.6,
+      "creatinine": 2.23,
+      "alt": 110.6,
+      "ast": 72.6,
+      "egfr": 90.4,
+      "wbc": 8.1,
+      "platelets": 184.0,
+      "bilirubin": 0.94
+    },
+    "notes": "New referral. hyperlipidemia poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0117",
+    "age": 63,
+    "sex": "female",
+    "conditions": [
+      "osteoporosis",
+      "prostate cancer",
+      "breast cancer"
+    ],
+    "medications": [
+      "amlodipine",
+      "dapagliflozin",
+      "warfarin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.3,
+      "creatinine": 1.35,
+      "alt": 55.5,
+      "ast": 60.6,
+      "egfr": 42.1,
+      "wbc": 5.2,
+      "platelets": 191.0,
+      "bilirubin": 2.35
+    },
+    "notes": "New referral. osteoporosis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0118",
+    "age": 55,
+    "sex": "male",
+    "conditions": [
+      "hypothyroidism",
+      "asthma"
+    ],
+    "medications": [
+      "prednisone",
+      "semaglutide",
+      "dapagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.7,
+      "creatinine": 2.67,
+      "alt": 47.1,
+      "ast": 78.7,
+      "egfr": 68.9,
+      "wbc": 11.8,
+      "platelets": 359.0,
+      "bilirubin": 1.26
+    },
+    "notes": "Follow-up for hypothyroidism, asthma.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0119",
+    "age": 39,
+    "sex": "male",
+    "conditions": [
+      "atrial fibrillation",
+      "lung cancer",
+      "psoriasis",
+      "hypertension"
+    ],
+    "medications": [
+      "lisinopril",
+      "atorvastatin",
+      "pembrolizumab",
+      "metformin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 2.44,
+      "alt": 35.5,
+      "ast": 73.6,
+      "egfr": 20.9,
+      "wbc": 9.3,
+      "platelets": 231.0,
+      "bilirubin": 1.62
+    },
+    "notes": "New referral. atrial fibrillation poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0120",
+    "age": 80,
+    "sex": "male",
+    "conditions": [
+      "lung cancer"
+    ],
+    "medications": [
+      "carvedilol",
+      "metformin",
+      "sitagliptin",
+      "empagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.7,
+      "creatinine": 1.16,
+      "alt": 65.2,
+      "ast": 72.8,
+      "egfr": 63.1,
+      "wbc": 14.3,
+      "platelets": 163.0,
+      "bilirubin": 2.31
+    },
+    "notes": "Stable lung cancer. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0121",
+    "age": 42,
+    "sex": "female",
+    "conditions": [
+      "obesity",
+      "depression",
+      "coronary artery disease"
+    ],
+    "medications": [
+      "furosemide",
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.7,
+      "creatinine": 2.78,
+      "alt": 34.8,
+      "ast": 71.6,
+      "egfr": 104.8,
+      "wbc": 11.0,
+      "platelets": 400.0,
+      "bilirubin": 1.95
+    },
+    "notes": "New referral. obesity poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0122",
+    "age": 25,
+    "sex": "male",
+    "conditions": [
+      "coronary artery disease",
+      "breast cancer"
+    ],
+    "medications": [
+      "adalimumab",
+      "warfarin",
+      "prednisone"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.4,
+      "creatinine": 2.74,
+      "alt": 108.4,
+      "ast": 92.7,
+      "egfr": 43.0,
+      "wbc": 13.9,
+      "platelets": 342.0,
+      "bilirubin": 1.5
+    },
+    "notes": "Patient presents with coronary artery disease requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0123",
+    "age": 53,
+    "sex": "male",
+    "conditions": [
+      "hypothyroidism",
+      "type 2 diabetes"
+    ],
+    "medications": [
+      "prednisone"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.3,
+      "creatinine": 2.39,
+      "alt": 100.3,
+      "ast": 93.6,
+      "egfr": 49.9,
+      "wbc": 10.0,
+      "platelets": 298.0,
+      "bilirubin": 2.15
+    },
+    "notes": "Follow-up for hypothyroidism, type 2 diabetes.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0124",
+    "age": 67,
+    "sex": "male",
+    "conditions": [
+      "prostate cancer"
+    ],
+    "medications": [
+      "apixaban",
+      "lisinopril",
+      "amlodipine",
+      "carvedilol",
+      "semaglutide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 1.28,
+      "alt": 94.6,
+      "ast": 95.9,
+      "egfr": 59.7,
+      "wbc": 12.4,
+      "platelets": 110.0,
+      "bilirubin": 0.83
+    },
+    "notes": "New referral. prostate cancer poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0125",
+    "age": 47,
+    "sex": "female",
+    "conditions": [
+      "anxiety",
+      "atrial fibrillation",
+      "Crohn's disease",
+      "multiple myeloma"
+    ],
+    "medications": [
+      "furosemide",
+      "atorvastatin",
+      "methotrexate",
+      "aspirin",
+      "semaglutide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.9,
+      "creatinine": 0.69,
+      "alt": 27.0,
+      "ast": 74.1,
+      "egfr": 83.4,
+      "wbc": 12.0,
+      "platelets": 211.0,
+      "bilirubin": 0.45
+    },
+    "notes": "Follow-up for anxiety, atrial fibrillation.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0126",
+    "age": 74,
+    "sex": "female",
+    "conditions": [
+      "heart failure",
+      "chronic kidney disease",
+      "coronary artery disease"
+    ],
+    "medications": [
+      "carvedilol"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 1.78,
+      "alt": 54.9,
+      "ast": 12.4,
+      "egfr": 55.4,
+      "wbc": 4.6,
+      "platelets": 309.0,
+      "bilirubin": 0.95
+    },
+    "notes": "Follow-up for heart failure, chronic kidney disease.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0127",
+    "age": 70,
+    "sex": "female",
+    "conditions": [
+      "lung cancer"
+    ],
+    "medications": [
+      "prednisone"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 2.08,
+      "alt": 28.6,
+      "ast": 34.2,
+      "egfr": 46.8,
+      "wbc": 5.2,
+      "platelets": 159.0,
+      "bilirubin": 0.83
+    },
+    "notes": "Patient presents with lung cancer requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0128",
+    "age": 64,
+    "sex": "female",
+    "conditions": [
+      "psoriasis",
+      "breast cancer"
+    ],
+    "medications": [
+      "methotrexate",
+      "insulin glargine",
+      "ramipril",
+      "amlodipine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.0,
+      "creatinine": 0.52,
+      "alt": 53.5,
+      "ast": 85.7,
+      "egfr": 58.0,
+      "wbc": 13.4,
+      "platelets": 254.0,
+      "bilirubin": 1.19
+    },
+    "notes": "Stable psoriasis. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0129",
+    "age": 56,
+    "sex": "female",
+    "conditions": [
+      "breast cancer",
+      "hypothyroidism"
+    ],
+    "medications": [
+      "furosemide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.3,
+      "creatinine": 1.17,
+      "alt": 86.4,
+      "ast": 54.2,
+      "egfr": 77.6,
+      "wbc": 6.3,
+      "platelets": 232.0,
+      "bilirubin": 2.08
+    },
+    "notes": "Patient presents with breast cancer requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0130",
+    "age": 43,
+    "sex": "male",
+    "conditions": [
+      "colorectal cancer"
+    ],
+    "medications": [
+      "insulin glargine",
+      "ramipril",
+      "aspirin",
+      "atorvastatin",
+      "carvedilol"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.9,
+      "creatinine": 0.82,
+      "alt": 43.3,
+      "ast": 32.7,
+      "egfr": 35.4,
+      "wbc": 8.4,
+      "platelets": 232.0,
+      "bilirubin": 1.23
+    },
+    "notes": "New referral. colorectal cancer poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0131",
+    "age": 82,
+    "sex": "female",
+    "conditions": [
+      "osteoporosis"
+    ],
+    "medications": [
+      "glimepiride",
+      "methotrexate",
+      "adalimumab",
+      "atorvastatin",
+      "amlodipine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.0,
+      "creatinine": 2.01,
+      "alt": 49.1,
+      "ast": 68.2,
+      "egfr": 24.4,
+      "wbc": 14.8,
+      "platelets": 337.0,
+      "bilirubin": 1.12
+    },
+    "notes": "New referral. osteoporosis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0132",
+    "age": 31,
+    "sex": "male",
+    "conditions": [
+      "obesity"
+    ],
+    "medications": [
+      "sitagliptin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.0,
+      "creatinine": 1.78,
+      "alt": 85.6,
+      "ast": 29.9,
+      "egfr": 57.4,
+      "wbc": 8.8,
+      "platelets": 338.0,
+      "bilirubin": 1.79
+    },
+    "notes": "Patient presents with obesity requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0133",
+    "age": 79,
+    "sex": "male",
+    "conditions": [
+      "anxiety",
+      "coronary artery disease",
+      "heart failure"
+    ],
+    "medications": [
+      "omeprazole",
+      "apixaban",
+      "aspirin",
+      "warfarin",
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 1.7,
+      "alt": 48.3,
+      "ast": 18.8,
+      "egfr": 92.2,
+      "wbc": 8.7,
+      "platelets": 124.0,
+      "bilirubin": 0.3
+    },
+    "notes": "Patient presents with anxiety requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0134",
+    "age": 61,
+    "sex": "male",
+    "conditions": [
+      "asthma",
+      "prostate cancer"
+    ],
+    "medications": [
+      "glimepiride"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 1.79,
+      "alt": 115.4,
+      "ast": 30.9,
+      "egfr": 60.5,
+      "wbc": 5.6,
+      "platelets": 324.0,
+      "bilirubin": 1.19
+    },
+    "notes": "Stable asthma. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0135",
+    "age": 75,
+    "sex": "female",
+    "conditions": [
+      "type 2 diabetes",
+      "ulcerative colitis",
+      "COPD",
+      "obesity"
+    ],
+    "medications": [
+      "atorvastatin",
+      "prednisone",
+      "amlodipine",
+      "glimepiride",
+      "levothyroxine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 7.5,
+      "creatinine": 0.95,
+      "alt": 22.5,
+      "ast": 70.4,
+      "egfr": 68.9,
+      "wbc": 14.6,
+      "platelets": 210.0,
+      "bilirubin": 1.09
+    },
+    "notes": "Patient presents with type 2 diabetes requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0136",
+    "age": 62,
+    "sex": "female",
+    "conditions": [
+      "rheumatoid arthritis",
+      "atrial fibrillation",
+      "Crohn's disease",
+      "ulcerative colitis"
+    ],
+    "medications": [
+      "methotrexate",
+      "prednisone"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.9,
+      "creatinine": 0.81,
+      "alt": 23.0,
+      "ast": 37.5,
+      "egfr": 38.3,
+      "wbc": 11.5,
+      "platelets": 279.0,
+      "bilirubin": 1.16
+    },
+    "notes": "New referral. rheumatoid arthritis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0137",
+    "age": 72,
+    "sex": "male",
+    "conditions": [
+      "psoriasis",
+      "lung cancer",
+      "ulcerative colitis",
+      "atrial fibrillation"
+    ],
+    "medications": [
+      "levothyroxine",
+      "dapagliflozin",
+      "aspirin",
+      "omeprazole"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 2.44,
+      "alt": 78.1,
+      "ast": 87.9,
+      "egfr": 115.2,
+      "wbc": 9.1,
+      "platelets": 168.0,
+      "bilirubin": 1.08
+    },
+    "notes": "New referral. psoriasis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0138",
+    "age": 70,
+    "sex": "female",
+    "conditions": [
+      "ulcerative colitis",
+      "colorectal cancer",
+      "breast cancer",
+      "atrial fibrillation"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.7,
+      "creatinine": 2.33,
+      "alt": 34.3,
+      "ast": 12.9,
+      "egfr": 42.5,
+      "wbc": 6.8,
+      "platelets": 373.0,
+      "bilirubin": 1.5
+    },
+    "notes": "New referral. ulcerative colitis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0139",
+    "age": 32,
+    "sex": "male",
+    "conditions": [
+      "lung cancer",
+      "osteoporosis",
+      "hypertension"
+    ],
+    "medications": [
+      "ramipril",
+      "glimepiride",
+      "insulin glargine",
+      "carvedilol",
+      "amlodipine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.0,
+      "creatinine": 2.0,
+      "alt": 37.2,
+      "ast": 88.7,
+      "egfr": 23.2,
+      "wbc": 6.5,
+      "platelets": 402.0,
+      "bilirubin": 0.4
+    },
+    "notes": "Patient presents with lung cancer requiring management.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0140",
+    "age": 48,
+    "sex": "male",
+    "conditions": [
+      "ulcerative colitis",
+      "rheumatoid arthritis",
+      "psoriasis"
+    ],
+    "medications": [
+      "levothyroxine",
+      "methotrexate",
+      "omeprazole"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 2.37,
+      "alt": 98.6,
+      "ast": 61.3,
+      "egfr": 73.2,
+      "wbc": 10.4,
+      "platelets": 159.0,
+      "bilirubin": 2.45
+    },
+    "notes": "Follow-up for ulcerative colitis, rheumatoid arthritis.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0141",
+    "age": 30,
+    "sex": "male",
+    "conditions": [
+      "hypertension",
+      "obesity",
+      "psoriasis",
+      "chronic kidney disease"
+    ],
+    "medications": [
+      "omeprazole",
+      "semaglutide",
+      "warfarin",
+      "pembrolizumab",
+      "furosemide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 1.83,
+      "alt": 39.6,
+      "ast": 47.3,
+      "egfr": 65.2,
+      "wbc": 10.8,
+      "platelets": 408.0,
+      "bilirubin": 0.41
+    },
+    "notes": "Follow-up for hypertension, obesity.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0142",
+    "age": 65,
+    "sex": "female",
+    "conditions": [
+      "hypothyroidism",
+      "multiple myeloma",
+      "type 2 diabetes",
+      "coronary artery disease"
+    ],
+    "medications": [
+      "ramipril",
+      "adalimumab",
+      "pembrolizumab",
+      "apixaban",
+      "atorvastatin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 9.9,
+      "creatinine": 1.41,
+      "alt": 116.5,
+      "ast": 84.2,
+      "egfr": 69.5,
+      "wbc": 7.2,
+      "platelets": 199.0,
+      "bilirubin": 1.46
+    },
+    "notes": "New referral. hypothyroidism poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0143",
+    "age": 61,
+    "sex": "male",
+    "conditions": [
+      "heart failure"
+    ],
+    "medications": [
+      "ramipril",
+      "metformin",
+      "amlodipine",
+      "levothyroxine",
+      "carvedilol"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 2.08,
+      "alt": 24.5,
+      "ast": 68.5,
+      "egfr": 35.9,
+      "wbc": 14.2,
+      "platelets": 196.0,
+      "bilirubin": 1.71
+    },
+    "notes": "Follow-up for heart failure.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0144",
+    "age": 39,
+    "sex": "male",
+    "conditions": [
+      "psoriasis",
+      "hyperlipidemia",
+      "ulcerative colitis",
+      "asthma"
+    ],
+    "medications": [
+      "adalimumab",
+      "atorvastatin",
+      "amlodipine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.8,
+      "creatinine": 1.6,
+      "alt": 24.6,
+      "ast": 30.4,
+      "egfr": 88.0,
+      "wbc": 3.6,
+      "platelets": 343.0,
+      "bilirubin": 2.08
+    },
+    "notes": "New referral. psoriasis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0145",
+    "age": 34,
+    "sex": "female",
+    "conditions": [
+      "asthma"
+    ],
+    "medications": [
+      "atorvastatin",
+      "amlodipine",
+      "warfarin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.4,
+      "creatinine": 1.19,
+      "alt": 52.1,
+      "ast": 83.2,
+      "egfr": 107.4,
+      "wbc": 10.9,
+      "platelets": 337.0,
+      "bilirubin": 0.36
+    },
+    "notes": "Stable asthma. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0146",
+    "age": 74,
+    "sex": "female",
+    "conditions": [
+      "psoriasis",
+      "chronic kidney disease"
+    ],
+    "medications": [
+      "methotrexate",
+      "pembrolizumab",
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.2,
+      "creatinine": 0.7,
+      "alt": 21.1,
+      "ast": 77.7,
+      "egfr": 79.0,
+      "wbc": 7.9,
+      "platelets": 437.0,
+      "bilirubin": 0.92
+    },
+    "notes": "Follow-up for psoriasis, chronic kidney disease.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0147",
+    "age": 28,
+    "sex": "male",
+    "conditions": [
+      "ulcerative colitis",
+      "type 2 diabetes",
+      "Crohn's disease"
+    ],
+    "medications": [
+      "insulin glargine",
+      "sitagliptin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 8.8,
+      "creatinine": 0.93,
+      "alt": 53.1,
+      "ast": 68.2,
+      "egfr": 98.4,
+      "wbc": 12.6,
+      "platelets": 184.0,
+      "bilirubin": 1.09
+    },
+    "notes": "Patient presents with ulcerative colitis requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0148",
+    "age": 19,
+    "sex": "female",
+    "conditions": [
+      "chronic kidney disease",
+      "depression",
+      "multiple myeloma"
+    ],
+    "medications": [
+      "apixaban",
+      "glimepiride",
+      "pembrolizumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 1.58,
+      "alt": 118.6,
+      "ast": 16.6,
+      "egfr": 78.7,
+      "wbc": 3.7,
+      "platelets": 176.0,
+      "bilirubin": 2.32
+    },
+    "notes": "Follow-up for chronic kidney disease, depression.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0149",
+    "age": 82,
+    "sex": "female",
+    "conditions": [
+      "ulcerative colitis",
+      "depression",
+      "coronary artery disease",
+      "psoriasis"
+    ],
+    "medications": [
+      "glimepiride",
+      "methotrexate",
+      "omeprazole",
+      "empagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.9,
+      "creatinine": 0.68,
+      "alt": 111.3,
+      "ast": 97.7,
+      "egfr": 35.5,
+      "wbc": 7.3,
+      "platelets": 305.0,
+      "bilirubin": 1.96
+    },
+    "notes": "Patient presents with ulcerative colitis requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0150",
+    "age": 57,
+    "sex": "female",
+    "conditions": [
+      "hypertension",
+      "asthma"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 6.3,
+      "creatinine": 0.77,
+      "alt": 77.4,
+      "ast": 15.0,
+      "egfr": 86.6,
+      "wbc": 11.1,
+      "platelets": 161.0,
+      "bilirubin": 0.23
+    },
+    "notes": "Patient presents with hypertension requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0151",
+    "age": 38,
+    "sex": "female",
+    "conditions": [
+      "prostate cancer",
+      "obesity",
+      "atrial fibrillation"
+    ],
+    "medications": [
+      "omeprazole",
+      "empagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.0,
+      "creatinine": 0.77,
+      "alt": 109.0,
+      "ast": 40.2,
+      "egfr": 62.9,
+      "wbc": 9.5,
+      "platelets": 192.0,
+      "bilirubin": 2.44
+    },
+    "notes": "Follow-up for prostate cancer, obesity.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0152",
+    "age": 25,
+    "sex": "female",
+    "conditions": [
+      "osteoporosis",
+      "atrial fibrillation"
+    ],
+    "medications": [
+      "amlodipine",
+      "prednisone"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.9,
+      "creatinine": 0.77,
+      "alt": 91.5,
+      "ast": 10.2,
+      "egfr": 105.9,
+      "wbc": 3.6,
+      "platelets": 116.0,
+      "bilirubin": 1.04
+    },
+    "notes": "Patient presents with osteoporosis requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0153",
+    "age": 71,
+    "sex": "male",
+    "conditions": [
+      "asthma",
+      "anxiety",
+      "hypothyroidism"
+    ],
+    "medications": [
+      "atorvastatin",
+      "prednisone"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.4,
+      "creatinine": 1.65,
+      "alt": 109.2,
+      "ast": 26.1,
+      "egfr": 100.4,
+      "wbc": 14.8,
+      "platelets": 434.0,
+      "bilirubin": 0.36
+    },
+    "notes": "Follow-up for asthma, anxiety.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0154",
+    "age": 57,
+    "sex": "female",
+    "conditions": [
+      "lung cancer"
+    ],
+    "medications": [
+      "metformin",
+      "apixaban",
+      "insulin glargine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 2.3,
+      "alt": 91.4,
+      "ast": 31.8,
+      "egfr": 56.8,
+      "wbc": 14.7,
+      "platelets": 449.0,
+      "bilirubin": 1.98
+    },
+    "notes": "Stable lung cancer. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0155",
+    "age": 37,
+    "sex": "male",
+    "conditions": [
+      "type 2 diabetes",
+      "asthma",
+      "lung cancer",
+      "osteoporosis"
+    ],
+    "medications": [
+      "metformin",
+      "warfarin",
+      "pembrolizumab",
+      "furosemide",
+      "aspirin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 1.72,
+      "alt": 36.2,
+      "ast": 54.3,
+      "egfr": 26.0,
+      "wbc": 15.0,
+      "platelets": 349.0,
+      "bilirubin": 0.41
+    },
+    "notes": "New referral. type 2 diabetes poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0156",
+    "age": 65,
+    "sex": "female",
+    "conditions": [
+      "multiple myeloma"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 1.97,
+      "alt": 53.4,
+      "ast": 63.3,
+      "egfr": 26.2,
+      "wbc": 11.1,
+      "platelets": 146.0,
+      "bilirubin": 0.87
+    },
+    "notes": "New referral. multiple myeloma poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0157",
+    "age": 59,
+    "sex": "female",
+    "conditions": [
+      "obesity",
+      "asthma",
+      "coronary artery disease",
+      "COPD"
+    ],
+    "medications": [
+      "prednisone"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.0,
+      "creatinine": 0.74,
+      "alt": 59.5,
+      "ast": 38.3,
+      "egfr": 32.1,
+      "wbc": 7.6,
+      "platelets": 370.0,
+      "bilirubin": 1.24
+    },
+    "notes": "Patient presents with obesity requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0158",
+    "age": 29,
+    "sex": "male",
+    "conditions": [
+      "ulcerative colitis",
+      "rheumatoid arthritis",
+      "hypertension"
+    ],
+    "medications": [
+      "warfarin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.0,
+      "creatinine": 2.14,
+      "alt": 116.5,
+      "ast": 45.7,
+      "egfr": 24.9,
+      "wbc": 6.9,
+      "platelets": 387.0,
+      "bilirubin": 0.6
+    },
+    "notes": "New referral. ulcerative colitis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0159",
+    "age": 49,
+    "sex": "male",
+    "conditions": [
+      "heart failure",
+      "chronic kidney disease",
+      "type 2 diabetes",
+      "hypertension"
+    ],
+    "medications": [
+      "omeprazole"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.6,
+      "creatinine": 1.42,
+      "alt": 85.5,
+      "ast": 94.4,
+      "egfr": 28.4,
+      "wbc": 10.2,
+      "platelets": 421.0,
+      "bilirubin": 0.37
+    },
+    "notes": "Stable heart failure. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0160",
+    "age": 74,
+    "sex": "male",
+    "conditions": [
+      "hypothyroidism"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 4.9,
+      "creatinine": 1.56,
+      "alt": 28.5,
+      "ast": 61.6,
+      "egfr": 102.2,
+      "wbc": 8.0,
+      "platelets": 110.0,
+      "bilirubin": 1.77
+    },
+    "notes": "Stable hypothyroidism. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0161",
+    "age": 41,
+    "sex": "female",
+    "conditions": [
+      "colorectal cancer",
+      "chronic kidney disease",
+      "hypertension"
+    ],
+    "medications": [
+      "methotrexate",
+      "semaglutide",
+      "adalimumab",
+      "aspirin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 2.53,
+      "alt": 62.7,
+      "ast": 17.9,
+      "egfr": 58.3,
+      "wbc": 8.3,
+      "platelets": 325.0,
+      "bilirubin": 2.03
+    },
+    "notes": "Patient presents with colorectal cancer requiring management.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0162",
+    "age": 66,
+    "sex": "female",
+    "conditions": [
+      "lung cancer",
+      "breast cancer",
+      "osteoporosis",
+      "multiple myeloma"
+    ],
+    "medications": [
+      "warfarin",
+      "furosemide",
+      "empagliflozin",
+      "levothyroxine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.8,
+      "creatinine": 1.87,
+      "alt": 13.2,
+      "ast": 83.0,
+      "egfr": 48.1,
+      "wbc": 12.8,
+      "platelets": 265.0,
+      "bilirubin": 1.02
+    },
+    "notes": "Stable lung cancer. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0163",
+    "age": 38,
+    "sex": "male",
+    "conditions": [
+      "Crohn's disease",
+      "asthma"
+    ],
+    "medications": [
+      "glimepiride",
+      "lisinopril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.0,
+      "creatinine": 2.68,
+      "alt": 73.3,
+      "ast": 98.4,
+      "egfr": 58.8,
+      "wbc": 14.3,
+      "platelets": 447.0,
+      "bilirubin": 0.6
+    },
+    "notes": "Follow-up for Crohn's disease, asthma.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0164",
+    "age": 63,
+    "sex": "male",
+    "conditions": [
+      "multiple myeloma",
+      "chronic kidney disease",
+      "COPD"
+    ],
+    "medications": [
+      "glimepiride",
+      "aspirin",
+      "levothyroxine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 0.71,
+      "alt": 35.6,
+      "ast": 29.7,
+      "egfr": 72.6,
+      "wbc": 3.5,
+      "platelets": 421.0,
+      "bilirubin": 0.66
+    },
+    "notes": "Stable multiple myeloma. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0165",
+    "age": 59,
+    "sex": "male",
+    "conditions": [
+      "chronic kidney disease"
+    ],
+    "medications": [
+      "omeprazole",
+      "amlodipine",
+      "sitagliptin",
+      "apixaban"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.3,
+      "creatinine": 1.36,
+      "alt": 113.6,
+      "ast": 45.6,
+      "egfr": 30.1,
+      "wbc": 7.0,
+      "platelets": 148.0,
+      "bilirubin": 0.56
+    },
+    "notes": "New referral. chronic kidney disease poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0166",
+    "age": 58,
+    "sex": "male",
+    "conditions": [
+      "asthma",
+      "Crohn's disease",
+      "multiple myeloma"
+    ],
+    "medications": [
+      "furosemide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 2.08,
+      "alt": 24.0,
+      "ast": 75.6,
+      "egfr": 114.9,
+      "wbc": 14.4,
+      "platelets": 237.0,
+      "bilirubin": 2.49
+    },
+    "notes": "Patient presents with asthma requiring management.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0167",
+    "age": 41,
+    "sex": "female",
+    "conditions": [
+      "psoriasis",
+      "multiple myeloma"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 6.3,
+      "creatinine": 0.82,
+      "alt": 92.0,
+      "ast": 31.4,
+      "egfr": 118.2,
+      "wbc": 5.4,
+      "platelets": 410.0,
+      "bilirubin": 0.4
+    },
+    "notes": "Follow-up for psoriasis, multiple myeloma.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0168",
+    "age": 75,
+    "sex": "male",
+    "conditions": [
+      "COPD",
+      "asthma",
+      "ulcerative colitis"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.4,
+      "creatinine": 2.31,
+      "alt": 89.2,
+      "ast": 14.3,
+      "egfr": 63.8,
+      "wbc": 8.3,
+      "platelets": 158.0,
+      "bilirubin": 1.15
+    },
+    "notes": "Follow-up for COPD, asthma.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0169",
+    "age": 66,
+    "sex": "male",
+    "conditions": [
+      "multiple myeloma",
+      "psoriasis",
+      "Crohn's disease",
+      "asthma"
+    ],
+    "medications": [
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.9,
+      "creatinine": 2.45,
+      "alt": 42.4,
+      "ast": 38.7,
+      "egfr": 115.2,
+      "wbc": 4.4,
+      "platelets": 160.0,
+      "bilirubin": 1.06
+    },
+    "notes": "Patient presents with multiple myeloma requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0170",
+    "age": 61,
+    "sex": "female",
+    "conditions": [
+      "anxiety"
+    ],
+    "medications": [
+      "levothyroxine",
+      "methotrexate",
+      "carvedilol",
+      "lisinopril",
+      "amlodipine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 2.74,
+      "alt": 55.0,
+      "ast": 59.9,
+      "egfr": 112.6,
+      "wbc": 9.7,
+      "platelets": 331.0,
+      "bilirubin": 0.88
+    },
+    "notes": "New referral. anxiety poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0171",
+    "age": 80,
+    "sex": "male",
+    "conditions": [
+      "osteoporosis"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 1.18,
+      "alt": 82.8,
+      "ast": 64.0,
+      "egfr": 40.0,
+      "wbc": 3.8,
+      "platelets": 160.0,
+      "bilirubin": 0.87
+    },
+    "notes": "Patient presents with osteoporosis requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0172",
+    "age": 57,
+    "sex": "female",
+    "conditions": [
+      "breast cancer",
+      "Crohn's disease",
+      "obesity",
+      "coronary artery disease"
+    ],
+    "medications": [
+      "glimepiride",
+      "furosemide",
+      "levothyroxine",
+      "apixaban",
+      "ramipril"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 4.9,
+      "creatinine": 1.51,
+      "alt": 39.0,
+      "ast": 85.3,
+      "egfr": 76.4,
+      "wbc": 5.2,
+      "platelets": 344.0,
+      "bilirubin": 0.42
+    },
+    "notes": "New referral. breast cancer poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0173",
+    "age": 47,
+    "sex": "male",
+    "conditions": [
+      "prostate cancer",
+      "anxiety",
+      "lung cancer",
+      "Crohn's disease"
+    ],
+    "medications": [
+      "prednisone",
+      "semaglutide",
+      "dapagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 1.41,
+      "alt": 103.9,
+      "ast": 13.1,
+      "egfr": 77.1,
+      "wbc": 9.4,
+      "platelets": 300.0,
+      "bilirubin": 2.46
+    },
+    "notes": "New referral. prostate cancer poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0174",
+    "age": 40,
+    "sex": "male",
+    "conditions": [
+      "COPD",
+      "chronic kidney disease"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 2.77,
+      "alt": 57.9,
+      "ast": 99.8,
+      "egfr": 82.7,
+      "wbc": 13.1,
+      "platelets": 190.0,
+      "bilirubin": 2.29
+    },
+    "notes": "Patient presents with COPD requiring management.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0175",
+    "age": 29,
+    "sex": "female",
+    "conditions": [
+      "lung cancer",
+      "hypothyroidism",
+      "obesity",
+      "prostate cancer"
+    ],
+    "medications": [
+      "metformin",
+      "methotrexate",
+      "prednisone"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 1.47,
+      "alt": 55.6,
+      "ast": 23.3,
+      "egfr": 78.8,
+      "wbc": 12.2,
+      "platelets": 429.0,
+      "bilirubin": 2.33
+    },
+    "notes": "Follow-up for lung cancer, hypothyroidism.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0176",
+    "age": 62,
+    "sex": "female",
+    "conditions": [
+      "depression",
+      "psoriasis",
+      "breast cancer"
+    ],
+    "medications": [
+      "methotrexate",
+      "dapagliflozin",
+      "lisinopril",
+      "levothyroxine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 0.83,
+      "alt": 77.0,
+      "ast": 72.4,
+      "egfr": 23.9,
+      "wbc": 13.7,
+      "platelets": 216.0,
+      "bilirubin": 0.75
+    },
+    "notes": "Follow-up for depression, psoriasis.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0177",
+    "age": 65,
+    "sex": "male",
+    "conditions": [
+      "hyperlipidemia",
+      "obesity",
+      "breast cancer"
+    ],
+    "medications": [
+      "pembrolizumab",
+      "amlodipine",
+      "semaglutide",
+      "omeprazole",
+      "aspirin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.4,
+      "creatinine": 1.52,
+      "alt": 100.8,
+      "ast": 34.2,
+      "egfr": 61.7,
+      "wbc": 10.9,
+      "platelets": 166.0,
+      "bilirubin": 0.69
+    },
+    "notes": "New referral. hyperlipidemia poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0178",
+    "age": 65,
+    "sex": "male",
+    "conditions": [
+      "coronary artery disease",
+      "hyperlipidemia"
+    ],
+    "medications": [
+      "sitagliptin",
+      "furosemide",
+      "omeprazole",
+      "prednisone",
+      "metformin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 2.51,
+      "alt": 32.1,
+      "ast": 15.2,
+      "egfr": 23.3,
+      "wbc": 4.1,
+      "platelets": 226.0,
+      "bilirubin": 0.66
+    },
+    "notes": "New referral. coronary artery disease poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0179",
+    "age": 82,
+    "sex": "female",
+    "conditions": [
+      "Crohn's disease"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 1.62,
+      "alt": 59.1,
+      "ast": 96.4,
+      "egfr": 67.5,
+      "wbc": 9.8,
+      "platelets": 220.0,
+      "bilirubin": 2.13
+    },
+    "notes": "Patient presents with Crohn's disease requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0180",
+    "age": 54,
+    "sex": "male",
+    "conditions": [
+      "hypertension",
+      "atrial fibrillation",
+      "multiple myeloma",
+      "COPD"
+    ],
+    "medications": [
+      "adalimumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 0.98,
+      "alt": 81.7,
+      "ast": 56.2,
+      "egfr": 106.5,
+      "wbc": 14.6,
+      "platelets": 339.0,
+      "bilirubin": 1.29
+    },
+    "notes": "Stable hypertension. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0181",
+    "age": 19,
+    "sex": "male",
+    "conditions": [
+      "rheumatoid arthritis",
+      "hyperlipidemia",
+      "ulcerative colitis"
+    ],
+    "medications": [
+      "adalimumab",
+      "empagliflozin",
+      "carvedilol",
+      "furosemide",
+      "apixaban"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 1.0,
+      "alt": 43.2,
+      "ast": 56.9,
+      "egfr": 82.4,
+      "wbc": 10.2,
+      "platelets": 103.0,
+      "bilirubin": 2.5
+    },
+    "notes": "Follow-up for rheumatoid arthritis, hyperlipidemia.",
+    "icd_codes": [],
+    "ecog_status": 3,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0182",
+    "age": 54,
+    "sex": "female",
+    "conditions": [
+      "breast cancer"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.3,
+      "creatinine": 1.14,
+      "alt": 45.8,
+      "ast": 34.9,
+      "egfr": 85.6,
+      "wbc": 14.5,
+      "platelets": 328.0,
+      "bilirubin": 0.63
+    },
+    "notes": "Stable breast cancer. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0183",
+    "age": 25,
+    "sex": "female",
+    "conditions": [
+      "Crohn's disease",
+      "chronic kidney disease",
+      "type 2 diabetes"
+    ],
+    "medications": [
+      "dapagliflozin",
+      "aspirin",
+      "empagliflozin",
+      "carvedilol",
+      "furosemide"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 7.6,
+      "creatinine": 0.58,
+      "alt": 87.9,
+      "ast": 61.5,
+      "egfr": 39.0,
+      "wbc": 11.9,
+      "platelets": 178.0,
+      "bilirubin": 1.43
+    },
+    "notes": "Follow-up for Crohn's disease, chronic kidney disease.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0184",
+    "age": 82,
+    "sex": "female",
+    "conditions": [
+      "Crohn's disease",
+      "lung cancer"
+    ],
+    "medications": [
+      "aspirin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.0,
+      "creatinine": 0.79,
+      "alt": 38.5,
+      "ast": 82.8,
+      "egfr": 96.3,
+      "wbc": 5.6,
+      "platelets": 338.0,
+      "bilirubin": 0.97
+    },
+    "notes": "Follow-up for Crohn's disease, lung cancer.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0185",
+    "age": 46,
+    "sex": "female",
+    "conditions": [
+      "hypothyroidism",
+      "osteoporosis",
+      "obesity",
+      "multiple myeloma"
+    ],
+    "medications": [
+      "ramipril",
+      "amlodipine"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.6,
+      "creatinine": 2.49,
+      "alt": 74.2,
+      "ast": 95.0,
+      "egfr": 27.1,
+      "wbc": 13.7,
+      "platelets": 275.0,
+      "bilirubin": 2.2
+    },
+    "notes": "Follow-up for hypothyroidism, osteoporosis.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0186",
+    "age": 70,
+    "sex": "male",
+    "conditions": [
+      "chronic kidney disease",
+      "COPD"
+    ],
+    "medications": [
+      "carvedilol",
+      "prednisone"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.2,
+      "creatinine": 2.77,
+      "alt": 25.8,
+      "ast": 87.6,
+      "egfr": 38.0,
+      "wbc": 4.4,
+      "platelets": 216.0,
+      "bilirubin": 2.47
+    },
+    "notes": "Patient presents with chronic kidney disease requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0187",
+    "age": 18,
+    "sex": "female",
+    "conditions": [
+      "COPD",
+      "atrial fibrillation",
+      "multiple myeloma"
+    ],
+    "medications": [
+      "dapagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 2.29,
+      "alt": 24.2,
+      "ast": 49.0,
+      "egfr": 62.9,
+      "wbc": 8.4,
+      "platelets": 267.0,
+      "bilirubin": 0.21
+    },
+    "notes": "Patient presents with COPD requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0188",
+    "age": 59,
+    "sex": "male",
+    "conditions": [
+      "Crohn's disease"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.8,
+      "creatinine": 1.07,
+      "alt": 86.3,
+      "ast": 41.0,
+      "egfr": 32.9,
+      "wbc": 7.9,
+      "platelets": 306.0,
+      "bilirubin": 0.58
+    },
+    "notes": "Follow-up for Crohn's disease.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0189",
+    "age": 55,
+    "sex": "female",
+    "conditions": [
+      "anxiety",
+      "Crohn's disease",
+      "chronic kidney disease"
+    ],
+    "medications": [
+      "dapagliflozin",
+      "apixaban"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.0,
+      "creatinine": 0.88,
+      "alt": 109.8,
+      "ast": 83.1,
+      "egfr": 21.9,
+      "wbc": 6.1,
+      "platelets": 445.0,
+      "bilirubin": 0.69
+    },
+    "notes": "Stable anxiety. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0190",
+    "age": 33,
+    "sex": "female",
+    "conditions": [
+      "depression"
+    ],
+    "medications": [
+      "empagliflozin",
+      "glimepiride",
+      "methotrexate",
+      "lisinopril",
+      "pembrolizumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.0,
+      "creatinine": 2.42,
+      "alt": 15.3,
+      "ast": 20.4,
+      "egfr": 64.4,
+      "wbc": 4.9,
+      "platelets": 188.0,
+      "bilirubin": 1.81
+    },
+    "notes": "Patient presents with depression requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": false,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0191",
+    "age": 56,
+    "sex": "female",
+    "conditions": [
+      "Crohn's disease"
+    ],
+    "medications": [
+      "empagliflozin",
+      "methotrexate",
+      "omeprazole",
+      "carvedilol"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 0.74,
+      "alt": 89.1,
+      "ast": 20.6,
+      "egfr": 31.4,
+      "wbc": 4.7,
+      "platelets": 170.0,
+      "bilirubin": 0.66
+    },
+    "notes": "Stable Crohn's disease. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0192",
+    "age": 63,
+    "sex": "female",
+    "conditions": [
+      "atrial fibrillation",
+      "hypertension",
+      "lung cancer"
+    ],
+    "medications": [
+      "insulin glargine",
+      "dapagliflozin",
+      "warfarin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.2,
+      "creatinine": 0.53,
+      "alt": 19.8,
+      "ast": 19.9,
+      "egfr": 77.4,
+      "wbc": 9.2,
+      "platelets": 432.0,
+      "bilirubin": 1.99
+    },
+    "notes": "Patient presents with atrial fibrillation requiring management.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0193",
+    "age": 50,
+    "sex": "male",
+    "conditions": [
+      "hyperlipidemia",
+      "obesity",
+      "colorectal cancer",
+      "hypertension"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 2.51,
+      "alt": 103.7,
+      "ast": 42.4,
+      "egfr": 87.7,
+      "wbc": 8.4,
+      "platelets": 141.0,
+      "bilirubin": 2.16
+    },
+    "notes": "Patient presents with hyperlipidemia requiring management.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0194",
+    "age": 35,
+    "sex": "male",
+    "conditions": [
+      "osteoporosis",
+      "colorectal cancer",
+      "rheumatoid arthritis"
+    ],
+    "medications": [
+      "atorvastatin",
+      "apixaban"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.1,
+      "creatinine": 0.92,
+      "alt": 54.1,
+      "ast": 96.6,
+      "egfr": 47.2,
+      "wbc": 7.9,
+      "platelets": 398.0,
+      "bilirubin": 2.04
+    },
+    "notes": "Stable osteoporosis. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0195",
+    "age": 32,
+    "sex": "male",
+    "conditions": [
+      "atrial fibrillation"
+    ],
+    "medications": [],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 1.86,
+      "alt": 98.2,
+      "ast": 71.1,
+      "egfr": 38.1,
+      "wbc": 7.9,
+      "platelets": 226.0,
+      "bilirubin": 0.27
+    },
+    "notes": "Stable atrial fibrillation. Labs reviewed.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0196",
+    "age": 79,
+    "sex": "female",
+    "conditions": [
+      "anxiety"
+    ],
+    "medications": [
+      "lisinopril",
+      "atorvastatin",
+      "empagliflozin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.8,
+      "creatinine": 0.53,
+      "alt": 105.5,
+      "ast": 57.2,
+      "egfr": 94.4,
+      "wbc": 11.8,
+      "platelets": 178.0,
+      "bilirubin": 2.4
+    },
+    "notes": "Patient presents with anxiety requiring management.",
+    "icd_codes": [],
+    "ecog_status": 2,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0197",
+    "age": 73,
+    "sex": "male",
+    "conditions": [
+      "osteoporosis",
+      "Crohn's disease",
+      "psoriasis",
+      "depression"
+    ],
+    "medications": [
+      "glimepiride"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.2,
+      "creatinine": 1.91,
+      "alt": 11.3,
+      "ast": 94.1,
+      "egfr": 70.6,
+      "wbc": 8.9,
+      "platelets": 274.0,
+      "bilirubin": 0.58
+    },
+    "notes": "Follow-up for osteoporosis, Crohn's disease.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0198",
+    "age": 48,
+    "sex": "female",
+    "conditions": [
+      "hypertension",
+      "prostate cancer",
+      "asthma"
+    ],
+    "medications": [
+      "adalimumab",
+      "furosemide",
+      "semaglutide",
+      "atorvastatin"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.5,
+      "creatinine": 2.34,
+      "alt": 59.3,
+      "ast": 87.1,
+      "egfr": 64.7,
+      "wbc": 4.9,
+      "platelets": 274.0,
+      "bilirubin": 1.7
+    },
+    "notes": "New referral. hypertension poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 0,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0199",
+    "age": 22,
+    "sex": "male",
+    "conditions": [
+      "rheumatoid arthritis"
+    ],
+    "medications": [
+      "adalimumab",
+      "aspirin",
+      "sitagliptin",
+      "glimepiride"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 5.1,
+      "creatinine": 2.04,
+      "alt": 114.5,
+      "ast": 42.7,
+      "egfr": 25.4,
+      "wbc": 6.1,
+      "platelets": 259.0,
+      "bilirubin": 1.49
+    },
+    "notes": "New referral. rheumatoid arthritis poorly controlled.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  },
+  {
+    "patient_id": "P0200",
+    "age": 64,
+    "sex": "female",
+    "conditions": [
+      "heart failure"
+    ],
+    "medications": [
+      "semaglutide",
+      "metformin",
+      "warfarin",
+      "apixaban",
+      "adalimumab"
+    ],
+    "labs": {
+      "hemoglobin_a1c": 6.3,
+      "creatinine": 1.17,
+      "alt": 67.4,
+      "ast": 73.2,
+      "egfr": 24.6,
+      "wbc": 5.4,
+      "platelets": 149.0,
+      "bilirubin": 1.85
+    },
+    "notes": "Patient presents with heart failure requiring management.",
+    "icd_codes": [],
+    "ecog_status": 1,
+    "is_pregnant": null,
+    "prior_therapies": []
+  }
+]

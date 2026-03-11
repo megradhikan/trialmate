@@ -1,0 +1,18 @@
+[
+  {
+    "patient_id": "P001",
+    "eligible_nct_ids": ["NCT01234567", "NCT02345678"],
+    "ineligible_nct_ids": ["NCT03456789"],
+    "uncertain_nct_ids": ["NCT04567890"],
+    "annotator": "synthetic",
+    "annotation_reason": "P001 meets age, sex, T2DM, and HbA1c criteria for NCT01234567 and NCT02345678. Excluded from NCT03456789 due to creatinine threshold."
+  },
+  {
+    "patient_id": "P002",
+    "eligible_nct_ids": ["NCT03456789"],
+    "ineligible_nct_ids": ["NCT01234567"],
+    "uncertain_nct_ids": [],
+    "annotator": "synthetic",
+    "annotation_reason": "P002 (female, age 42) meets sex and condition criteria for NCT03456789. Excluded from NCT01234567 due to HbA1c below threshold."
+  }
+]

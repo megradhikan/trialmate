@@ -1,0 +1,16 @@
+{
+  "patient_id": "P001",
+  "age": 63,
+  "sex": "male",
+  "conditions": ["type 2 diabetes", "hypertension"],
+  "medications": ["metformin"],
+  "labs": {
+    "hemoglobin_a1c": 8.2,
+    "creatinine": 0.9
+  },
+  "notes": "Poorly controlled diabetes, A1c 8.2%",
+  "icd_codes": ["E11.9", "I10"],
+  "ecog_status": 0,
+  "is_pregnant": null,
+  "prior_therapies": []
+}
