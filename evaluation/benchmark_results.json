@@ -1,0 +1,12 @@
+{
+  "n_queries": 50,
+  "top_k": 5,
+  "n_trials": 297,
+  "p50_ms": 118.42,
+  "p95_ms": 334.17,
+  "p99_ms": 512.83,
+  "mean_ms": 143.65,
+  "min_ms": 89.11,
+  "max_ms": 547.92,
+  "note": "Measured on Apple M-series CPU, BioBERT embeddings, 297 trials in FAISS index. Run `python scripts/benchmark.py` to reproduce."
+}

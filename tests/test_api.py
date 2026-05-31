@@ -59,12 +59,15 @@ def mock_pipeline():
 
 @pytest.fixture
 def client(mock_pipeline):
-    """Create TestClient with mocked pipeline."""
+    """Create TestClient with mocked pipeline (lifespan patched to avoid loading models)."""
+    from unittest.mock import patch
     import api.main as main_module
-    main_module._pipeline = mock_pipeline
     from api.main import app
-    with TestClient(app) as c:
-        yield c
+
+    # Patch MatchingPipeline.load so the lifespan doesn't try to build FAISS index
+    with patch("api.main.MatchingPipeline.load", return_value=mock_pipeline):
+        with TestClient(app) as c:
+            yield c
 
 
 class TestHealthEndpoint:
@@ -120,6 +123,45 @@ class TestMatchEndpoint:
         # Verify top_k was passed to pipeline
         call_kwargs = mock_pipeline.run.call_args
         assert call_kwargs.kwargs.get("top_k") == 3 or call_kwargs.args[1] == 3
+
+
+class TestBatchEndpoint:
+    def test_batch_match_single_patient(self, client, mock_pipeline):
+        """Batch endpoint with a single patient returns one MatchResponse."""
+        resp = client.post(
+            "/patients/batch",
+            json=[SAMPLE_PATIENT],
+        )
+        assert resp.status_code == 200
+        data = resp.json()
+        assert "results" in data
+        assert len(data["results"]) == 1
+        assert data["results"][0]["patient_id"] == "P001"
+
+    def test_batch_match_multiple_patients(self, client, mock_pipeline):
+        """Batch endpoint calls pipeline once per patient."""
+        patient_b = dict(SAMPLE_PATIENT, patient_id="P002", age=45, sex="female")
+        resp = client.post(
+            "/patients/batch",
+            json=[SAMPLE_PATIENT, patient_b],
+        )
+        assert resp.status_code == 200
+        data = resp.json()
+        assert len(data["results"]) == 2
+        # pipeline.run should have been called twice
+        assert mock_pipeline.run.call_count >= 2
+
+    def test_batch_match_empty_list(self, client):
+        """Batch endpoint with an empty list returns empty results."""
+        resp = client.post("/patients/batch", json=[])
+        assert resp.status_code == 200
+        assert resp.json()["results"] == []
+
+    def test_batch_match_invalid_patient(self, client):
+        """Batch endpoint rejects invalid patient data with 422."""
+        bad_patient = dict(SAMPLE_PATIENT, age=-5)
+        resp = client.post("/patients/batch", json=[bad_patient])
+        assert resp.status_code == 422
 
 
 class TestTrialEndpoint:

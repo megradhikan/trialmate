@@ -5,242 +5,542 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TrialMate — Clinical Trial Matching</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f0f2f7; color: #222; min-height: 100vh; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .banner { background: #c0392b; color: white; padding: 9px 20px; font-weight: 600; text-align: center; font-size: 13px; }
+    :root {
+      --navy: #1a2e4a;
+      --navy-light: #243f62;
+      --blue: #3b82f6;
+      --blue-light: #eff6ff;
+      --green: #16a34a;
+      --green-light: #dcfce7;
+      --amber: #d97706;
+      --amber-light: #fef3c7;
+      --red: #dc2626;
+      --red-light: #fee2e2;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-700: #334155;
+      --radius: 10px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04);
+    }
 
-    header { background: #1a2e4a; color: white; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; }
-    header h1 { font-size: 21px; font-weight: 700; }
-    header .subtitle { font-size: 12px; opacity: 0.6; margin-top: 2px; }
-    .api-status { font-size: 12px; background: rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--gray-100); color: var(--gray-700); min-height: 100vh; }
 
-    .tabs { display: flex; background: #1a2e4a; padding: 0 32px; border-bottom: 3px solid #0d1e33; }
-    .tab { padding: 12px 26px; color: rgba(255,255,255,0.5); font-size: 14px; font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -3px; transition: all 0.2s; user-select: none; }
-    .tab:hover { color: rgba(255,255,255,0.8); }
-    .tab.active { color: white; border-bottom-color: #4a9eff; }
+    /* ── Banner ── */
+    .banner {
+      background: linear-gradient(90deg, #7f1d1d, #991b1b);
+      color: #fecaca;
+      padding: 8px 24px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .banner strong { color: white; }
 
+    /* ── Header ── */
+    header {
+      background: var(--navy);
+      color: white;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-brand { display: flex; align-items: center; gap: 12px; }
+    .header-brand h1 { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; }
+    .header-brand .subtitle { font-size: 11px; opacity: 0.5; margin-top: 1px; }
+    .api-pill {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 5px 14px; border-radius: 99px;
+      transition: background 0.3s;
+    }
+    .api-pill .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--gray-400);
+      transition: background 0.3s;
+    }
+    .api-pill.online .dot { background: #4ade80; box-shadow: 0 0 6px #4ade80; }
+    .api-pill.offline .dot { background: #f87171; }
+
+    /* ── Tabs ── */
+    .tabs {
+      background: var(--navy);
+      padding: 0 32px;
+      display: flex;
+      gap: 4px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .tab {
+      padding: 11px 20px;
+      color: rgba(255,255,255,0.45);
+      font-size: 13px; font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.15s, border-color 0.15s;
+      user-select: none;
+    }
+    .tab:hover { color: rgba(255,255,255,0.75); }
+    .tab.active { color: white; border-bottom-color: var(--blue); }
+
+    /* ── Layout ── */
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
+    .layout {
+      max-width: 1240px; margin: 24px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
 
-    .layout { max-width: 1200px; margin: 28px auto; padding: 0 24px; display: grid; grid-template-columns: 370px 1fr; gap: 24px; align-items: start; }
+    /* ── Card ── */
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-200);
+    }
+    .card-title {
+      font-size: 13px; font-weight: 700; color: var(--navy);
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .card-title-text { display: flex; align-items: center; gap: 7px; }
 
-    .card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
-    .card h2 { font-size: 15px; font-weight: 700; color: #1a2e4a; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #eef0f5; display: flex; align-items: center; gap: 8px; }
-
-    label { display: block; font-size: 11px; color: #666; margin-bottom: 4px; margin-top: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
-    input, select, textarea { width: 100%; border: 1.5px solid #e0e4ed; border-radius: 8px; padding: 9px 12px; font-size: 13px; color: #222; transition: border-color 0.2s; background: #fafbfd; }
-    input:focus, select:focus, textarea:focus { outline: none; border-color: #4a9eff; background: white; }
-    textarea { height: 78px; resize: vertical; }
+    /* ── Form ── */
+    .field { margin-top: 14px; }
+    .field:first-child { margin-top: 0; }
+    label {
+      display: block;
+      font-size: 10.5px; color: var(--gray-500);
+      margin-bottom: 5px;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    input, select, textarea {
+      width: 100%;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 7px;
+      padding: 8px 11px;
+      font-size: 13px; color: var(--gray-700);
+      background: var(--gray-50);
+      transition: border-color 0.15s, background 0.15s;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    }
+    textarea { height: 72px; resize: vertical; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .divider { border: none; border-top: 1px solid var(--gray-100); margin: 18px 0; }
+    .section-label {
+      font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--gray-400); margin-bottom: 12px;
+    }
 
-    .btn-primary { background: #1a2e4a; color: white; border: none; padding: 11px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 700; width: 100%; margin-top: 18px; transition: background 0.2s; }
-    .btn-primary:hover { background: #243f62; }
-    .btn-primary:disabled { background: #aab; cursor: default; }
-    .btn-secondary { background: #e8f0fe; color: #1a2e4a; border: none; padding: 7px 14px; border-radius: 7px; cursor: pointer; font-size: 12px; font-weight: 600; }
-    .btn-secondary:hover { background: #d0e2fd; }
-    .btn-sm { background: #f0f2f7; color: #555; border: 1px solid #dde; padding: 5px 11px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 500; }
-    .btn-sm:hover { background: #e2e5f0; }
+    /* ── Buttons ── */
+    .btn-primary {
+      background: var(--navy); color: white; border: none;
+      padding: 10px 18px; border-radius: 8px; cursor: pointer;
+      font-size: 13px; font-weight: 700; width: 100%;
+      margin-top: 18px; transition: background 0.15s, transform 0.1s;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+    }
+    .btn-primary:hover:not(:disabled) { background: var(--navy-light); }
+    .btn-primary:active:not(:disabled) { transform: scale(0.99); }
+    .btn-primary:disabled { background: var(--gray-400); cursor: default; }
+    .btn-secondary {
+      background: var(--blue-light); color: var(--blue); border: 1px solid #bfdbfe;
+      padding: 5px 12px; border-radius: 7px; cursor: pointer;
+      font-size: 11.5px; font-weight: 600; transition: background 0.15s;
+    }
+    .btn-secondary:hover { background: #dbeafe; }
+    .btn-sm {
+      background: var(--gray-100); color: var(--gray-500);
+      border: 1px solid var(--gray-200);
+      padding: 4px 10px; border-radius: 6px; cursor: pointer;
+      font-size: 11px; font-weight: 600; transition: background 0.15s;
+    }
+    .btn-sm:hover { background: var(--gray-200); }
 
-    .retrieve-row { display: flex; gap: 10px; align-items: flex-end; }
-    .retrieve-row input { flex: 1; }
-    .retrieve-row .btn-primary { width: auto; margin-top: 0; white-space: nowrap; }
+    /* ── Sample patients ── */
+    .samples-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+    .sample-btn {
+      border: 1.5px solid var(--gray-200); background: white; color: var(--gray-500);
+      border-radius: 7px; padding: 5px 11px; font-size: 11px; font-weight: 600;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .sample-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
 
-    .patient-list { margin-top: 4px; }
-    .patient-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 13px; border: 1.5px solid #e0e4ed; border-radius: 8px; margin-bottom: 7px; cursor: pointer; transition: all 0.15s; }
-    .patient-item:hover { border-color: #4a9eff; background: #f5f8ff; }
-    .patient-item.selected { border-color: #1a2e4a; background: #eef2fa; }
-    .patient-item-id { font-weight: 700; color: #1a2e4a; font-size: 13px; }
-    .patient-item-meta { font-size: 11px; color: #999; margin-top: 2px; }
-
-    .results-header { font-size: 15px; font-weight: 700; color: #1a2e4a; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #eef0f5; }
-    .results-empty { text-align: center; padding: 60px 20px; color: #ccc; font-size: 14px; }
-    .results-empty .icon { font-size: 42px; margin-bottom: 12px; }
-
-    .match-card { border: 1.5px solid #e0e7ef; border-radius: 10px; padding: 16px; margin-bottom: 14px; transition: border-color 0.15s; }
-    .match-card:hover { border-color: #4a9eff; }
-    .match-header { display: flex; align-items: flex-start; gap: 12px; }
-    .score-badge { border-radius: 8px; padding: 6px 12px; font-size: 15px; font-weight: 800; min-width: 56px; text-align: center; }
-    .score-high { background: #d5f5e3; color: #1a7a42; }
-    .score-medium { background: #fef3e2; color: #b8680a; }
-    .score-low { background: #fde8e8; color: #a93226; }
-    .match-title { font-weight: 700; font-size: 14px; color: #1a2e4a; line-height: 1.3; }
-    .match-meta { font-size: 11px; color: #999; margin-top: 3px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-    .conf-badge { padding: 2px 8px; border-radius: 10px; font-weight: 700; font-size: 10px; text-transform: uppercase; }
-    .conf-high { background: #d5f5e3; color: #1a7a42; }
-    .conf-medium { background: #fef3e2; color: #b8680a; }
-    .conf-low { background: #fde8e8; color: #a93226; }
-    .sub-scores { display: flex; gap: 20px; margin: 10px 0; padding: 10px 0; border-top: 1px solid #f0f2f7; border-bottom: 1px solid #f0f2f7; }
-    .sub-score { display: flex; flex-direction: column; gap: 2px; }
-    .sub-score-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; color: #bbb; }
-    .sub-score-val { font-weight: 700; color: #444; font-size: 13px; }
-    .match-rationale { font-size: 13px; line-height: 1.6; color: #444; margin-top: 8px; }
-    .clause-section { margin-top: 10px; }
-    .clause-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
-    .label-match { color: #1a7a42; }
-    .label-violate { color: #a93226; }
-    .clause-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-    .ctag { border-radius: 5px; padding: 3px 9px; font-size: 11px; }
-    .ctag-match { background: #eafaf1; color: #1a7a42; border: 1px solid #c3edd5; }
-    .ctag-violate { background: #fdf0f0; color: #a93226; border: 1px solid #f5c6c6; }
-    .source-link { margin-top: 10px; font-size: 11px; color: #aaa; }
-    .source-link a { color: #4a9eff; text-decoration: none; font-weight: 600; }
-    .source-link a:hover { text-decoration: underline; }
-
+    /* ── Top-k row ── */
     .topk-row { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
     .topk-row label { margin: 0; white-space: nowrap; }
     .topk-row select { width: auto; }
 
-    .msg-error { background: #fde8e8; border: 1.5px solid #e74c3c; border-radius: 8px; padding: 10px 13px; color: #a93226; font-size: 13px; margin-top: 10px; }
-    .msg-success { background: #eafaf1; border: 1.5px solid #27ae60; border-radius: 8px; padding: 10px 13px; color: #1a7a42; font-size: 13px; margin-top: 10px; }
-    .loading { text-align: center; padding: 50px; color: #aaa; font-size: 14px; }
-    .divider { border: none; border-top: 1px solid #eef0f5; margin: 16px 0; }
-    .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: #aaa; margin-bottom: 8px; margin-top: 16px; }
-    .session-note { font-size: 11px; color: #bbb; text-align: center; margin-top: 10px; }
+    /* ── Patient list ── */
+    .patient-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 12px; border: 1.5px solid var(--gray-200);
+      border-radius: 8px; margin-bottom: 6px; cursor: pointer;
+      transition: all 0.12s;
+    }
+    .patient-item:hover { border-color: var(--blue); background: var(--blue-light); }
+    .patient-item.selected { border-color: var(--navy); background: #eff2fa; }
+    .patient-item-id { font-weight: 700; color: var(--navy); font-size: 13px; }
+    .patient-item-meta { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+
+    /* ── Messages ── */
+    .msg { border-radius: 7px; padding: 9px 12px; font-size: 12.5px; margin-top: 10px; display: flex; align-items: center; gap: 7px; }
+    .msg-error { background: var(--red-light); border: 1px solid #fca5a5; color: #991b1b; }
+    .msg-success { background: var(--green-light); border: 1px solid #86efac; color: #166534; }
+
+    /* ── Results ── */
+    .results-header {
+      font-size: 14px; font-weight: 700; color: var(--navy);
+      margin-bottom: 16px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .results-count {
+      font-size: 11px; color: var(--gray-400); font-weight: 500;
+      background: var(--gray-100); border-radius: 99px; padding: 2px 9px;
+    }
+    .results-empty {
+      text-align: center; padding: 56px 20px; color: var(--gray-400);
+      font-size: 13px; line-height: 1.6;
+    }
+    .results-empty .icon { font-size: 40px; margin-bottom: 14px; display: block; }
+
+    /* ── Match card ── */
+    .match-card {
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .match-card:hover { border-color: #93c5fd; box-shadow: var(--shadow-md); }
+
+    .match-card-header {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 15px 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Score ring */
+    .score-ring { flex-shrink: 0; position: relative; width: 54px; height: 54px; }
+    .score-ring svg { transform: rotate(-90deg); }
+    .score-ring-track { fill: none; stroke: var(--gray-100); stroke-width: 5; }
+    .score-ring-fill { fill: none; stroke-width: 5; stroke-linecap: round; transition: stroke-dashoffset 0.6s ease; }
+    .score-ring-label {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; color: var(--gray-700);
+    }
+
+    .match-card-info { flex: 1; min-width: 0; }
+    .match-title { font-weight: 700; font-size: 13.5px; color: var(--navy); line-height: 1.35; }
+    .match-meta {
+      font-size: 11px; color: var(--gray-400);
+      margin-top: 5px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    }
+    .meta-chip {
+      background: var(--gray-100); border-radius: 99px;
+      padding: 1px 8px; font-size: 10.5px; font-weight: 600; color: var(--gray-500);
+    }
+    .conf-badge {
+      padding: 1px 8px; border-radius: 99px;
+      font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.3px;
+    }
+    .conf-high { background: var(--green-light); color: #166534; }
+    .conf-medium { background: var(--amber-light); color: #92400e; }
+    .conf-low { background: var(--red-light); color: #991b1b; }
+
+    .expand-icon { color: var(--gray-400); font-size: 13px; flex-shrink: 0; margin-top: 2px; transition: transform 0.2s; }
+    .match-card.expanded .expand-icon { transform: rotate(180deg); }
+
+    /* Match body */
+    .match-body { display: none; padding: 0 16px 15px; border-top: 1px solid var(--gray-100); }
+    .match-card.expanded .match-body { display: block; }
+
+    /* Sub-score bars */
+    .sub-scores { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+    .sub-score-row { display: flex; align-items: center; gap: 10px; }
+    .sub-score-label { font-size: 11px; color: var(--gray-400); font-weight: 600; width: 78px; flex-shrink: 0; }
+    .sub-score-bar-wrap { flex: 1; background: var(--gray-100); border-radius: 99px; height: 6px; overflow: hidden; }
+    .sub-score-bar { height: 100%; border-radius: 99px; transition: width 0.5s ease; }
+    .bar-rule { background: linear-gradient(90deg, #3b82f6, #6366f1); }
+    .bar-semantic { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+    .bar-meta { background: linear-gradient(90deg, #10b981, #34d399); }
+    .sub-score-val { font-size: 11px; font-weight: 700; color: var(--gray-700); width: 32px; text-align: right; flex-shrink: 0; }
+
+    .match-rationale {
+      font-size: 12.5px; line-height: 1.65; color: var(--gray-500);
+      background: var(--gray-50); border-radius: 7px;
+      padding: 10px 12px; margin-bottom: 12px;
+      border-left: 3px solid var(--gray-200);
+    }
+
+    .clause-section { margin-top: 10px; }
+    .clause-section-label {
+      font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.4px; margin-bottom: 6px;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .label-match { color: var(--green); }
+    .label-violate { color: var(--amber); }
+    .clause-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .ctag {
+      border-radius: 5px; padding: 3px 9px;
+      font-size: 11px; line-height: 1.4;
+    }
+    .ctag-match { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+    .ctag-violate { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+
+    .source-link { margin-top: 12px; font-size: 11.5px; }
+    .source-link a {
+      color: var(--blue); text-decoration: none; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .source-link a:hover { text-decoration: underline; }
+
+    /* Retrieve tab */
+    .retrieve-row { display: flex; gap: 8px; align-items: flex-end; }
+    .retrieve-row input { flex: 1; }
+    .retrieve-row .btn-primary { width: auto; margin-top: 0; white-space: nowrap; }
+
+    /* Loading */
+    .loading {
+      text-align: center; padding: 52px 20px; color: var(--gray-400); font-size: 13px;
+    }
+    .spinner {
+      display: inline-block; width: 28px; height: 28px;
+      border: 3px solid var(--gray-200);
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .session-note { font-size: 11px; color: var(--gray-400); text-align: center; margin-top: 10px; }
   </style>
 </head>
 <body>
 
-
+<div class="banner">
+  ⚠️ <strong>PROTOTYPE ONLY — NOT FOR CLINICAL USE.</strong> Matches synthetic patient records. Always consult a qualified clinician.
+</div>
 
 <header>
-  <div>
-    <h1>🧬 TrialMate</h1>
-    <div class="subtitle">Clinical Trial Matching Agent</div>
+  <div class="header-brand">
+    <div>
+      <h1>🧬 TrialMate</h1>
+      <div class="subtitle">Clinical Trial Matching Agent</div>
+    </div>
   </div>
-  <div class="api-status" id="api-status">⏳ Connecting...</div>
+  <div class="api-pill" id="api-status">
+    <span class="dot"></span>
+    <span id="api-label">Connecting…</span>
+  </div>
 </header>
 
 <div class="tabs">
-  <div class="tab active" onclick="switchTab('new')">➕ New Patient</div>
-  <div class="tab" onclick="switchTab('retrieve')">🔍 Retrieve Patient</div>
+  <div class="tab active" data-tab="new" onclick="switchTab(this,'new')">New Patient</div>
+  <div class="tab" data-tab="retrieve" onclick="switchTab(this,'retrieve')">Session Patients</div>
 </div>
 
-<!-- ══════════════ TAB 1: NEW PATIENT ══════════════ -->
+<!-- ══ TAB 1: NEW PATIENT ══ -->
 <div id="tab-new" class="tab-panel active">
   <div class="layout">
 
     <div class="card">
-      <h2>👤 New Patient Record</h2>
+      <div class="card-title">
+        <span class="card-title-text">👤 Patient Record</span>
+        <span style="font-size:11px;font-weight:500;color:var(--gray-400)">* required</span>
+      </div>
 
+      <div class="section-label">Quick fill</div>
+      <div class="samples-row">
+        <button class="sample-btn" onclick="loadSample('t2dm')">T2DM</button>
+        <button class="sample-btn" onclick="loadSample('htn')">Hypertension</button>
+        <button class="sample-btn" onclick="loadSample('nsclc')">Lung Cancer</button>
+      </div>
 
-        <div>
-          <div class="form-row">
+      <hr class="divider" />
+
+      <div class="form-row">
+        <div class="field">
+          <label>Patient ID *</label>
           <input id="n_patient_id" placeholder="e.g. P003" />
         </div>
-        <div>
+        <div class="field">
           <label>Age *</label>
           <input id="n_age" type="number" min="0" max="120" placeholder="e.g. 63" />
         </div>
       </div>
 
-      <label>Sex *</label>
-      <select id="n_sex">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
+      <div class="field">
+        <label>Sex *</label>
+        <select id="n_sex">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other / Not specified</option>
+        </select>
+      </div>
 
-      <label>Conditions (comma-separated)</label>
-      <input id="n_conditions" placeholder="e.g. type 2 diabetes, hypertension" />
+      <div class="field">
+        <label>Conditions (comma-separated)</label>
+        <input id="n_conditions" placeholder="e.g. type 2 diabetes mellitus, hypertension" />
+      </div>
 
-      <label>Medications (comma-separated)</label>
-      <input id="n_medications" placeholder="e.g. metformin, aspirin" />
+      <div class="field">
+        <label>Medications (comma-separated)</label>
+        <input id="n_medications" placeholder="e.g. metformin, lisinopril" />
+      </div>
 
       <hr class="divider" />
-      <div class="section-label">Lab Values (optional)</div>
+      <div class="section-label">Lab Values</div>
 
       <div class="form-row">
-        <div>
+        <div class="field">
           <label>HbA1c (%)</label>
           <input id="n_hba1c" type="number" step="0.1" placeholder="e.g. 8.2" />
         </div>
-        <div>
+        <div class="field">
           <label>Creatinine (mg/dL)</label>
           <input id="n_creatinine" type="number" step="0.01" placeholder="e.g. 0.9" />
         </div>
       </div>
       <div class="form-row">
-        <div>
+        <div class="field">
           <label>eGFR (mL/min)</label>
           <input id="n_egfr" type="number" step="1" placeholder="e.g. 75" />
         </div>
-        <div>
+        <div class="field">
           <label>ALT (U/L)</label>
           <input id="n_alt" type="number" step="1" placeholder="e.g. 32" />
         </div>
       </div>
-
-      <label>Clinical Notes</label>
-      <textarea id="n_notes" placeholder="Optional clinical notes..."></textarea>
+      <div class="form-row">
+        <div class="field">
+          <label>WBC (×10⁹/L)</label>
+          <input id="n_wbc" type="number" step="0.1" placeholder="e.g. 6.2" />
+        </div>
+        <div class="field">
+          <label>Platelets (×10⁹/L)</label>
+          <input id="n_platelets" type="number" step="1" placeholder="e.g. 210" />
+        </div>
+      </div>
 
       <hr class="divider" />
-      <div class="topk-row">
-        <label>Top matches:</label>
-        <select id="n_top_k">
-          <option value="3">3</option>
-          <option value="5" selected>5</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-        </select>
+      <div class="section-label">Clinical Details</div>
+
+      <div class="form-row">
+        <div class="field">
+          <label>ECOG Status</label>
+          <select id="n_ecog">
+            <option value="">— not specified —</option>
+            <option value="0">0 — Fully active</option>
+            <option value="1">1 — Restricted but ambulatory</option>
+            <option value="2">2 — Ambulatory, self-care</option>
+            <option value="3">3 — Limited self-care</option>
+            <option value="4">4 — Completely disabled</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Top matches</label>
+          <select id="n_top_k">
+            <option value="3">3</option>
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
       </div>
 
-      <button class="btn-primary" id="n_btn" onclick="submitNewPatient()">🔬 Upload & Find Matches</button>
-      <div id="n_msg"></div>
+      <div class="field">
+        <label>Clinical Notes (optional)</label>
+        <textarea id="n_notes" placeholder="Prior therapies, staging, relevant history…"></textarea>
+      </div>
 
+      <button class="btn-primary" id="n_btn" onclick="submitNewPatient()">
+        <span>🔬</span> Upload &amp; Find Matches
+      </button>
+      <div id="n_msg"></div>
     </div>
 
-    <!-- Results -->
+    <!-- Results panel -->
     <div class="card" id="n_results">
       <div class="results-empty">
-        <div class="icon">🧬</div>
-        <div>Fill in patient details and click<br/><strong>Upload &amp; Find Matches</strong></div>
+        <span class="icon">🧬</span>
+        Fill in the patient form and click<br/><strong>Upload &amp; Find Matches</strong>
       </div>
     </div>
-
   </div>
 </div>
 
-<!-- ══════════════ TAB 2: RETRIEVE PATIENT ══════════════ -->
+<!-- ══ TAB 2: SESSION PATIENTS ══ -->
 <div id="tab-retrieve" class="tab-panel">
   <div class="layout">
 
     <div class="card">
-      <h2>🔍 Retrieve Patient</h2>
+      <div class="card-title"><span class="card-title-text">🔍 Select Patient</span></div>
 
       <label>Enter Patient ID</label>
       <div class="retrieve-row">
-        <input id="r_patient_id" placeholder="e.g. P001" />
+        <input id="r_patient_id" placeholder="e.g. P001" onkeydown="if(event.key==='Enter')selectById()" />
         <button class="btn-primary" onclick="selectById()">Select</button>
       </div>
-
       <div id="r_msg"></div>
 
       <hr class="divider" />
-      <div class="section-label">Session Patients (this session)</div>
-      <div class="patient-list" id="session_list">
-        <div style="font-size:12px;color:#ccc;text-align:center;padding:18px 0;">No patients uploaded yet</div>
+      <div class="section-label">Uploaded this session</div>
+      <div id="session_list">
+        <div style="font-size:12px;color:var(--gray-400);text-align:center;padding:18px 0;">No patients uploaded yet</div>
       </div>
 
       <hr class="divider" />
-      <div class="topk-row">
-        <label>Top matches:</label>
-        <select id="r_top_k">
-          <option value="3">3</option>
-          <option value="5" selected>5</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-        </select>
+      <div class="form-row">
+        <div class="field">
+          <label>Top matches</label>
+          <select id="r_top_k">
+            <option value="3">3</option>
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
       </div>
 
-      <button class="btn-primary" id="r_btn" onclick="getMatches()" disabled>🔬 Get Matches for Selected Patient</button>
+      <button class="btn-primary" id="r_btn" onclick="getMatches()" disabled>
+        <span>🔬</span> Get Matches
+      </button>
     </div>
 
-    <!-- Results -->
     <div class="card" id="r_results">
       <div class="results-empty">
-        <div class="icon">🔍</div>
-        <div>Select a patient by ID or from the<br/>session list, then click Get Matches</div>
+        <span class="icon">🔍</span>
+        Select a patient from the session list<br/>then click <strong>Get Matches</strong>
       </div>
     </div>
 
@@ -248,92 +548,147 @@
 </div>
 
 <script>
-  const API = "http://localhost:8000";
+  const API = "http://localhost:8765";
   let sessionPatients = {};
   let selectedId = null;
 
-  // API status
-  fetch(`${API}/health`).then(r => r.json()).then(d => {
-    const el = document.getElementById("api-status");
-    el.textContent = `✅ Online · ${d.trials_loaded} trials`;
-    el.style.background = "rgba(39,174,96,0.2)";
-  }).catch(() => {
-    const el = document.getElementById("api-status");
-    el.textContent = "❌ API Offline";
-    el.style.background = "rgba(192,57,43,0.2)";
-  });
+  // ── API health check ─────────────────────────────────────────────
+  (async function checkHealth() {
+    const pill = document.getElementById("api-status");
+    const label = document.getElementById("api-label");
+    try {
+      const d = await fetch(`${API}/health`).then(r => r.json());
+      pill.classList.add("online");
+      label.textContent = `Online · ${d.trials_loaded} trials`;
+    } catch {
+      pill.classList.add("offline");
+      label.textContent = "API Offline";
+    }
+  })();
 
-  function switchTab(name) {
+  // ── Sample patients ───────────────────────────────────────────────
+  const SAMPLES = {
+    t2dm: {
+      patient_id: "P-T2DM-01", age: 63, sex: "male",
+      conditions: "type 2 diabetes mellitus, hypertension",
+      medications: "metformin, lisinopril",
+      hba1c: 8.2, creatinine: 0.9, egfr: 72, alt: "", wbc: "", platelets: "", ecog: "",
+      notes: "Poorly controlled diabetes on oral agents. No macrovascular events."
+    },
+    htn: {
+      patient_id: "P-HTN-01", age: 54, sex: "female",
+      conditions: "essential hypertension, hyperlipidemia",
+      medications: "amlodipine, atorvastatin",
+      hba1c: "", creatinine: 0.8, egfr: 88, alt: "", wbc: "", platelets: "", ecog: "",
+      notes: "BP 148/92 on single agent. No end-organ damage."
+    },
+    nsclc: {
+      patient_id: "P-LC-01", age: 58, sex: "male",
+      conditions: "non-small cell lung cancer, stage IV, EGFR exon 19 deletion",
+      medications: "osimertinib",
+      hba1c: "", creatinine: 0.9, egfr: 82, alt: 28, wbc: 6.0, platelets: 195, ecog: "1",
+      notes: "EGFR-mutant NSCLC, progressive on 1st-line osimertinib. ECOG 1."
+    },
+  };
+
+  function loadSample(key) {
+    const s = SAMPLES[key];
+    document.getElementById("n_patient_id").value = s.patient_id;
+    document.getElementById("n_age").value = s.age;
+    document.getElementById("n_sex").value = s.sex;
+    document.getElementById("n_conditions").value = s.conditions;
+    document.getElementById("n_medications").value = s.medications;
+    document.getElementById("n_hba1c").value = s.hba1c;
+    document.getElementById("n_creatinine").value = s.creatinine;
+    document.getElementById("n_egfr").value = s.egfr;
+    document.getElementById("n_alt").value = s.alt;
+    document.getElementById("n_wbc").value = s.wbc;
+    document.getElementById("n_platelets").value = s.platelets;
+    document.getElementById("n_ecog").value = s.ecog;
+    document.getElementById("n_notes").value = s.notes;
+  }
+
+  // ── Tabs ─────────────────────────────────────────────────────────
+  function switchTab(el, name) {
     document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
     document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
-    event.currentTarget.classList.add("active");
+    el.classList.add("active");
     document.getElementById(`tab-${name}`).classList.add("active");
     if (name === "retrieve") refreshList();
   }
 
+  // ── Build payload ─────────────────────────────────────────────────
   function buildPayload() {
     const g = id => document.getElementById(id);
     const labs = {};
-    const hba1c = parseFloat(g("n_hba1c").value);
-    const creat = parseFloat(g("n_creatinine").value);
-    const egfr  = parseFloat(g("n_egfr").value);
-    const alt   = parseFloat(g("n_alt").value);
-    if (!isNaN(hba1c)) labs.hemoglobin_a1c = hba1c;
-    if (!isNaN(creat)) labs.creatinine = creat;
-    if (!isNaN(egfr))  labs.egfr = egfr;
-    if (!isNaN(alt))   labs.alt = alt;
+    const floatIf = (id, key) => { const v = parseFloat(g(id).value); if (!isNaN(v)) labs[key] = v; };
+    floatIf("n_hba1c", "hemoglobin_a1c");
+    floatIf("n_creatinine", "creatinine");
+    floatIf("n_egfr", "egfr");
+    floatIf("n_alt", "alt");
+    floatIf("n_wbc", "wbc");
+    floatIf("n_platelets", "platelets");
+
+    const ecogVal = g("n_ecog").value;
+    const pid = g("n_patient_id").value.trim() || `P-${Date.now()}`;
+    g("n_patient_id").value = pid;
+
     return {
-      patient_id: g("n_patient_id").value.trim(),
+      patient_id: pid,
       age: parseInt(g("n_age").value),
       sex: g("n_sex").value,
-      conditions: g("n_conditions").value.split(",").map(s=>s.trim()).filter(Boolean),
-      medications: g("n_medications").value.split(",").map(s=>s.trim()).filter(Boolean),
+      conditions: g("n_conditions").value.split(",").map(s => s.trim()).filter(Boolean),
+      medications: g("n_medications").value.split(",").map(s => s.trim()).filter(Boolean),
       labs,
-      notes: g("n_notes").value,
+      notes: g("n_notes").value.trim() || undefined,
+      ecog_status: ecogVal !== "" ? parseInt(ecogVal) : undefined,
     };
   }
 
+  // ── Submit new patient ────────────────────────────────────────────
   async function submitNewPatient() {
     const btn = document.getElementById("n_btn");
     const msg = document.getElementById("n_msg");
     const res = document.getElementById("n_results");
     msg.innerHTML = "";
     btn.disabled = true;
-    btn.textContent = "⏳ Processing...";
-    res.innerHTML = `<div class="loading">⏳ Uploading patient and finding matches...</div>`;
+    btn.innerHTML = `<div class="spinner" style="width:16px;height:16px;margin:0;"></div> Processing…`;
+    res.innerHTML = `<div class="loading"><div class="spinner"></div><div>Matching against 297 trials…</div></div>`;
 
     const payload = buildPayload();
     const top_k = document.getElementById("n_top_k").value;
 
     try {
       const up = await fetch(`${API}/patients`, {
-        method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(payload)
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
       });
       if (!up.ok) throw new Error(`Upload failed (${up.status}): ${await up.text()}`);
 
       sessionPatients[payload.patient_id] = payload;
-      msg.innerHTML = `<div class="msg-success">✅ Patient <strong>${payload.patient_id}</strong> uploaded</div>`;
+      msg.innerHTML = `<div class="msg msg-success">✅ Patient <strong>${payload.patient_id}</strong> uploaded</div>`;
 
       const mr = await fetch(`${API}/patients/${payload.patient_id}/matches?top_k=${top_k}`);
       if (!mr.ok) throw new Error(`Match error (${mr.status}): ${await mr.text()}`);
       renderResults(await mr.json(), "n_results");
 
-    } catch(e) {
-      msg.innerHTML = `<div class="msg-error">❌ ${e.message}</div>`;
-      res.innerHTML = `<div class="results-empty"><div class="icon">⚠️</div><div>${e.message}</div></div>`;
+    } catch (e) {
+      msg.innerHTML = `<div class="msg msg-error">❌ ${e.message}</div>`;
+      res.innerHTML = `<div class="results-empty"><span class="icon">⚠️</span><div>${e.message}</div></div>`;
     } finally {
       btn.disabled = false;
-      btn.textContent = "🔬 Upload & Find Matches";
+      btn.innerHTML = `<span>🔬</span> Upload &amp; Find Matches`;
     }
   }
 
+  // ── Retrieve tab logic ────────────────────────────────────────────
   function selectById() {
     const pid = document.getElementById("r_patient_id").value.trim();
     const msg = document.getElementById("r_msg");
-    if (!pid) { msg.innerHTML = `<div class="msg-error">Please enter a Patient ID</div>`; return; }
+    if (!pid) { msg.innerHTML = `<div class="msg msg-error">Please enter a Patient ID</div>`; return; }
     selectedId = pid;
     document.getElementById("r_btn").disabled = false;
-    msg.innerHTML = `<div class="msg-success">✅ Selected <strong>${pid}</strong> — click Get Matches</div>`;
+    msg.innerHTML = `<div class="msg msg-success">✅ Selected <strong>${pid}</strong></div>`;
     refreshList();
   }
 
@@ -343,28 +698,27 @@
     const res = document.getElementById("r_results");
     const top_k = document.getElementById("r_top_k").value;
     btn.disabled = true;
-    btn.textContent = "⏳ Loading...";
-    res.innerHTML = `<div class="loading">⏳ Retrieving matches for ${selectedId}...</div>`;
+    btn.innerHTML = `<div class="spinner" style="width:16px;height:16px;margin:0;"></div> Loading…`;
+    res.innerHTML = `<div class="loading"><div class="spinner"></div><div>Retrieving matches for ${selectedId}…</div></div>`;
 
     try {
-      // Re-upload from session cache if needed
       if (sessionPatients[selectedId]) {
         await fetch(`${API}/patients`, {
-          method: "POST", headers: {"Content-Type":"application/json"},
+          method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify(sessionPatients[selectedId])
         });
       }
       const mr = await fetch(`${API}/patients/${selectedId}/matches?top_k=${top_k}`);
       if (!mr.ok) {
-        if (mr.status === 404) throw new Error(`Patient "${selectedId}" not found. Upload them first in the New Patient tab.`);
+        if (mr.status === 404) throw new Error(`Patient "${selectedId}" not found. Upload them first.`);
         throw new Error(`Error ${mr.status}: ${await mr.text()}`);
       }
       renderResults(await mr.json(), "r_results");
-    } catch(e) {
-      res.innerHTML = `<div class="results-empty"><div class="icon">⚠️</div><div>${e.message}</div></div>`;
+    } catch (e) {
+      res.innerHTML = `<div class="results-empty"><span class="icon">⚠️</span><div>${e.message}</div></div>`;
     } finally {
       btn.disabled = false;
-      btn.textContent = "🔬 Get Matches for Selected Patient";
+      btn.innerHTML = `<span>🔬</span> Get Matches`;
     }
   }
 
@@ -372,7 +726,7 @@
     selectedId = pid;
     document.getElementById("r_patient_id").value = pid;
     document.getElementById("r_btn").disabled = false;
-    document.getElementById("r_msg").innerHTML = `<div class="msg-success">✅ Selected <strong>${pid}</strong></div>`;
+    document.getElementById("r_msg").innerHTML = `<div class="msg msg-success">✅ Selected <strong>${pid}</strong></div>`;
     refreshList();
   }
 
@@ -380,17 +734,18 @@
     const list = document.getElementById("session_list");
     const ids = Object.keys(sessionPatients);
     if (!ids.length) {
-      list.innerHTML = `<div style="font-size:12px;color:#ccc;text-align:center;padding:18px 0;">No patients uploaded yet</div>`;
+      list.innerHTML = `<div style="font-size:12px;color:var(--gray-400);text-align:center;padding:18px 0;">No patients uploaded yet</div>`;
       return;
     }
     list.innerHTML = ids.map(pid => {
       const p = sessionPatients[pid];
       const sel = pid === selectedId;
+      const conds = p.conditions.slice(0, 2).join(", ") + (p.conditions.length > 2 ? "…" : "");
       return `
-        <div class="patient-item ${sel?'selected':''}" onclick="selectPatient('${pid}')">
+        <div class="patient-item ${sel ? "selected" : ""}" onclick="selectPatient('${pid}')">
           <div>
             <div class="patient-item-id">${pid}</div>
-            <div class="patient-item-meta">Age ${p.age} · ${p.sex} · ${p.conditions.slice(0,2).join(", ")}${p.conditions.length>2?"…":""}</div>
+            <div class="patient-item-meta">Age ${p.age} · ${p.sex}${conds ? " · " + conds : ""}</div>
           </div>
           <button class="btn-sm" onclick="event.stopPropagation();quickMatch('${pid}')">Match ↗</button>
         </div>`;
@@ -400,62 +755,134 @@
   async function quickMatch(pid) {
     selectedId = pid;
     document.getElementById("r_patient_id").value = pid;
-    // Switch to retrieve tab
     document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
     document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
-    document.querySelectorAll(".tab")[1].classList.add("active");
+    document.querySelector("[data-tab='retrieve']").classList.add("active");
     document.getElementById("tab-retrieve").classList.add("active");
     document.getElementById("r_btn").disabled = false;
     refreshList();
     await getMatches();
   }
 
+  // ── Score ring SVG ────────────────────────────────────────────────
+  function scoreRing(score) {
+    const pct = Math.round(score * 100);
+    const r = 22, circ = 2 * Math.PI * r;
+    const offset = circ * (1 - score);
+    const color = score >= 0.75 ? "#16a34a" : score >= 0.45 ? "#d97706" : "#dc2626";
+    return `
+      <div class="score-ring">
+        <svg width="54" height="54" viewBox="0 0 54 54">
+          <circle class="score-ring-track" cx="27" cy="27" r="${r}" />
+          <circle class="score-ring-fill" cx="27" cy="27" r="${r}"
+            stroke="${color}"
+            stroke-dasharray="${circ}"
+            stroke-dashoffset="${offset}" />
+        </svg>
+        <div class="score-ring-label" style="color:${color}">${pct}%</div>
+      </div>`;
+  }
+
+  // ── Bar ───────────────────────────────────────────────────────────
+  function bar(val, cls) {
+    return `
+      <div class="sub-score-bar-wrap">
+        <div class="sub-score-bar ${cls}" style="width:${Math.round(val*100)}%"></div>
+      </div>`;
+  }
+
+  // ── Toggle expand ─────────────────────────────────────────────────
+  function toggleCard(el) {
+    el.closest(".match-card").classList.toggle("expanded");
+  }
+
+  // ── Render results ────────────────────────────────────────────────
   function renderResults(data, containerId) {
     const div = document.getElementById(containerId);
     if (!data.matches || !data.matches.length) {
       div.innerHTML = `
-        <div class="results-header">Results — Patient ${data.patient_id}</div>
-        <div class="results-empty"><div class="icon">😶</div><div>No matching trials found.<br/>Try different conditions or download more trials.</div></div>`;
+        <div class="results-header">
+          <span>Results — ${data.patient_id}</span>
+          <span class="results-count">0 matches</span>
+        </div>
+        <div class="results-empty"><span class="icon">😶</span>No matching trials found.<br/>Try broader conditions or ingest more trials.</div>`;
       return;
     }
-    let html = `<div class="results-header">${data.matches.length} Matching Trials — Patient ${data.patient_id}</div>`;
+
+    let html = `
+      <div class="results-header">
+        <span>Matches — Patient ${data.patient_id}</span>
+        <span class="results-count">${data.matches.length} trials</span>
+      </div>`;
+
     for (const m of data.matches) {
-      const sc = (m.score * 100).toFixed(0);
-      const scCls = m.score>=0.7?"score-high":m.score>=0.4?"score-medium":"score-low";
-      const cCls = m.confidence==="high"?"conf-high":m.confidence==="medium"?"conf-medium":"conf-low";
+      const cCls = m.confidence === "high" ? "conf-high" : m.confidence === "medium" ? "conf-medium" : "conf-low";
+
+      const matchedClauses = m.matched_clauses.length ? `
+        <div class="clause-section">
+          <div class="clause-section-label label-match">✅ Matched Criteria</div>
+          <div class="clause-tags">
+            ${m.matched_clauses.map(c => `<span class="ctag ctag-match" title="${c.clause_id || ""}">${c.text.slice(0, 80)}${c.text.length > 80 ? "…" : ""}</span>`).join("")}
+          </div>
+        </div>` : "";
+
+      const violatedClauses = m.violated_clauses.length ? `
+        <div class="clause-section" style="margin-top:8px">
+          <div class="clause-section-label label-violate">⚠️ Concerns / Review Required</div>
+          <div class="clause-tags">
+            ${m.violated_clauses.map(c => `<span class="ctag ctag-violate">${c.text.slice(0, 90)}${c.text.length > 90 ? "…" : ""}</span>`).join("")}
+          </div>
+        </div>` : "";
+
+      const ctgLink = m.evidence.length && m.evidence[0].url
+        ? `<div class="source-link"><a href="${m.evidence[0].url}" target="_blank">View on ClinicalTrials.gov ↗</a></div>`
+        : "";
+
       html += `
         <div class="match-card">
-          <div class="match-header">
-            <div class="score-badge ${scCls}">${sc}%</div>
-            <div style="flex:1">
+          <div class="match-card-header" onclick="toggleCard(this)">
+            ${scoreRing(m.score)}
+            <div class="match-card-info">
               <div class="match-title">${m.title}</div>
               <div class="match-meta">
-                <span>${m.nct_id}</span>
+                <span class="meta-chip">${m.nct_id}</span>
                 <span class="conf-badge ${cCls}">${m.confidence} confidence</span>
+                ${m.rule_score === 0 ? '<span class="meta-chip" style="background:#fee2e2;color:#991b1b">Hard exclusion</span>' : ""}
               </div>
             </div>
+            <div class="expand-icon">▾</div>
           </div>
-          <div class="sub-scores">
-            <div class="sub-score"><div class="sub-score-label">Rule Check</div><div class="sub-score-val">${(m.rule_score*100).toFixed(0)}%</div></div>
-            <div class="sub-score"><div class="sub-score-label">Semantic</div><div class="sub-score-val">${(m.semantic_score*100).toFixed(0)}%</div></div>
-            <div class="sub-score"><div class="sub-score-label">Trial Status</div><div class="sub-score-val">${(m.trial_meta_score*100).toFixed(0)}%</div></div>
-            <div class="sub-score"><div class="sub-score-label">Overall</div><div class="sub-score-val" style="color:#1a2e4a;font-size:15px">${sc}%</div></div>
+          <div class="match-body">
+            <div class="sub-scores">
+              <div class="sub-score-row">
+                <div class="sub-score-label">Rule check</div>
+                ${bar(m.rule_score, "bar-rule")}
+                <div class="sub-score-val">${Math.round(m.rule_score * 100)}%</div>
+              </div>
+              <div class="sub-score-row">
+                <div class="sub-score-label">Semantic</div>
+                ${bar(m.semantic_score, "bar-semantic")}
+                <div class="sub-score-val">${Math.round(m.semantic_score * 100)}%</div>
+              </div>
+              <div class="sub-score-row">
+                <div class="sub-score-label">Trial status</div>
+                ${bar(m.trial_meta_score, "bar-meta")}
+                <div class="sub-score-val">${Math.round(m.trial_meta_score * 100)}%</div>
+              </div>
+            </div>
+            <div class="match-rationale">${m.rationale}</div>
+            ${matchedClauses}
+            ${violatedClauses}
+            ${ctgLink}
           </div>
-          <div class="match-rationale">${m.rationale}</div>
-          ${m.matched_clauses.length?`
-          <div class="clause-section">
-            <div class="clause-section-label label-match">✅ Matched Criteria</div>
-            <div class="clause-tags">${m.matched_clauses.map(c=>`<span class="ctag ctag-match" title="${c.clause_id}">${c.text.slice(0,70)}${c.text.length>70?"…":""}</span>`).join("")}</div>
-          </div>`:""}
-          ${m.violated_clauses.length?`
-          <div class="clause-section" style="margin-top:8px">
-            <div class="clause-section-label label-violate">⚠️ Concerns / Review Required</div>
-            <div class="clause-tags">${m.violated_clauses.map(c=>`<span class="ctag ctag-violate">${c.text.slice(0,80)}</span>`).join("")}</div>
-          </div>`:""}
-          ${m.evidence.length?`<div class="source-link">Source: <a href="${m.evidence[0].url||'#'}" target="_blank">View on ClinicalTrials.gov ↗</a></div>`:""}
         </div>`;
     }
+
     div.innerHTML = html;
+
+    // Auto-expand the first match
+    const first = div.querySelector(".match-card");
+    if (first) first.classList.add("expanded");
   }
 </script>
 </body>

@@ -20,6 +20,7 @@ aiofiles==23.2.1
 # Data processing
 numpy==1.26.4
 pandas==2.2.2
+scikit-learn==1.4.2
 pyyaml==6.0.1
 python-dotenv==1.0.1
 tqdm==4.66.4

@@ -2,6 +2,7 @@
 api/main.py — FastAPI application for TrialMate
 """
 from __future__ import annotations
+import asyncio
 import os
 import uuid
 from contextlib import asynccontextmanager
@@ -10,12 +11,17 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
+from pydantic import BaseModel
 
 from api.patient_schema import PatientInput
 from api.trial_schema import (
     PatientUploadResponse, MatchResponse, TrialMetadata,
 )
 from matching.scorer import MatchingPipeline
+
+
+class BatchMatchResponse(BaseModel):
+    results: list[MatchResponse]
 
 # ─── In-memory session store (no PHI persisted) ─────────────────────────────
 _patient_store: dict[str, PatientInput] = {}
@@ -91,6 +97,34 @@ async def get_matches(
     # del _patient_store[patient_id]
 
     return result
+
+
+@app.post("/patients/batch", response_model=BatchMatchResponse)
+async def batch_match(
+    patients: list[PatientInput],
+    top_k: int = Query(default=5, ge=1, le=20),
+    debug: bool = Query(default=False),
+):
+    """
+    Run matching pipeline concurrently for a list of patients.
+    Returns a list of MatchResponse objects in the same order as the input.
+    """
+    if _pipeline is None:
+        raise HTTPException(status_code=503, detail="Pipeline not loaded.")
+
+    # Store all patients temporarily for the duration of this request
+    for patient in patients:
+        _patient_store[patient.patient_id] = patient
+
+    try:
+        results = await asyncio.gather(
+            *[_pipeline.run(p, top_k=top_k, debug=debug) for p in patients]
+        )
+    finally:
+        for patient in patients:
+            _patient_store.pop(patient.patient_id, None)
+
+    return BatchMatchResponse(results=list(results))
 
 
 @app.get("/trials/{nct_id}", response_model=TrialMetadata)

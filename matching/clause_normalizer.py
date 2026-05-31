@@ -32,7 +32,11 @@ SEX_RE = re.compile(
     re.IGNORECASE
 )
 SEX_ONLY_RE = re.compile(
-    r'\b(male only|female only|men only|women only)\b',
+    r'\b('
+    r'males?\s+only|females?\s+only|men\s+only|women\s+only|'
+    r'only\s+(?:male|female|men|women)\s+(?:patients?|subjects?|participants?)?|'
+    r'(?:female|male|women|men)\s+(?:patients?|subjects?|participants?)\s+only'
+    r')\b',
     re.IGNORECASE
 )
 
@@ -114,8 +118,19 @@ def normalize_clause(text: str) -> list[dict]:
     if SEX_ONLY_RE.search(text):
         m = SEX_ONLY_RE.search(text)
         val = m.group(1).lower()
-        sex = "male" if "male" in val or "men" in val else "female"
-        constraints.append({"type": "sex", "allowed": [sex]})
+        # Use word-boundary-safe checks to avoid "female" matching "male"
+        is_female = bool(re.search(r'\bfemale\b|\bwomen\b|\bwoman\b', val))
+        is_male = bool(re.search(r'\bmale\b|\bmen\b|\bman\b', val))
+        if is_female and not is_male:
+            sex = "female"
+        elif is_male and not is_female:
+            sex = "male"
+        else:
+            # Both or ambiguous → allow all
+            constraints.append({"type": "sex", "allowed": ["male", "female", "other"]})
+            sex = None
+        if sex:
+            constraints.append({"type": "sex", "allowed": [sex]})
     elif re.search(r'\b(all sexes?|both sexes?|male or female)\b', text, re.IGNORECASE):
         constraints.append({"type": "sex", "allowed": ["male", "female", "other"]})
 
