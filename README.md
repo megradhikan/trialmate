@@ -85,7 +85,7 @@ uvicorn api.main:app --port 8000
 # open http://localhost:8000  (the demo UI is served at "/")
 ```
 
-Or with Docker:
+Or with Docker (the image pre-builds the index; `render.yaml` deploys it as a Render web service):
 
 ```bash
 docker build -t trialmate . && docker run -p 8000:8000 trialmate

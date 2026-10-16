@@ -15,6 +15,9 @@ COPY . .
 # Pre-download embedding model at build time (saves startup time)
 RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
+# Build the FAISS clause index at build time so cold starts are fast
+RUN python -m matching.embedder --trials data/processed/trials.json --output data/processed/faiss_index
+
 # Default data setup
 RUN mkdir -p data/raw data/processed data/samples .llm_cache
 
@@ -25,4 +28,5 @@ ENV LLM_PROVIDER=mock
 ENV EMBEDDING_PROVIDER=sentence_transformers
 ENV EMBEDDING_MODEL=all-MiniLM-L6-v2
 
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Render/Heroku-style platforms inject $PORT
+CMD ["sh", "-c", "uvicorn api.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
