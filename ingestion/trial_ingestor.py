@@ -115,7 +115,7 @@ def parse_trial_from_ctgov_v2(study: dict) -> Optional[dict]:
         eligibility = proto.get("eligibilityModule", {})
         conditions_mod = proto.get("conditionsModule", {})
         interventions_mod = proto.get("armsInterventionsModule", {})
-        desc = proto.get("descriptionModule", {})
+        proto.get("descriptionModule", {})
 
         nct_id = ident.get("nctId", "")
         if not nct_id:

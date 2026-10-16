@@ -3,7 +3,6 @@ tests/test_api.py
 Integration tests for FastAPI endpoints using mocked pipeline.
 """
 from __future__ import annotations
-import json
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 from fastapi.testclient import TestClient
@@ -49,7 +48,7 @@ SAMPLE_MATCH_RESPONSE = {
 @pytest.fixture
 def mock_pipeline():
     """Create a mock MatchingPipeline."""
-    from api.trial_schema import MatchResponse, TrialMatch, MatchedClause, EvidenceCitation
+    from api.trial_schema import MatchResponse
     pipeline = MagicMock()
     pipeline.trials = {"NCT01234567": {"nct_id": "NCT01234567", "title": "Study of Example Drug in T2DM", "status": "Recruiting", "phase": "Phase 3", "clauses": []}}
     match_result = MatchResponse(**SAMPLE_MATCH_RESPONSE)
@@ -60,8 +59,6 @@ def mock_pipeline():
 @pytest.fixture
 def client(mock_pipeline):
     """Create TestClient with mocked pipeline (lifespan patched to avoid loading models)."""
-    from unittest.mock import patch
-    import api.main as main_module
     from api.main import app
 
     # Patch MatchingPipeline.load so the lifespan doesn't try to build FAISS index
@@ -173,3 +170,18 @@ class TestTrialEndpoint:
     def test_get_missing_trial(self, client):
         resp = client.get("/trials/NCT99999999")
         assert resp.status_code == 404
+
+
+class TestBatchLimits:
+    def test_oversized_batch_rejected(self, client, monkeypatch):
+        import api.main as main_module
+        monkeypatch.setattr(main_module, "MAX_BATCH_SIZE", 2)
+        patients = [{"patient_id": f"P{i}", "age": 50, "sex": "male"} for i in range(3)]
+        r = client.post("/patients/batch", json=patients)
+        assert r.status_code == 422
+
+
+class TestUI:
+    def test_root_serves_ui(self, client):
+        r = client.get("/")
+        assert r.status_code == 200 and "TrialMate" in r.text

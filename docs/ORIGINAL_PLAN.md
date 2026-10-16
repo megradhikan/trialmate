@@ -1,4 +1,6 @@
-# TrialMate — Development Timeline (GitHub Issues Format)
+# TrialMate — Original Development Plan (historical)
+
+> Planning document written before implementation; checkboxes were not maintained. See the README for what was built and measured.
 
 ## Week 0: Repository Setup & Data Foundation
 **Issue #1 — Repo initialization and data download**

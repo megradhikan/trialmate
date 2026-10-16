@@ -548,7 +548,8 @@
 </div>
 
 <script>
-  const API = "http://localhost:8765";
+  // Same-origin when served by the API at "/"; fall back to local default when opened as a file.
+  const API = location.protocol.startsWith("http") ? location.origin : "http://localhost:8000";
   let sessionPatients = {};
   let selectedId = null;
 

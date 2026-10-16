@@ -5,9 +5,10 @@ Uses regex for common patterns; falls back to LLM for ambiguous cases.
 """
 from __future__ import annotations
 import re
-from typing import Optional
+from typing import TYPE_CHECKING
 
-from loguru import logger
+if TYPE_CHECKING:
+    from api.patient_schema import PatientInput
 
 
 # ─── Regex Patterns ─────────────────────────────────────────────────────────

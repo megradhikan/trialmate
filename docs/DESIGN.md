@@ -68,7 +68,7 @@ Normalized JSON    Clause Index ◄──────  Top-K Clauses
 | Explainer | `llm/explainer.py` | Rationale generation prompt + parsing |
 | FastAPI App | `api/main.py` | REST endpoints, session management |
 | Synthetic Gen | `scripts/generate_patients.py` | Synthea-like FHIR patient generator |
-| Evaluator | `evaluation/evaluate.py` | Precision@k, Recall@k, F1, ablation |
+| Evaluator | `evaluation/run_ablation.py` | P@k, nDCG, MRR, bootstrap CIs, ablation + CV reranker |
 
 ---
 

@@ -4,12 +4,13 @@ api/main.py — FastAPI application for TrialMate
 from __future__ import annotations
 import asyncio
 import os
-import uuid
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from loguru import logger
 from pydantic import BaseModel
 
@@ -18,6 +19,9 @@ from api.trial_schema import (
     PatientUploadResponse, MatchResponse, TrialMetadata,
 )
 from matching.scorer import MatchingPipeline
+
+
+MAX_BATCH_SIZE = int(os.getenv("MAX_BATCH_SIZE", "100"))
 
 
 class BatchMatchResponse(BaseModel):
@@ -56,6 +60,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+_UI_PATH = Path(__file__).resolve().parents[1] / "ui" / "index.html"
+
+
+@app.get("/", include_in_schema=False)
+async def ui():
+    """Serve the demo web UI."""
+    return FileResponse(_UI_PATH)
 
 
 @app.get("/health")
@@ -111,6 +124,8 @@ async def batch_match(
     """
     if _pipeline is None:
         raise HTTPException(status_code=503, detail="Pipeline not loaded.")
+    if len(patients) > MAX_BATCH_SIZE:
+        raise HTTPException(status_code=422, detail=f"Batch too large (max {MAX_BATCH_SIZE} patients).")
 
     # Store all patients temporarily for the duration of this request
     for patient in patients:

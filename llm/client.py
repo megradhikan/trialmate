@@ -4,11 +4,8 @@ LLM API wrapper supporting Anthropic Claude, OpenAI, and local Ollama models.
 Includes prompt caching via functools.lru_cache + disk cache.
 """
 from __future__ import annotations
-import asyncio
 import hashlib
-import json
 import os
-import time
 from pathlib import Path
 from typing import Optional
 
@@ -96,7 +93,6 @@ class LLMClient:
                 result = response.content[0].text
 
             elif self.provider == "openai":
-                import openai
                 response = await self.client.chat.completions.create(
                     model=self.model,
                     max_tokens=max_tokens,

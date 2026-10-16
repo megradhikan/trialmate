@@ -2,207 +2,138 @@
 
 # 🧬 TrialMate — Clinical Trial Matching Agent
 
-An AI-powered system that matches patient records to relevant clinical trials using semantic retrieval, deterministic rule verification, and LLM-generated explanations.
+Matches a patient record (age, sex, conditions, medications, labs) to relevant trials from ClinicalTrials.gov. It combines **semantic retrieval** over eligibility clauses, a **deterministic rule engine** that hard-excludes trials the patient clearly fails (age, sex, lab thresholds), and **explanations that cite the specific criteria** behind each match.
 
----
-
-## What It Does
-
-Given a patient's age, sex, diagnoses, medications, and lab values, TrialMate retrieves and ranks matching clinical trials from ClinicalTrials.gov — explaining exactly why each trial is or isn't a fit.
+> ⚠️ **Prototype. Synthetic data only. Not for clinical use.**
 
 ![TrialMate UI](assets/screenshot1.png)
-![TrialMate UI](assets/screenshot2.png)
 
----
+## Results at a glance
 
-## Tech Stack
+Measured on 297 real ClinicalTrials.gov trials (diabetes, hypertension, lung cancer) and 51 generated patients. Every number below is reproducible with the commands in [Reproducing results](#reproducing-results).
 
-| Layer | Technologies |
-|-------|-------------|
-| **Backend API** | Python 3.11, FastAPI, Pydantic |
-| **Vector Search** | FAISS, SentenceTransformers (`pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-stsb`) |
-| **Learned Reranker** | scikit-learn LogisticRegression on (rule_score, semantic_score, trial_meta_score) |
-| **LLM Integration** | Anthropic Claude API, OpenAI GPT (switchable) |
-| **Rule Engine** | Custom regex-based NLP normalizer |
-| **Frontend** | Vanilla JS, HTML/CSS (no framework) |
-| **Infrastructure** | Docker, GitHub Actions CI |
-| **Testing** | pytest, async integration tests |
+| Ranking mode | P@5 | nDCG@10 (95% CI) | MRR |
+|---|---|---|---|
+| Random | 0.22 | 0.23 [0.18, 0.28] | 0.38 |
+| Rules only | 0.27 | 0.27 [0.23, 0.32] | 0.47 |
+| Semantic only | 0.42 | 0.40 [0.32, 0.48] | 0.57 |
+| **Hybrid (rules + semantic + trial status)** | **0.45** | **0.46 [0.38, 0.53]** | **0.65** |
 
----
+Embedding model `all-MiniLM-L6-v2`. Relevance = the trial lists the patient's condition **and** the patient's age and sex fit the registry's structured eligibility fields (about 71 relevant trials per patient). A random ranking already gets P@5 ≈ 0.22, so judge gains against that, not against zero.
 
-## Key Features
+**What this does and does not show**
 
-- **Hybrid matching pipeline** — combines deterministic rule checks (age, sex, lab thresholds) with semantic vector search for a nuanced, explainable match score
-- **Learned reranker** — LogisticRegressionRanker (sklearn) trained on labeled patient–trial pairs; falls back to hardcoded weights if insufficient labeled data
-- **LLM-generated rationales** — each match includes a plain-language explanation citing specific eligibility clause IDs, with a confidence level (high / medium / low)
-- **Live data ingestion** — pulls real trials directly from the ClinicalTrials.gov public API, parses eligibility free-text into structured, searchable clauses
-- **Configurable scoring** — weighted formula with tuneable hyperparameters: `score = 0.6 × rule + 0.3 × semantic + 0.1 × trial_status`
-- **Batch endpoint** — `POST /patients/batch` runs matching concurrently across a list of patients via `asyncio.gather`
-- **Provider-agnostic LLM layer** — swap between Anthropic, OpenAI, or a local Ollama model via a single environment variable
-- **Response caching** — disk-based LLM response cache to minimise API costs during development
-- **Auto-index management** — FAISS index automatically rebuilds when trial data is updated
+- ✅ Semantic retrieval roughly doubles precision over random, and the hybrid is the best mode on every metric.
+- ⚠️ The gap between *hybrid* and *semantic-only* is **not statistically significant** at this sample size (the confidence intervals overlap). The rule engine's value is mostly *safety*: vetoing trials whose age/sex/lab criteria a patient clearly fails, which these topical labels only weakly reward.
+- ⚠️ These are **silver labels** (condition + age + sex from structured registry fields). They do not cover labs, medications or exclusion criteria, so this is not clinical-grade validation.
 
----
+### Findings that changed the design
 
-## Architecture
+Building the evaluation honestly surfaced several things the first version got wrong. They are fixed, and they are the most useful part of this project to talk through:
+
+| Finding | Fix |
+|---|---|
+| The age parser read *"18 years or older"* as `min=18` **and** `max=18`, hard-excluding every adult from such trials | Rewrote age parsing (direction-aware, context-gated) with regression tests |
+| The "learned reranker" was trained on feature values *sampled from label-dependent ranges*, so its coefficients were an artifact | Now fit on real pipeline features and evaluated with patient-level cross-validation. It does **not** beat the fixed weights, so it stays off by default |
+| The domain-specific BioBERT embedding was assumed to beat MiniLM | Measured: no gain here (hybrid nDCG@10 0.46 for MiniLM vs 0.33 for BioBERT; semantic-only is a tie), and MiniLM is ~5× smaller. MiniLM is the default; BioBERT remains selectable |
+| The hand-written author labels (≈2 relevant trials per patient out of 297) are incomplete, so absolute precision on them is near zero for every method | Kept as a secondary check; the headline uses registry labels. Both result files are committed |
+| Free-text annotator notes were being passed to the retriever, leaking the answer | Patients are built from structured fields only |
+
+Ablation across both embedding models and both label sets: [`evaluation/results_*.json`](evaluation).
+
+## Latency
+
+Retrieval + rule checks + scoring + rule-based rationale; 297 trials, `all-MiniLM-L6-v2`, Apple Silicon CPU, single process, sequential queries, after warm-up. **LLM time is excluded** (it depends on the provider).
+
+| p50 | p95 | p99 | mean |
+|---|---|---|---|
+| 68 ms | 76 ms | 76 ms | 68 ms |
+
+## How it works
 
 ```
-Patient Record
-      │
-      ▼
- Embed patient summary ──► FAISS Vector Search ──► Top-K Clauses
-                                                         │
-                                          ┌──────────────┤
-                                          ▼              ▼
-                                    Rule Verifier   Semantic Score
-                                    (age/sex/labs)  (cosine sim)
-                                          │              │
-                                          └──────┬───────┘
-                                                 ▼
-                                    LogisticRegressionRanker
-                                    (or hardcoded weights)
-                                                 │
-                                                 ▼
-                                      LLM Explanation Generator
-                                                 │
-                                                 ▼
-                                        Ranked API Response
+Patient record
+   │
+   ▼
+Embed patient summary ──► FAISS (clause-level index) ──► candidate trials
+                                                              │
+                         ┌────────────────────────────────────┤
+                         ▼                                    ▼
+                  Rule engine                         Semantic score
+          (age / sex / lab thresholds;              (mean similarity of the
+           hard violation ⇒ score 0)                 trial's inclusion clauses)
+                         │                                    │
+                         └──────────────┬─────────────────────┘
+                                        ▼
+        score = 0.6·rule + 0.3·semantic + 0.1·trial status/phase
+                                        ▼
+                 Explanation (LLM, or rule-based fallback) citing matched/violated clauses
 ```
 
----
+- **Clause-level retrieval.** Eligibility text is split into individual clauses (age, labs, history, …) so a match can cite *which* criterion fit.
+- **Rule engine** ([`matching/clause_normalizer.py`](matching/clause_normalizer.py)): regex normalization of age, sex and lab criteria into constraints, with pass / fail / uncertain verdicts. Uncertain is never treated as a failure.
+- **Provider-agnostic LLM layer**: Anthropic, OpenAI, local Ollama, or `mock` (rule-based rationales, no key needed). Responses are disk-cached.
+- **Optional learned reranker**: logistic regression over the three features, with JSON-persisted weights. Train with `python -m evaluation.run_ablation --train-reranker`.
 
-## API Endpoints
+## Quickstart
+
+No API key required (defaults to the `mock` LLM provider, which falls back to rule-based rationales).
+
+```bash
+pip install -r requirements.txt        # Python 3.10–3.11
+uvicorn api.main:app --port 8000
+# open http://localhost:8000  (the demo UI is served at "/")
+```
+
+Or with Docker:
+
+```bash
+docker build -t trialmate . && docker run -p 8000:8000 trialmate
+```
+
+For LLM-written explanations set `LLM_PROVIDER=anthropic` (or `openai`) plus the API key; see [`.env.example`](.env.example). The FAISS index is built automatically on first start.
+
+### API
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/patients` | Upload patient record |
-| `GET` | `/patients/{id}/matches` | Ranked trial matches with explanations |
-| `POST` | `/patients/batch` | Batch match: list of PatientInput → list of MatchResponse |
+|---|---|---|
+| `POST` | `/patients` | Upload a patient record |
+| `GET` | `/patients/{id}/matches?top_k=5` | Ranked matches with rationale, matched and violated clauses |
+| `POST` | `/patients/batch` | Match many patients concurrently (max 100) |
 | `GET` | `/trials/{nct_id}` | Trial metadata and parsed clauses |
-| `GET` | `/health` | Server status and trial count |
+| `GET` | `/health` | Status and trial count |
 
----
+Interactive docs at `/docs`.
 
-## Model Selection
-
-TrialMate uses **`pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-stsb`** as its default embedding model rather than a general-purpose alternative like `all-MiniLM-L6-v2`. Clinical eligibility text contains highly specialised vocabulary — abbreviations such as "HbA1c", "eGFR", "ECOG", drug names, ICD codes, and disease stage descriptors — that general-purpose models trained on web corpora represent poorly. BioBERT is pre-trained on PubMed abstracts and clinical notes, giving it native representations for biomedical entities; the fine-tuning on NLI and STS datasets (SNLI, SciTail, MedNLI, SST-2) further aligns its embedding space to semantic *entailment* tasks, which closely mirrors the eligibility matching problem (does this patient description entail this criterion?). In internal experiments, switching from `all-MiniLM-L6-v2` to this domain-specific model improved semantic recall on clinical clause pairs by approximately 12–18%, particularly for lab-value thresholds and condition synonyms (e.g., "Type 2 DM" ↔ "T2DM" ↔ "adult-onset diabetes").
-
----
-
-## Evaluation
-
-Ablation study on **50 synthetic labeled patients** (T2DM, hypertension, lung cancer) across 297 indexed trials. Metrics computed at k=5.
-
-| Mode | P@5 | R@5 | F1@5 |
-|------|-----|-----|------|
-| Rule-only | 0.140 | 0.370 | 0.203 |
-| Semantic-only | 0.196 | 0.497 | 0.281 |
-| **Hybrid** | **0.260** | **0.683** | **0.377** |
-
-Hybrid mode consistently outperforms either component alone. The rule engine eliminates hard exclusions (reducing false positives), while semantic retrieval surfaces relevant trials the rule engine would miss due to free-text variation in eligibility criteria.
-
-To reproduce:
-```bash
-python evaluation/evaluate.py --labeled evaluation/labeled_set.json --mode hybrid
-```
-
----
-
-## Learned Reranker Weights
-
-When the labeled set contains ≥10 samples, a `LogisticRegressionRanker` is trained on `(rule_score, semantic_score, trial_meta_score) → relevance` and saved to `data/processed/reranker.pkl`. Trained on 112 synthetic samples from the 50-patient labeled set:
-
-| Feature | Learned Coefficient |
-|---------|-------------------|
-| `rule_score` | **+1.577** |
-| `semantic_score` | **+1.306** |
-| `trial_meta_score` | **+0.712** |
-
-The coefficients confirm the rule engine is the strongest signal, followed by semantic similarity, with trial metadata (recruitment status, phase) playing a supporting role — consistent with clinical intuition.
-
----
-
-## Benchmarks
-
-Latency measured over **50 random patient queries** on 297 indexed trials (Apple M-series CPU, BioBERT embeddings loaded in-process, FAISS flat-IP index):
-
-| Percentile | Latency |
-|------------|---------|
-| p50 | 118 ms |
-| p95 | 334 ms |
-| p99 | 513 ms |
-| mean | 144 ms |
-
-To reproduce:
-```bash
-python scripts/benchmark.py --n 50 --top-k 5
-# Results saved to evaluation/benchmark_results.json
-```
-
-> **Note:** First run downloads and caches the BioBERT model (~440 MB). Subsequent runs use the local cache. Latency is dominated by embedding inference; GPU acceleration would reduce p99 to <100 ms.
-
----
-
-## Sample Output
-
-```json
-{
-  "patient_id": "P001",
-  "matches": [
-    {
-      "nct_id": "NCT01234567",
-      "title": "Study of Example Drug in Type 2 Diabetes",
-      "score": 0.87,
-      "confidence": "high",
-      "matched_clauses": [
-        { "text": "Ages 18 to 75 years" },
-        { "text": "HbA1c between 7.0% and 10.0%" }
-      ],
-      "violated_clauses": [],
-      "rationale": "Patient (age 63, T2DM, HbA1c 8.2%) meets all primary inclusion criteria. No exclusions identified."
-    }
-  ]
-}
-```
-
----
-
-## Project Structure
-
-```
-trialmate/
-├── api/               # FastAPI app, Pydantic schemas
-├── matching/          # FAISS embedder, rule verifier, hybrid scorer, learned reranker
-├── ingestion/         # ClinicalTrials.gov parser, clause splitter
-├── llm/               # LLM client, prompt templates, explainer
-├── evaluation/        # evaluate.py, labeled_set.json (50 patients), benchmark_results.json
-├── tests/             # pytest unit + integration tests (incl. batch & e2e eval)
-├── ui/                # Web interface
-└── scripts/           # Data generation, ingestion utilities, benchmark.py
-```
-
----
-
-## Running Locally
+## Reproducing results
 
 ```bash
-pip install -r requirements.txt
-python ingestion/trial_ingestor.py --input data/samples/sample_trials.json --output data/processed/trials.json
-python -m uvicorn api.main:app --reload
-# Open ui/index.html in browser
+python -m evaluation.build_registry_labels                       # silver labels from registry fields
+python -m evaluation.run_ablation --model all-MiniLM-L6-v2       # headline table (writes evaluation/results_*.json)
+python -m evaluation.run_ablation --model pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-stsb
+python -m evaluation.run_ablation --labels author                # incomplete author-written labels
+python -m scripts.benchmark --n 50                               # latency
+pytest tests/ -v                                                 # incl. an end-to-end ranking regression
 ```
 
-### Run evaluation ablation
-```bash
-python evaluation/evaluate.py --labeled evaluation/labeled_set.json --mode hybrid
-```
+## Limitations and next steps
 
-### Run latency benchmark
-```bash
-python scripts/benchmark.py --n 50
-```
+- **Labels are silver, not clinical.** Next step: clinician- or LLM-adjudicated labels covering labs, medications and exclusions, then report inter-annotator agreement.
+- **Small scale**: 297 trials, three conditions, 51 evaluated patients; no claims beyond the intervals shown.
+- **Rule coverage is narrow**: age, sex and a few labs. Medication, prior-therapy, stage and ECOG criteria are retrieved semantically but not verified.
+- **Semantic score is a mean over clause similarities**; max-pooling or a cross-encoder rerank are the obvious experiments.
+- **Clause splitting leaves markdown artefacts** (e.g. a leading `*`) in some clauses.
+- Synthetic patients only; see [`docs/SECURITY_ETHICS.md`](docs/SECURITY_ETHICS.md) and [`docs/DESIGN.md`](docs/DESIGN.md).
 
-### Run tests
-```bash
-pytest tests/ -v
+## Project structure
+
+```
+api/          FastAPI app, Pydantic schemas, serves the UI at "/"
+matching/     embedder + FAISS index, rule engine (clause_normalizer), scorer + pipeline
+ingestion/    ClinicalTrials.gov parser and clause splitter
+llm/          provider-agnostic client, prompts, explainer
+evaluation/   ablation runner, registry-label builder, committed results
+scripts/      patient generator, trial merger, latency benchmark
+tests/        rules, scoring, reranker, API, end-to-end regression
+ui/           single-file web UI
 ```

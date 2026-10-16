@@ -7,7 +7,6 @@ import json
 import os
 import pickle
 from pathlib import Path
-from typing import Optional
 
 import numpy as np
 from loguru import logger
