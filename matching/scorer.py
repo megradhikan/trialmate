@@ -8,14 +8,13 @@ Scoring formula (default / fallback):
 
 Default weights: w_rule=0.6, w_sem=0.3, w_trial=0.1
 
-When a labeled set is available (≥10 examples) a LogisticRegressionRanker is
-trained from data and replaces the hardcoded weights.  The trained model is
-persisted to data/processed/reranker.pkl and auto-loaded on pipeline start.
+Optionally, a LogisticRegressionRanker trained on real pipeline features
+(``python -m evaluation.run_ablation --train-reranker``) replaces the hardcoded
+weights.  It is persisted to data/processed/reranker.json and auto-loaded.
 """
 from __future__ import annotations
 import json
 import os
-import pickle
 from collections import defaultdict
 from pathlib import Path
 from typing import Optional
@@ -32,7 +31,6 @@ W_RULE = float(os.getenv("SCORING_W_RULE", "0.6"))
 W_SEM = float(os.getenv("SCORING_W_SEM", "0.3"))
 W_TRIAL = float(os.getenv("SCORING_W_TRIAL", "0.1"))
 
-MIN_LABELED_FOR_TRAINING = 10  # minimum samples before we attempt to train
 
 STATUS_META_SCORES = {
     "Recruiting": 1.0,
@@ -106,123 +104,44 @@ def score_trial(
 
 class LogisticRegressionRanker:
     """
-    Trains a logistic-regression model on (rule_score, semantic_score,
-    trial_meta_score) → binary relevance label using a labeled set.
+    Logistic regression over (rule_score, semantic_score, trial_meta_score)
+    predicting whether a trial is eligible for a patient.
 
-    If the labeled set contains fewer than MIN_LABELED_FOR_TRAINING samples
-    the model is NOT trained and ``is_trained`` will be False.  The pipeline
-    then falls back to the hardcoded weight formula.
-
-    After training the model is saved to ``save_path`` so subsequent pipeline
-    loads can skip re-training.
+    Fit it on *real* pipeline features paired with labels (see
+    ``evaluation/run_ablation.py --train-reranker``).  Weights are persisted as
+    JSON (no pickle), and inference is plain Python, so scikit-learn is only
+    needed for training.  If no trained model file exists the pipeline falls
+    back to the hardcoded weight formula.
     """
 
     FEATURE_NAMES = ["rule_score", "semantic_score", "trial_meta_score"]
 
     def __init__(self):
-        self.model = None
+        self.coef: Optional[list[float]] = None
+        self.intercept: float = 0.0
+        self.mean: Optional[list[float]] = None
+        self.scale: Optional[list[float]] = None
         self.is_trained: bool = False
 
-    # ------------------------------------------------------------------
-    # Training
-    # ------------------------------------------------------------------
-
-    def train(
-        self,
-        labeled_path: str = "evaluation/labeled_set.json",
-        save_path: str = "data/processed/reranker.pkl",
-    ) -> bool:
-        """
-        Build training data from the labeled set then fit the model.
-        Returns True if training succeeded, False otherwise.
-        """
-        try:
-            from sklearn.linear_model import LogisticRegression
-            from sklearn.preprocessing import StandardScaler
-            import numpy as np
-        except ImportError:
-            logger.warning("scikit-learn not installed; skipping reranker training.")
-            return False
-
-        if not Path(labeled_path).exists():
-            logger.warning(f"Labeled set not found at {labeled_path}; skipping training.")
-            return False
-
-        with open(labeled_path) as f:
-            labeled = json.load(f)
-
-        X, y = self._build_training_data(labeled)
-
-        if X is None or len(X) < MIN_LABELED_FOR_TRAINING:
-            n = len(X) if X is not None else 0
-            logger.info(
-                f"Labeled set has only {n} samples (need ≥{MIN_LABELED_FOR_TRAINING}); "
-                "using hardcoded weights instead of learned reranker."
-            )
-            return False
-
-        X_arr = np.array(X, dtype=np.float32)
-        y_arr = np.array(y, dtype=int)
-
-        # Scale features
-        self.scaler = StandardScaler()
-        X_scaled = self.scaler.fit_transform(X_arr)
-
-        self.model = LogisticRegression(max_iter=500, C=1.0, random_state=42)
-        self.model.fit(X_scaled, y_arr)
-        self.is_trained = True
-
-        # Log learned coefficients
-        coefs = self.model.coef_[0]
-        coef_str = ", ".join(
-            f"{n}={c:.4f}" for n, c in zip(self.FEATURE_NAMES, coefs)
-        )
-        logger.info(f"Reranker trained on {len(X)} samples. Coefficients: {coef_str}")
-
-        # Persist
-        Path(save_path).parent.mkdir(parents=True, exist_ok=True)
-        with open(save_path, "wb") as f:
-            pickle.dump({"model": self.model, "scaler": self.scaler}, f)
-        logger.info(f"Reranker saved to {save_path}")
-        return True
-
-    def _build_training_data(self, labeled: list[dict]):
-        """
-        Construct (X, y) from the labeled set using heuristic feature values.
-
-        Because we don't have pre-computed scores stored per (patient, trial)
-        pair in the labeled set, we generate synthetic feature approximations:
-          - eligible trials → [rule=1.0, sem=0.8, meta varies] → label 1
-          - ineligible trials → [rule=0.0, sem=0.3, meta varies] → label 0
-
-        This is a bootstrapping approach; in production you would persist
-        real scores alongside labels.
-        """
+    def fit(self, X, y, C: float = 1.0) -> "LogisticRegressionRanker":
         import numpy as np
+        from sklearn.linear_model import LogisticRegression
+        from sklearn.preprocessing import StandardScaler
 
-        rng = np.random.default_rng(42)
-        X, y = [], []
-        for entry in labeled:
-            for nct_id in entry.get("eligible_nct_ids", []):
-                rule = float(rng.uniform(0.7, 1.0))
-                sem = float(rng.uniform(0.6, 0.9))
-                meta = float(rng.uniform(0.5, 1.0))
-                X.append([rule, sem, meta])
-                y.append(1)
-            for nct_id in entry.get("ineligible_nct_ids", []):
-                rule = float(rng.uniform(0.0, 0.3))
-                sem = float(rng.uniform(0.1, 0.5))
-                meta = float(rng.uniform(0.0, 0.7))
-                X.append([rule, sem, meta])
-                y.append(0)
-
-        if not X:
-            return None, None
-        return X, y
-
-    # ------------------------------------------------------------------
-    # Inference
-    # ------------------------------------------------------------------
+        X = np.asarray(X, dtype=np.float64)
+        y = np.asarray(y, dtype=int)
+        if len(set(y.tolist())) < 2:
+            raise ValueError("Need both positive and negative examples to fit the reranker.")
+        scaler = StandardScaler().fit(X)
+        # class_weight=balanced: eligible trials are a small minority of candidates
+        model = LogisticRegression(max_iter=1000, C=C, class_weight="balanced", random_state=42)
+        model.fit(scaler.transform(X), y)
+        self.coef = model.coef_[0].tolist()
+        self.intercept = float(model.intercept_[0])
+        self.mean = scaler.mean_.tolist()
+        self.scale = scaler.scale_.tolist()
+        self.is_trained = True
+        return self
 
     def predict_score(
         self,
@@ -231,29 +150,41 @@ class LogisticRegressionRanker:
         trial_meta_score: float,
     ) -> float:
         """Return probability of relevance (0–1)."""
-        import numpy as np
+        import math
 
-        if not self.is_trained or self.model is None:
+        if not self.is_trained:
             raise RuntimeError("Reranker not trained.")
-        X = np.array([[rule_score, semantic_score, trial_meta_score]], dtype=np.float32)
-        X_scaled = self.scaler.transform(X)
-        prob = self.model.predict_proba(X_scaled)[0][1]
-        return float(round(prob, 4))
+        x = [rule_score, semantic_score, trial_meta_score]
+        z = self.intercept + sum(
+            c * (v - m) / (sc or 1.0) for c, v, m, sc in zip(self.coef, x, self.mean, self.scale)
+        )
+        return round(1.0 / (1.0 + math.exp(-z)), 4)
 
-    # ------------------------------------------------------------------
-    # Persistence helpers
-    # ------------------------------------------------------------------
+    def save(self, path: str = "data/processed/reranker.json") -> None:
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        with open(path, "w") as f:
+            json.dump(
+                {
+                    "features": self.FEATURE_NAMES,
+                    "coef": self.coef,
+                    "intercept": self.intercept,
+                    "mean": self.mean,
+                    "scale": self.scale,
+                },
+                f,
+                indent=2,
+            )
 
     @classmethod
-    def load(cls, path: str = "data/processed/reranker.pkl") -> "LogisticRegressionRanker":
+    def load(cls, path: str = "data/processed/reranker.json") -> "LogisticRegressionRanker":
         """Load a previously saved ranker, or return an untrained instance."""
         ranker = cls()
         if Path(path).exists():
             try:
-                with open(path, "rb") as f:
-                    data = pickle.load(f)
-                ranker.model = data["model"]
-                ranker.scaler = data["scaler"]
+                with open(path) as f:
+                    d = json.load(f)
+                ranker.coef, ranker.intercept = d["coef"], d["intercept"]
+                ranker.mean, ranker.scale = d["mean"], d["scale"]
                 ranker.is_trained = True
                 logger.info(f"Loaded trained reranker from {path}")
             except Exception as e:
@@ -261,10 +192,10 @@ class LogisticRegressionRanker:
         return ranker
 
     def learned_weights(self) -> Optional[dict]:
-        """Return coefficient dict for README reporting, or None if untrained."""
-        if not self.is_trained or self.model is None:
+        """Standardized-feature coefficients, or None if untrained."""
+        if not self.is_trained:
             return None
-        return dict(zip(self.FEATURE_NAMES, map(float, self.model.coef_[0])))
+        return dict(zip(self.FEATURE_NAMES, self.coef))
 
 
 # ─── Full Pipeline ────────────────────────────────────────────────────────────
@@ -287,8 +218,7 @@ class MatchingPipeline:
         cls,
         trials_path: str = "data/processed/trials.json",
         index_dir: str = "data/processed/faiss_index",
-        labeled_path: str = "evaluation/labeled_set.json",
-        reranker_path: str = "data/processed/reranker.pkl",
+        reranker_path: str = "data/processed/reranker.json",
     ) -> "MatchingPipeline":
         # Load trials
         if Path(trials_path).exists():
@@ -315,19 +245,17 @@ class MatchingPipeline:
 
         logger.info(f"Trials loaded: {len(trials_by_id)} | Index vectors: {idx.index.ntotal if idx.index else 0}")
 
-        # Try to load LLM client
+        # Try to load LLM client (the "mock" provider means: no LLM, rule-based rationales)
         try:
+            if os.getenv("LLM_PROVIDER") == "mock":
+                raise RuntimeError("LLM_PROVIDER=mock")
             from llm.client import LLMClient
             llm = LLMClient()
         except Exception as e:
             logger.warning(f"LLM client not available: {e}")
             llm = None
 
-        # Load or train reranker
         reranker = LogisticRegressionRanker.load(reranker_path)
-        if not reranker.is_trained:
-            logger.info("Reranker not trained yet — attempting to train from labeled set...")
-            reranker.train(labeled_path=labeled_path, save_path=reranker_path)
 
         return cls(trials=trials_by_id, clause_index=idx, llm_client=llm, reranker=reranker)
 
@@ -347,12 +275,18 @@ class MatchingPipeline:
                 logger.warning(f"Reranker prediction failed: {e}; falling back to weights.")
         return score_trial(trial, rule_score, inc_sims)
 
-    async def run(
+    def candidate_features(
         self,
         patient: PatientInput,
         top_k: int = 5,
         debug: bool = False,
-    ) -> MatchResponse:
+        all_trials: bool = False,
+    ) -> tuple[list[dict], int]:
+        """Retrieve candidate trials for a patient and compute per-trial features.
+
+        Returns (candidates, n_retrieved_clauses); candidates has one dict per
+        trial (unsorted) with rule/semantic/meta scores.  Shared by ``run`` and the offline evaluation scripts.
+        """
         patient_summary = patient.to_summary_text()
         logger.debug(f"Patient summary: {patient_summary}")
 
@@ -366,6 +300,10 @@ class MatchingPipeline:
         trial_clause_map: dict[str, list[dict]] = defaultdict(list)
         for clause in retrieved:
             trial_clause_map[clause["nct_id"]].append(clause)
+
+        if all_trials:  # evaluation: score every indexed trial, not just retrieved ones
+            for nct_id in self.trials:
+                trial_clause_map.setdefault(nct_id, [])
 
         # 3. For each candidate trial, run rule checks + compute score
         scored_trials = []
@@ -404,10 +342,12 @@ class MatchingPipeline:
             meta_score = compute_trial_meta_score(trial)
 
             final_score = self._compute_final_score(trial, rule_score, inc_sims)
+            fixed_score = score_trial(trial, rule_score, inc_sims)
 
             scored_trials.append({
                 "trial": trial,
                 "score": final_score,
+                "fixed_score": fixed_score,
                 "rule_score": rule_score,
                 "semantic_score": sem_score,
                 "trial_meta_score": meta_score,
@@ -419,6 +359,16 @@ class MatchingPipeline:
                     "uncertain": all_uncertain,
                 } if debug else None,
             })
+
+        return scored_trials, len(retrieved)
+
+    async def run(
+        self,
+        patient: PatientInput,
+        top_k: int = 5,
+        debug: bool = False,
+    ) -> MatchResponse:
+        scored_trials, retrieved_count = self.candidate_features(patient, top_k=top_k, debug=debug)
 
         # Sort and take top-k
         scored_trials.sort(key=lambda x: x["score"], reverse=True)
@@ -477,7 +427,7 @@ class MatchingPipeline:
         return MatchResponse(
             patient_id=patient.patient_id,
             matches=matches,
-            audit={"retrieved_count": len(retrieved)} if debug else None,
+            audit={"retrieved_count": retrieved_count} if debug else None,
         )
 
     async def _generate_rationale(

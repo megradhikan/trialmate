@@ -1,0 +1,93 @@
+{
+  "embedding_model": "pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-stsb",
+  "label_source": "registry",
+  "n_patients": 51,
+  "n_trials": 297,
+  "relevant_per_patient": {
+    "mean": 71.1,
+    "min": 33,
+    "max": 169
+  },
+  "results": {
+    "rule_only": {
+      "p@5": 0.255,
+      "r@5": 0.016,
+      "p@10": 0.269,
+      "ndcg@10": 0.27,
+      "mrr": 0.469,
+      "p@5_ci95": [
+        0.192,
+        0.325
+      ],
+      "ndcg@10_ci95": [
+        0.211,
+        0.332
+      ]
+    },
+    "semantic_only": {
+      "p@5": 0.388,
+      "r@5": 0.034,
+      "p@10": 0.39,
+      "ndcg@10": 0.402,
+      "mrr": 0.64,
+      "p@5_ci95": [
+        0.306,
+        0.471
+      ],
+      "ndcg@10_ci95": [
+        0.328,
+        0.479
+      ]
+    },
+    "hybrid": {
+      "p@5": 0.396,
+      "r@5": 0.029,
+      "p@10": 0.353,
+      "ndcg@10": 0.377,
+      "mrr": 0.667,
+      "p@5_ci95": [
+        0.337,
+        0.459
+      ],
+      "ndcg@10_ci95": [
+        0.325,
+        0.429
+      ]
+    },
+    "learned": {
+      "p@5": 0.341,
+      "r@5": 0.025,
+      "p@10": 0.333,
+      "ndcg@10": 0.339,
+      "mrr": 0.529,
+      "p@5_ci95": [
+        0.251,
+        0.435
+      ],
+      "ndcg@10_ci95": [
+        0.269,
+        0.415
+      ]
+    },
+    "random": {
+      "p@5": 0.2,
+      "r@5": 0.015,
+      "p@10": 0.229,
+      "ndcg@10": 0.224,
+      "mrr": 0.42,
+      "p@5_ci95": [
+        0.157,
+        0.243
+      ],
+      "ndcg@10_ci95": [
+        0.184,
+        0.266
+      ]
+    }
+  },
+  "reranker_standardized_coefficients": {
+    "rule_score": 0.214,
+    "semantic_score": 0.305,
+    "trial_meta_score": -0.025
+  }
+}

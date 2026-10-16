@@ -17,7 +17,7 @@ from loguru import logger
 EMBEDDING_PROVIDER = os.getenv("EMBEDDING_PROVIDER", "sentence_transformers")
 EMBEDDING_MODEL = os.getenv(
     "EMBEDDING_MODEL",
-    "pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-stsb",
+    "all-MiniLM-L6-v2",
 )
 
 

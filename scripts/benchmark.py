@@ -14,6 +14,7 @@ import argparse
 import asyncio
 import json
 import os
+import platform
 import random
 import statistics
 import time
@@ -71,13 +72,18 @@ async def run_benchmark(n: int = 50, top_k: int = 5) -> dict:
     from matching.scorer import MatchingPipeline
     from api.patient_schema import PatientInput
 
-    print(f"Loading pipeline…")
+    os.environ.setdefault("LLM_PROVIDER", "mock")  # measure retrieval+scoring, not LLM latency
+    from matching import embedder
+    print("Loading pipeline…")
     pipeline = MatchingPipeline.load()
     n_trials = len(pipeline.trials)
     print(f"Pipeline ready — {n_trials} trials indexed.")
 
     rng = random.Random(42)
     patients = [PatientInput(**_make_patient(i, rng)) for i in range(n)]
+
+    for p in patients[:3]:  # warm-up (model/JIT caches)
+        await pipeline.run(p, top_k=top_k)
 
     latencies_ms: list[float] = []
     print(f"Running {n} patient queries (top_k={top_k})…")
@@ -99,6 +105,9 @@ async def run_benchmark(n: int = 50, top_k: int = 5) -> dict:
         "n_queries": n,
         "top_k": top_k,
         "n_trials": n_trials,
+        "embedding_model": embedder.EMBEDDING_MODEL,
+        "scope": "retrieval + rule checks + scoring + rule-based rationale; no LLM call; single process, sequential queries",
+        "machine": platform.platform() + " / " + platform.processor(),
         "p50_ms": round(p50, 2),
         "p95_ms": round(p95, 2),
         "p99_ms": round(p99, 2),

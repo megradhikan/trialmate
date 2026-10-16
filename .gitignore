@@ -9,5 +9,5 @@ venv/
 .DS_Store
 
 # Generated artifacts (rebuilt on first run / via scripts)
-data/processed/faiss_index/
-data/processed/reranker.pkl
+data/processed/faiss_index*/
+data/processed/reranker.json
