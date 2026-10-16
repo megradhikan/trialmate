@@ -20,7 +20,7 @@ Given a patient's age, sex, diagnoses, medications, and lab values, TrialMate re
 | Layer | Technologies |
 |-------|-------------|
 | **Backend API** | Python 3.11, FastAPI, Pydantic |
-| **Vector Search** | FAISS, SentenceTransformers (`pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-sst2`) |
+| **Vector Search** | FAISS, SentenceTransformers (`pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-stsb`) |
 | **Learned Reranker** | scikit-learn LogisticRegression on (rule_score, semantic_score, trial_meta_score) |
 | **LLM Integration** | Anthropic Claude API, OpenAI GPT (switchable) |
 | **Rule Engine** | Custom regex-based NLP normalizer |
@@ -85,7 +85,7 @@ Patient Record
 
 ## Model Selection
 
-TrialMate uses **`pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-sst2`** as its default embedding model rather than a general-purpose alternative like `all-MiniLM-L6-v2`. Clinical eligibility text contains highly specialised vocabulary — abbreviations such as "HbA1c", "eGFR", "ECOG", drug names, ICD codes, and disease stage descriptors — that general-purpose models trained on web corpora represent poorly. BioBERT is pre-trained on PubMed abstracts and clinical notes, giving it native representations for biomedical entities; the fine-tuning on NLI and STS datasets (SNLI, SciTail, MedNLI, SST-2) further aligns its embedding space to semantic *entailment* tasks, which closely mirrors the eligibility matching problem (does this patient description entail this criterion?). In internal experiments, switching from `all-MiniLM-L6-v2` to this domain-specific model improved semantic recall on clinical clause pairs by approximately 12–18%, particularly for lab-value thresholds and condition synonyms (e.g., "Type 2 DM" ↔ "T2DM" ↔ "adult-onset diabetes").
+TrialMate uses **`pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-stsb`** as its default embedding model rather than a general-purpose alternative like `all-MiniLM-L6-v2`. Clinical eligibility text contains highly specialised vocabulary — abbreviations such as "HbA1c", "eGFR", "ECOG", drug names, ICD codes, and disease stage descriptors — that general-purpose models trained on web corpora represent poorly. BioBERT is pre-trained on PubMed abstracts and clinical notes, giving it native representations for biomedical entities; the fine-tuning on NLI and STS datasets (SNLI, SciTail, MedNLI, SST-2) further aligns its embedding space to semantic *entailment* tasks, which closely mirrors the eligibility matching problem (does this patient description entail this criterion?). In internal experiments, switching from `all-MiniLM-L6-v2` to this domain-specific model improved semantic recall on clinical clause pairs by approximately 12–18%, particularly for lab-value thresholds and condition synonyms (e.g., "Type 2 DM" ↔ "T2DM" ↔ "adult-onset diabetes").
 
 ---
 

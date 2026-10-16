@@ -44,14 +44,17 @@ class LLMClient:
     def _setup_client(self):
         if self.provider == "anthropic":
             import anthropic
-            self.client = anthropic.Anthropic(
+            self.client = anthropic.AsyncAnthropic(
                 api_key=os.getenv("ANTHROPIC_API_KEY")
             )
-            self.model = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-20250514")
+            self.model = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-5-5")
         elif self.provider == "openai":
             from openai import AsyncOpenAI
             self.client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
             self.model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+        elif self.provider == "mock":
+            # No external calls: callers fall back to the rule-based rationale.
+            self.model = "mock"
         elif self.provider == "local":
             # Ollama via HTTP
             self.base_url = os.getenv("OLLAMA_URL", "http://localhost:11434")
@@ -83,7 +86,7 @@ class LLMClient:
 
         try:
             if self.provider == "anthropic":
-                response = self.client.messages.create(
+                response = await self.client.messages.create(
                     model=self.model,
                     max_tokens=max_tokens,
                     temperature=temperature,
@@ -114,6 +117,8 @@ class LLMClient:
                         timeout=60,
                     )
                     result = resp.json()["response"]
+            elif self.provider == "mock":
+                raise RuntimeError("mock provider returns no completions")
             else:
                 result = ""
 
