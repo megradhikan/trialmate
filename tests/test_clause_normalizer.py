@@ -190,3 +190,39 @@ class TestScorer:
         trial = {"status": "Unknown", "phase": "N/A"}
         score = score_trial(trial, rule_score=0.5, clause_sims=[0.5])
         assert 0.0 <= score <= 1.0
+
+
+class TestAgeParsingRegression:
+    """'18 years or older' used to parse as min=18 AND max=18, excluding every adult."""
+
+    @staticmethod
+    def _age(text):
+        return [c for c in normalize_clause(text) if c["type"] == "age"]
+
+    @pytest.mark.parametrize("text", [
+        "Age 18 years or older", "Aged 18 and older", "Age >= 18 years", "Age 18+",
+        "Patients 65 years and older", "BMI under 40 kg/m2, age 18 years or older",
+    ])
+    def test_min_only(self, text):
+        ages = self._age(text)
+        assert len(ages) == 1 and "min" in ages[0] and "max" not in ages[0], ages
+
+    @pytest.mark.parametrize("text,lo,hi", [
+        ("Age 18 to 40 years", 18, 40), ("Aged 18-40 years", 18, 40),
+        ("Adults aged 18 to 40 years", 18, 40), ("Between 18 and 65 years of age", 18, 65),
+    ])
+    def test_range(self, text, lo, hi):
+        assert self._age(text) == [{"type": "age", "min": lo, "max": hi}]
+
+    def test_max_only(self):
+        assert self._age("Age under 70 years") == [{"type": "age", "max": 70.0}]
+
+    def test_non_age_numbers_ignored(self):
+        assert self._age("Time since diagnosis between 5 and 10 years") == []
+        assert self._age("Women of childbearing age") == []
+
+    def test_older_patient_passes_adult_trial(self):
+        from api.patient_schema import PatientInput
+        p = PatientInput(patient_id="x", age=65, sex="male")
+        res = verify_constraints(normalize_clause("Age 18 years or older"), p, is_inclusion=True)
+        assert not res.failed

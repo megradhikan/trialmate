@@ -5,10 +5,10 @@
   "embedding_model": "all-MiniLM-L6-v2",
   "scope": "retrieval + rule checks + scoring + rule-based rationale; no LLM call; single process, sequential queries",
   "machine": "macOS-26.5-arm64-arm-64bit / arm",
-  "p50_ms": 71.12,
-  "p95_ms": 103.52,
-  "p99_ms": 129.54,
-  "mean_ms": 76.64,
-  "min_ms": 64.27,
-  "max_ms": 129.54
+  "p50_ms": 68.23,
+  "p95_ms": 79.5,
+  "p99_ms": 84.61,
+  "mean_ms": 69.34,
+  "min_ms": 61.22,
+  "max_ms": 84.61
 }

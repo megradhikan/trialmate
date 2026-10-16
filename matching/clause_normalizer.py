@@ -12,20 +12,35 @@ from loguru import logger
 
 # ─── Regex Patterns ─────────────────────────────────────────────────────────
 
+_AGE_CTX_RE = re.compile(r'\bag(?:e|es|ed)\b|\byears?\s+(?:of\s+age|old)\b|\d+\s*(?:years?|yrs?)\s*(?:and|or)\s+(?:older|younger)\b',
+    re.IGNORECASE,
+)
+_UNIT = r'(?:years?|yrs?|y\b)'
 AGE_RANGE_RE = re.compile(
-    r'ages?\s+(\d+)\s+(?:to|-)\s+(\d+)\s*(?:years?)?',
+    r'\bag(?:e|es|ed)\b[^0-9]{0,20}?(\d+)\s*' + _UNIT + r'?\s*(?:to|-|–|—|and)\s*(\d+)'
+    r'|between\s+(\d+)\s*' + _UNIT + r'?\s*(?:and|to|-)\s*(\d+)\s*' + _UNIT,
     re.IGNORECASE
 )
 AGE_MIN_RE = re.compile(
-    r'(?:aged?\s+|≥\s*|>=\s*|at\s+least\s+|minimum\s+age\s+of\s+)'
-    r'(\d+)\s*(?:years?|yr)',
+    r'(?:≥|>=|at\s+least|minimum\s+age\s+of)\s*(\d+)'
+    r'|(?:older\s+than|over|above|greater\s+than)\s+(\d+)\s*' + _UNIT +
+    r'|(\d+)\s*' + _UNIT + r'?\s*(?:of\s+age\s*)?(?:and|or)\s+(?:older|above|over|greater)'
+    r'|(\d+)\s*\+',
     re.IGNORECASE
 )
 AGE_MAX_RE = re.compile(
-    r'(?:aged?\s+|≤\s*|<=\s*|no\s+more\s+than\s+|maximum\s+age\s+of\s+)'
-    r'(\d+)\s*(?:years?|yr)',
+    r'(?:≤|<=|no\s+more\s+than|maximum\s+age\s+of)\s*(\d+)'
+    r'|(?:younger\s+than|under|below|less\s+than)\s+(\d+)\s*' + _UNIT +
+    r'|(\d+)\s*' + _UNIT + r'?\s*(?:of\s+age\s*)?(?:and|or)\s+(?:younger|under|below|less)',
     re.IGNORECASE
 )
+# "aged 18 years" with no direction: eligibility lists almost always mean a minimum age
+AGE_BARE_RE = re.compile(r'\bag(?:e|ed)\s+(\d+)\s*' + _UNIT, re.IGNORECASE)
+
+
+def _first_group(m):
+    return float(next(g for g in m.groups() if g is not None))
+
 
 SEX_RE = re.compile(
     r'\b(male|female|men|women|both\s+sexes?)\b',
@@ -97,22 +112,23 @@ def normalize_clause(text: str) -> list[dict]:
     """
     constraints = []
 
-    # Age range: "Ages 18 to 75"
-    m = AGE_RANGE_RE.search(text)
-    if m:
-        constraints.append({
-            "type": "age",
-            "min": float(m.group(1)),
-            "max": float(m.group(2)),
-        })
-    else:
-        # Age min only
-        m_min = AGE_MIN_RE.search(text)
-        m_max = AGE_MAX_RE.search(text)
-        if m_min:
-            constraints.append({"type": "age", "min": float(m_min.group(1))})
-        if m_max:
-            constraints.append({"type": "age", "max": float(m_max.group(1))})
+    # Age: range, then one-sided bounds. Only attempted when the clause is about age.
+    if _AGE_CTX_RE.search(text):
+        m = AGE_RANGE_RE.search(text)
+        if m:
+            lo, hi = (m.group(1), m.group(2)) if m.group(1) is not None else (m.group(3), m.group(4))
+            constraints.append({"type": "age", "min": float(lo), "max": float(hi)})
+        else:
+            m_min = AGE_MIN_RE.search(text)
+            m_max = AGE_MAX_RE.search(text)
+            if m_min:
+                constraints.append({"type": "age", "min": _first_group(m_min)})
+            if m_max:
+                constraints.append({"type": "age", "max": _first_group(m_max)})
+            if not m_min and not m_max:
+                m_bare = AGE_BARE_RE.search(text)
+                if m_bare:
+                    constraints.append({"type": "age", "min": float(m_bare.group(1))})
 
     # Sex
     if SEX_ONLY_RE.search(text):

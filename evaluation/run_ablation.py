@@ -6,6 +6,7 @@ Modes (all rank every indexed trial for each patient):
   rule_only      rule_score only (ties broken by a seeded shuffle)
   semantic_only  mean inclusion-clause similarity only
   hybrid         fixed 0.6/0.3/0.1 weighted formula (hard exclusions -> 0)
+  semantic_veto  semantic score, but 0 when the rule engine finds a hard violation
   learned        logistic regression on the same 3 features, K-fold
                  cross-validated BY PATIENT (never scored on its own training data)
 
@@ -136,13 +137,14 @@ def main():
         rows.sort(key=lambda r: key(r), reverse=True)
         return [r["nct_id"] for r in rows]
 
-    results: dict[str, list] = {m: [] for m in ["rule_only", "semantic_only", "hybrid", "learned", "random"]}
+    results: dict[str, list] = {m: [] for m in ["random", "rule_only", "semantic_only", "semantic_veto", "hybrid", "learned"]}
     pids = [e["patient_id"] for e in labeled]
     for pid in pids:
         R = rel[pid]
         results["random"].append(metrics(rank_by(pid, lambda r: 0), R))
         results["rule_only"].append(metrics(rank_by(pid, lambda r: r["rule"]), R))
         results["semantic_only"].append(metrics(rank_by(pid, lambda r: r["sem"]), R))
+        results["semantic_veto"].append(metrics(rank_by(pid, lambda r: 0.0 if r["rule"] == 0.0 else r["sem"]), R))
         results["hybrid"].append(metrics(rank_by(pid, lambda r: r["fixed"]), R))
 
     def xy(ps):
