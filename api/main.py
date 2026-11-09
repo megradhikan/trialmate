@@ -11,6 +11,7 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from cachetools import TTLCache
 from loguru import logger
 from pydantic import BaseModel
 
@@ -28,7 +29,7 @@ class BatchMatchResponse(BaseModel):
     results: list[MatchResponse]
 
 # ─── In-memory session store (no PHI persisted) ─────────────────────────────
-_patient_store: dict[str, PatientInput] = {}
+_patient_store: TTLCache = TTLCache(maxsize=1000, ttl=3600)  # bounded; entries expire after 1 h
 _pipeline: Optional[MatchingPipeline] = None
 
 
@@ -73,7 +74,9 @@ async def ui():
 
 @app.get("/health")
 async def health():
-    return {"status": "ok", "trials_loaded": len(_pipeline.trials) if _pipeline else 0}
+    if _pipeline is None:
+        raise HTTPException(status_code=503, detail="Pipeline not loaded.")
+    return {"status": "ok", "trials_loaded": len(_pipeline.trials)}
 
 
 @app.post("/patients", response_model=PatientUploadResponse)

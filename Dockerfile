@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
+# CPU-only torch first (much smaller than the default CUDA wheel); keep the range in sync with requirements.txt
+RUN pip install --no-cache-dir "torch>=2.6,<2.9" --index-url https://download.pytorch.org/whl/cpu
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .

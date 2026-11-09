@@ -20,18 +20,18 @@ class PatientLabs(BaseModel):
 
 
 class PatientInput(BaseModel):
-    patient_id: str = Field(..., description="Unique patient identifier")
+    patient_id: str = Field(..., max_length=64, description="Unique patient identifier")
     age: int = Field(..., ge=0, le=120)
     sex: str = Field(..., pattern="^(male|female|other)$")
-    conditions: list[str] = Field(default_factory=list)
-    medications: list[str] = Field(default_factory=list)
+    conditions: list[str] = Field(default_factory=list, max_length=50)
+    medications: list[str] = Field(default_factory=list, max_length=50)
     labs: PatientLabs = Field(default_factory=PatientLabs)
-    notes: Optional[str] = None
+    notes: Optional[str] = Field(None, max_length=2000)
     # FHIR extras (optional)
-    icd_codes: list[str] = Field(default_factory=list)
+    icd_codes: list[str] = Field(default_factory=list, max_length=50)
     ecog_status: Optional[int] = Field(None, ge=0, le=4)
     is_pregnant: Optional[bool] = None
-    prior_therapies: list[str] = Field(default_factory=list)
+    prior_therapies: list[str] = Field(default_factory=list, max_length=50)
 
     def to_summary_text(self) -> str:
         """Convert patient to a natural language summary for embedding."""

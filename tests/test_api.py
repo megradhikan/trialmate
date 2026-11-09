@@ -75,6 +75,10 @@ class TestHealthEndpoint:
 
 
 class TestPatientUpload:
+    def test_oversized_notes_rejected(self, client):
+        resp = client.post("/patients", json={**SAMPLE_PATIENT, "notes": "x" * 2001})
+        assert resp.status_code == 422
+
     def test_upload_valid_patient(self, client):
         resp = client.post("/patients", json=SAMPLE_PATIENT)
         assert resp.status_code == 200

@@ -4,7 +4,9 @@
 
 Matches a patient record (age, sex, conditions, medications, labs) to relevant trials from ClinicalTrials.gov. It combines **semantic retrieval** over eligibility clauses, a **deterministic rule engine** that hard-excludes trials the patient clearly fails (age, sex, lab thresholds), and **explanations that cite the specific criteria** behind each match.
 
-> **▶ Live demo: https://trialmate.onrender.com** (free tier: the first request after idle can take ~30–60 s to wake)
+> **▶ Live demo: https://trialmate.onrender.com** (free tier: first request after idle can take up to ~2-3 min; refresh if it times out. Warm latency ~70 ms)
+
+> Design decisions: [`docs/DESIGN.md`](docs/DESIGN.md)
 
 > ⚠️ **Prototype. Synthetic data only. Not for clinical use.**
 
@@ -82,7 +84,8 @@ Embed patient summary ──► FAISS (clause-level index) ──► candidate t
 No API key required (defaults to the `mock` LLM provider, which falls back to rule-based rationales).
 
 ```bash
-pip install -r requirements.txt        # Python 3.10–3.11
+python3.11 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt        # Python 3.10-3.11; 3.12+ untested (torch pin)
 uvicorn api.main:app --port 8000
 # open http://localhost:8000  (the demo UI is served at "/")
 ```

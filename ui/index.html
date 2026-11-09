@@ -348,14 +348,14 @@
 <body>
 
 <div class="banner">
-  ⚠️ <strong>PROTOTYPE ONLY — NOT FOR CLINICAL USE.</strong> Matches synthetic patient records. Always consult a qualified clinician.
+  ⚠️ <strong>Research prototype, not for clinical use.</strong> Matches synthetic patient records. Always consult a qualified clinician.
 </div>
 
 <header>
   <div class="header-brand">
     <div>
       <h1>🧬 TrialMate</h1>
-      <div class="subtitle">Clinical Trial Matching Agent</div>
+      <div class="subtitle">Clinical Trial Matching Agent · Research prototype, not for clinical use</div>
     </div>
   </div>
   <div class="api-pill" id="api-status">
@@ -667,15 +667,15 @@
       if (!up.ok) throw new Error(`Upload failed (${up.status}): ${await up.text()}`);
 
       sessionPatients[payload.patient_id] = payload;
-      msg.innerHTML = `<div class="msg msg-success">✅ Patient <strong>${payload.patient_id}</strong> uploaded</div>`;
+      msg.innerHTML = `<div class="msg msg-success">✅ Patient <strong>${esc(payload.patient_id)}</strong> uploaded</div>`;
 
       const mr = await fetch(`${API}/patients/${payload.patient_id}/matches?top_k=${top_k}`);
       if (!mr.ok) throw new Error(`Match error (${mr.status}): ${await mr.text()}`);
       renderResults(await mr.json(), "n_results");
 
     } catch (e) {
-      msg.innerHTML = `<div class="msg msg-error">❌ ${e.message}</div>`;
-      res.innerHTML = `<div class="results-empty"><span class="icon">⚠️</span><div>${e.message}</div></div>`;
+      msg.innerHTML = `<div class="msg msg-error">❌ ${esc(e.message)}</div>`;
+      res.innerHTML = `<div class="results-empty"><span class="icon">⚠️</span><div>${esc(e.message)}</div></div>`;
     } finally {
       btn.disabled = false;
       btn.innerHTML = `<span>🔬</span> Upload &amp; Find Matches`;
@@ -689,7 +689,7 @@
     if (!pid) { msg.innerHTML = `<div class="msg msg-error">Please enter a Patient ID</div>`; return; }
     selectedId = pid;
     document.getElementById("r_btn").disabled = false;
-    msg.innerHTML = `<div class="msg msg-success">✅ Selected <strong>${pid}</strong></div>`;
+    msg.innerHTML = `<div class="msg msg-success">✅ Selected <strong>${esc(pid)}</strong></div>`;
     refreshList();
   }
 
@@ -700,7 +700,7 @@
     const top_k = document.getElementById("r_top_k").value;
     btn.disabled = true;
     btn.innerHTML = `<div class="spinner" style="width:16px;height:16px;margin:0;"></div> Loading…`;
-    res.innerHTML = `<div class="loading"><div class="spinner"></div><div>Retrieving matches for ${selectedId}…</div></div>`;
+    res.innerHTML = `<div class="loading"><div class="spinner"></div><div>Retrieving matches for ${esc(selectedId)}…</div></div>`;
 
     try {
       if (sessionPatients[selectedId]) {
@@ -716,7 +716,7 @@
       }
       renderResults(await mr.json(), "r_results");
     } catch (e) {
-      res.innerHTML = `<div class="results-empty"><span class="icon">⚠️</span><div>${e.message}</div></div>`;
+      res.innerHTML = `<div class="results-empty"><span class="icon">⚠️</span><div>${esc(e.message)}</div></div>`;
     } finally {
       btn.disabled = false;
       btn.innerHTML = `<span>🔬</span> Get Matches`;
@@ -727,7 +727,7 @@
     selectedId = pid;
     document.getElementById("r_patient_id").value = pid;
     document.getElementById("r_btn").disabled = false;
-    document.getElementById("r_msg").innerHTML = `<div class="msg msg-success">✅ Selected <strong>${pid}</strong></div>`;
+    document.getElementById("r_msg").innerHTML = `<div class="msg msg-success">✅ Selected <strong>${esc(pid)}</strong></div>`;
     refreshList();
   }
 
@@ -743,12 +743,12 @@
       const sel = pid === selectedId;
       const conds = p.conditions.slice(0, 2).join(", ") + (p.conditions.length > 2 ? "…" : "");
       return `
-        <div class="patient-item ${sel ? "selected" : ""}" onclick="selectPatient('${pid}')">
+        <div class="patient-item ${sel ? "selected" : ""}" data-pid="${esc(pid)}" onclick="selectPatient(this.dataset.pid)">
           <div>
-            <div class="patient-item-id">${pid}</div>
-            <div class="patient-item-meta">Age ${p.age} · ${p.sex}${conds ? " · " + conds : ""}</div>
+            <div class="patient-item-id">${esc(pid)}</div>
+            <div class="patient-item-meta">Age ${esc(p.age)} · ${esc(p.sex)}${conds ? " · " + esc(conds) : ""}</div>
           </div>
-          <button class="btn-sm" onclick="event.stopPropagation();quickMatch('${pid}')">Match ↗</button>
+          <button class="btn-sm" onclick="event.stopPropagation();quickMatch(this.closest('.patient-item').dataset.pid)">Match ↗</button>
         </div>`;
     }).join("");
   }
@@ -763,6 +763,13 @@
     document.getElementById("r_btn").disabled = false;
     refreshList();
     await getMatches();
+  }
+
+  // ── HTML escape (all data interpolated into innerHTML goes through this) ──
+  function esc(v) {
+    return String(v ?? "").replace(/[&<>"']/g, ch => (
+      { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]
+    ));
   }
 
   // ── Score ring SVG ────────────────────────────────────────────────
@@ -803,7 +810,7 @@
     if (!data.matches || !data.matches.length) {
       div.innerHTML = `
         <div class="results-header">
-          <span>Results — ${data.patient_id}</span>
+          <span>Results — ${esc(data.patient_id)}</span>
           <span class="results-count">0 matches</span>
         </div>
         <div class="results-empty"><span class="icon">😶</span>No matching trials found.<br/>Try broader conditions or ingest more trials.</div>`;
@@ -812,7 +819,7 @@
 
     let html = `
       <div class="results-header">
-        <span>Matches — Patient ${data.patient_id}</span>
+        <span>Matches — Patient ${esc(data.patient_id)}</span>
         <span class="results-count">${data.matches.length} trials</span>
       </div>`;
 
@@ -823,7 +830,7 @@
         <div class="clause-section">
           <div class="clause-section-label label-match">✅ Matched Criteria</div>
           <div class="clause-tags">
-            ${m.matched_clauses.map(c => `<span class="ctag ctag-match" title="${c.clause_id || ""}">${c.text.slice(0, 80)}${c.text.length > 80 ? "…" : ""}</span>`).join("")}
+            ${m.matched_clauses.map(c => `<span class="ctag ctag-match" title="${esc(c.clause_id || "")}">${esc(c.text.slice(0, 80))}${c.text.length > 80 ? "…" : ""}</span>`).join("")}
           </div>
         </div>` : "";
 
@@ -831,12 +838,12 @@
         <div class="clause-section" style="margin-top:8px">
           <div class="clause-section-label label-violate">⚠️ Concerns / Review Required</div>
           <div class="clause-tags">
-            ${m.violated_clauses.map(c => `<span class="ctag ctag-violate">${c.text.slice(0, 90)}${c.text.length > 90 ? "…" : ""}</span>`).join("")}
+            ${m.violated_clauses.map(c => `<span class="ctag ctag-violate">${esc(c.text.slice(0, 90))}${c.text.length > 90 ? "…" : ""}</span>`).join("")}
           </div>
         </div>` : "";
 
       const ctgLink = m.evidence.length && m.evidence[0].url
-        ? `<div class="source-link"><a href="${m.evidence[0].url}" target="_blank">View on ClinicalTrials.gov ↗</a></div>`
+        ? `<div class="source-link"><a href="${esc(m.evidence[0].url)}" rel="noopener noreferrer" target="_blank">View on ClinicalTrials.gov ↗</a></div>`
         : "";
 
       html += `
@@ -844,10 +851,10 @@
           <div class="match-card-header" onclick="toggleCard(this)">
             ${scoreRing(m.score)}
             <div class="match-card-info">
-              <div class="match-title">${m.title}</div>
+              <div class="match-title">${esc(m.title)}</div>
               <div class="match-meta">
-                <span class="meta-chip">${m.nct_id}</span>
-                <span class="conf-badge ${cCls}">${m.confidence} confidence</span>
+                <span class="meta-chip">${esc(m.nct_id)}</span>
+                <span class="conf-badge ${cCls}">${esc(m.confidence)} confidence</span>
                 ${m.rule_score === 0 ? '<span class="meta-chip" style="background:#fee2e2;color:#991b1b">Hard exclusion</span>' : ""}
               </div>
             </div>
@@ -871,7 +878,7 @@
                 <div class="sub-score-val">${Math.round(m.trial_meta_score * 100)}%</div>
               </div>
             </div>
-            <div class="match-rationale">${m.rationale}</div>
+            <div class="match-rationale">${esc(m.rationale)}</div>
             ${matchedClauses}
             ${violatedClauses}
             ${ctgLink}
