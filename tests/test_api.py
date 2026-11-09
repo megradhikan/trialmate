@@ -79,6 +79,11 @@ class TestPatientUpload:
         resp = client.post("/patients", json={**SAMPLE_PATIENT, "notes": "x" * 2001})
         assert resp.status_code == 422
 
+    def test_unsafe_patient_id_rejected(self, client):
+        for bad_id in ("<b>x</b>", "a/b", "has space", ""):
+            resp = client.post("/patients", json={**SAMPLE_PATIENT, "patient_id": bad_id})
+            assert resp.status_code == 422, bad_id
+
     def test_upload_valid_patient(self, client):
         resp = client.post("/patients", json=SAMPLE_PATIENT)
         assert resp.status_code == 200

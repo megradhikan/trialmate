@@ -669,7 +669,7 @@
       sessionPatients[payload.patient_id] = payload;
       msg.innerHTML = `<div class="msg msg-success">✅ Patient <strong>${esc(payload.patient_id)}</strong> uploaded</div>`;
 
-      const mr = await fetch(`${API}/patients/${payload.patient_id}/matches?top_k=${top_k}`);
+      const mr = await fetch(`${API}/patients/${encodeURIComponent(payload.patient_id)}/matches?top_k=${top_k}`);
       if (!mr.ok) throw new Error(`Match error (${mr.status}): ${await mr.text()}`);
       renderResults(await mr.json(), "n_results");
 
@@ -709,7 +709,7 @@
           body: JSON.stringify(sessionPatients[selectedId])
         });
       }
-      const mr = await fetch(`${API}/patients/${selectedId}/matches?top_k=${top_k}`);
+      const mr = await fetch(`${API}/patients/${encodeURIComponent(selectedId)}/matches?top_k=${top_k}`);
       if (!mr.ok) {
         if (mr.status === 404) throw new Error(`Patient "${selectedId}" not found. Upload them first.`);
         throw new Error(`Error ${mr.status}: ${await mr.text()}`);

@@ -20,7 +20,13 @@ class PatientLabs(BaseModel):
 
 
 class PatientInput(BaseModel):
-    patient_id: str = Field(..., max_length=64, description="Unique patient identifier")
+    patient_id: str = Field(
+        ...,
+        min_length=1,
+        max_length=64,
+        pattern=r"^[A-Za-z0-9._-]+$",
+        description="Unique patient identifier (letters, digits, '.', '_', '-')",
+    )
     age: int = Field(..., ge=0, le=120)
     sex: str = Field(..., pattern="^(male|female|other)$")
     conditions: list[str] = Field(default_factory=list, max_length=50)
